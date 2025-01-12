@@ -1,0 +1,211 @@
+@use 'variables' as v;
+@use 'sass:color';
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin xl_desktop {
+    @media (min-width: v.$xl_desktop) {
+        @content;
+    }
+}
+
+@mixin boton($bgColor, $colorTexto) {
+    background-color: $bgColor;
+    padding: 1.5rem 4rem;
+    color: $colorTexto;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+
+    &:hover {
+        background-color: color.adjust( $bgColor, $lightness: -10% );
+        cursor: pointer;
+    }
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin container{
+    width: min(95%, 140rem);
+    margin: 0 auto;
+}
+
+@mixin container-sm{
+    width: min(95%, 60rem);
+    margin: 0 auto;
+}
+
+@mixin container-md{
+    width: min(95%, 80rem);
+    margin: 0 auto;
+}
+
+@mixin heading{
+    font-family: v.$fuente-principal;
+    font-weight: v.$color-black;
+    margin: 2rem 0;
+}
+
+@mixin name-page{
+    @include heading();
+    margin: 3rem 0 3rem 0;
+    text-align: center;
+}
+
+@mixin text_flow($min ,$max){
+    font-size: clamp($min, -0.8rem + 10vw, $max);
+}
+
+@mixin text_deg($start, $end){
+    background: linear-gradient(to right, $start, $end);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin logo{
+    color: v.$color-white;
+    text-align: center;
+    margin-bottom: 2rem;
+    @include desktop{
+        text-align: left;
+        margin: 0;
+    }
+}
+
+@mixin menu-social($color, $size){
+
+    &__enlace{
+
+        &::before{
+            color: $color;
+            font-size: $size;
+            display: inline-block;
+            font-style: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Font Awesome 6 Brands";  
+        }
+
+        &[href*="https://facebook.com"]::before {
+            content: "\f39e";
+        }
+        &[href*="https://github.com"]::before {
+            content: "\f09b";
+        }
+        
+        &[href*="https://tiktok.com"]::before {
+            content: "\e07b";
+        }
+        &[href*="https://instagram.com"]::before {
+            content: "\f16d";
+        }
+        &[href*="https://youtube.com"]::before {
+            content: "\f167";
+        }
+        &[href*="https://twitter.com"]::before {
+            content: "\f099";
+        }
+    }
+
+    &__ocultar{
+        display: none;
+    }
+}
+
+@mixin link{
+    all: unset;
+    color: v.$color-white;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: v.$bold;
+    background-color: transparent;
+    border: none;
+
+    &:hover{
+        color: v.$primary-color;
+        cursor: pointer;
+    }
+}
+
+@mixin shadow{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+@mixin list-reset{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin tags{
+    @include list-reset();
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+
+    > li{
+        background-color: v.$azul;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 1.4rem;
+        color: v.$color-white;
+        font-weight: v.$bold;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+@mixin flex-center($justify: center, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+  
+@mixin transition(
+  $properties: all,
+  $duration: 0.3s,
+  $timing-function: ease,
+  $delay: 0s
+) {
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-timing-function: $timing-function;
+  transition-delay: $delay;
+}
+
+@mixin center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin box-shadow($color: rgba(0, 0, 0, 0.1), $x: 0px, $y: 4px, $blur: 6px) {
+    box-shadow: $x $y $blur $color;
+  }
+  

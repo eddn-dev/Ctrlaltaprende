@@ -1,0 +1,147 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+// --------------------------------------------
+// Bloque principal de autenticación (registro)
+// --------------------------------------------
+.auth {
+  padding: 2rem;
+  display: flex;
+  align-items: center;      /* Alinea verticalmente al centro */
+  justify-content: center;  /* Alinea horizontalmente al centro */
+
+  &__wrapper {
+    width: 100%;
+    background-color: v.$text-color;
+    border-radius: 1rem;
+    display: block; /* Mobile First */
+
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 80rem; /* Opcional, para no crecer de más */
+    min-height: 80vh; /* Si deseas una altura mínima interna */
+
+    .auth__imagen {
+      min-height: 10rem; 
+      width: 100%;
+      background: url('/build/img/logo.webp') center center / cover no-repeat;
+      background-size: contain;
+    }
+
+    .auth__contenido {
+      padding: 2rem;
+    }
+
+    /* A partir del breakpoint "telefono" (ej. 480px): imagen más alta */
+    @include m.telefono {
+      .auth__imagen {
+        min-height: 15rem; 
+      }
+    }
+
+    /* A partir del breakpoint "tablet" (ej. 768px) => 2 columnas */
+    @include m.tablet {
+      display: flex;
+      max-width: 80rem;
+
+      .auth__imagen {
+        flex: 1;
+      }
+      .auth__contenido {
+        flex: 1;
+      }
+    }
+
+    @include m.desktop {
+      max-width: 120rem;
+    }
+  }
+
+  &__heading {
+    font-size: 2rem;
+    font-weight: v.$bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: aliceblue;
+  }
+
+  &__texto {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: color.adjust(v.$background-color, $lightness: 50%);
+  }
+}
+
+.form {
+  max-width: 100%; 
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  &__campo {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    &--submit {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__label {
+    font-size: 1.4rem;
+    font-weight: v.$bold;
+    margin-bottom: 0.5rem;
+    color: color.adjust(v.$background-color, $lightness: 30%);
+  }
+
+  &__input,
+  &__textarea {
+    font-size: 1.4rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #333;
+    color: v.$color-white;
+    transition: background-color 0.3s ease;
+
+    &:focus {
+      outline: 2px solid color.scale(#333, $lightness: 20%);
+    }
+  }
+
+  &__submit {
+    @include m.boton(#007bff, v.$color-white);
+    width: auto;
+    cursor: pointer;
+
+    &:hover {
+      background-color: color.adjust(#007bff, $lightness: -20%);
+    }
+  }
+}
+
+// --------------------------------------------
+// Acciones finales (login / olvide contraseña)
+// --------------------------------------------
+.acciones {
+  margin-top: 2rem;
+  text-align: center;
+
+  &__enlace {
+    display: inline-block;
+    margin: 0 1rem;
+    font-size: 1.4rem;
+    color: v.$color-white;
+    text-decoration: underline;
+
+    &:hover {
+      color: color.adjust(v.$color-white, $lightness: -40%);
+    }
+  }
+}

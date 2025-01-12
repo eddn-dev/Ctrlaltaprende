@@ -1,0 +1,10 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.auth{
+    @include m.container-md;
+
+    &__texto{
+        font-size: 2rem;
+    }
+}

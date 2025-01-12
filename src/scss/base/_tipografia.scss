@@ -1,0 +1,31 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+@font-face {
+    font-family: 'scripterregular';
+    src: url('scripter-regular-webfont.woff2') format('woff2'),
+        url('scripter-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, h3 {
+    @include m.heading;
+}
+
+h1 {
+    font-size: 4rem;
+}
+h2 {
+    font-size: 3.6rem;
+}
+h3 {
+    font-size: 3rem;
+}
+.text-center {
+    text-align: center;
+}
+
+[class$="__heading"]{
+    @include m.name-page;
+}

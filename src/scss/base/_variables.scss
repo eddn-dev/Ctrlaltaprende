@@ -1,0 +1,62 @@
+// Fuentes
+$fuente-principal: 'Outfit', sans-serif;
+
+// Tamaño de Media Queries
+$telefono: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$xl_desktop: 1200px;
+
+$primary-color: rgba(86, 124, 141, 1);
+$secondary-color: rgba(255, 255, 242, 1);
+$background-color: rgba(245, 239, 235, 1);
+$background-gradient: linear-gradient(to right, #1b2631, #283747);
+$text-color: rgba(47, 65, 86, 1);
+$light-gray: rgba(200, 217, 230, 1);
+$border-color: rgba(200, 217, 230, 0.3); 
+$primary-color-half: rgba(86, 124, 141, 0.5);
+$text-color-half: rgba(47, 65, 86, 0.5);
+$text-muted-color: red;
+$text-dark: #343a40;
+$text-light: #ffffff;
+$bg-light: #f0f0f0;
+$bg-lighter: #f8f9fa;
+$card-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+$icon-color: $text-color;
+$variation-color: rgb(86, 141, 136);
+$variation-color2: rgba(86, 141, 136, 0.05);
+$variation-color3: rgba(151, 159, 170, 1);
+$primary-bg-color: #2f4157;
+$secondary-bg-color: #3b4a5a;
+$secondary-bg-hover: #5a7184;
+$accent-color: #4caf50;
+$button-color: #008cba;
+$text-color-dark: #333;
+$border-color: #ddd;
+$modal-width: 60rem;
+
+$color-red: red;
+$color-white: white;
+$color-black: black;
+$color-green: green;
+
+//Algunos degradados
+$gradient1: linear-gradient(to right, #9133e8, #0f33d5,var(--primary-color), #EEB211);
+$google_gradient: linear-gradient(to right, #3369E8, #D50F25, #EEB211, #009925);
+$email_gradient: linear-gradient(to right, #BB0018, #EA4335, #FBBC05, #34A853);
+
+
+// Variables para profile
+$color-fondo: #F5EFEB; // Beige
+$color-texto: #2F4156; // Navy
+$color-principal: #567C8D; // Teal
+$color-secundario: #C8D9E6; // Sky Blue
+
+//Fuente para titulo
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// Fuentes
+$delgada: 300;
+$regular: 400;
+$bold: 700;
+$black: 900;

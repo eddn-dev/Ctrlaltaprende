@@ -1,0 +1,192 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+// Main Container
+.main-container {
+  @include m.container; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 50px; // Espacio entre texto e imagen
+  max-width: 1200px;
+  width: 90%; // Ajusta para responsividad
+
+  /* Mobile-first: contenedores en columna */
+  flex-direction: column; 
+  
+  /* A PARTIR DE TABLET (>= v.$tablet) => fila */
+  @include m.tablet {
+    flex-direction: row;
+  }
+}
+
+// Contenido de texto
+.text-content {
+  background-color: v.$light-gray;
+  border-radius: 10px;
+  @include m.box-shadow;
+  padding: 2rem 5rem 2rem 3rem;
+  text-align: center;
+  align-content: center;
+  position: relative; 
+
+  h2 {
+    font-size: 1.5rem;
+    color: color.adjust(v.$text-color, $lightness: -10%); // reemplazo de darken
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: v.$text-color;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: color.adjust(v.$text-color, $lightness: 20%); // reemplazo de lighten
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+
+  .cta-button {
+    padding: 15px 30px;
+    background-color: v.$text-color;
+    color: v.$secondary-color;
+    border: none;
+    border-radius: 30px; 
+    font-family: 'Poppins', 'Sans serif';
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    @include m.transition(background-color);
+
+    &:hover {
+      background-color: color.adjust(v.$text-color, $lightness: -15%); // reemplazo de darken
+    }
+  }
+}
+
+// Contenido de la imagen
+.image-content {
+  display: flex;
+  margin-left: 0; 
+  position: relative;
+  display: none;
+    @include m.tablet{
+    display: block;
+    } 
+  
+  img {
+    width: 10rem; 
+    position: relative;
+    z-index: -1; 
+    opacity: 0.8; 
+    transition: all 0.3s ease;
+  }
+
+  /* A partir de tablet => ajusta layout y tamaño */
+  @include m.tablet {
+    margin-left: -10rem; 
+    img {
+      width: 30rem; 
+      z-index: auto; 
+      opacity: 1;
+    }
+  }
+}
+
+// ---------------------
+// Bloque .section
+// ---------------------
+.section {
+  @include m.container;
+  padding: 2rem; // Espaciado general
+  
+  &__title {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    color: v.$text-dark;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    align-items: stretch; // Fuerza la misma altura
+    grid-template-columns: 1fr; // Mobile: 1 columna
+
+    @include m.tablet {
+      grid-template-columns: repeat(2, 1fr); // Tablet: 2 cols
+    }
+
+    @include m.desktop {
+      grid-template-columns: repeat(4, 1fr); // Desktop: 4 cols
+    }
+  }
+
+  &__item {
+    display: flex; 
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    display: block; // Toda la card sea clicable
+  }
+}
+
+// ---------------------
+// Bloque .card
+// ---------------------
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  @include m.transition(transform, box-shadow);
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  &__img {
+    /* Imagen circular */
+    width: 120px;       
+    height: 120px;      
+    border-radius: 50%; 
+    object-fit: cover;
+    margin: 1rem auto 0 auto; 
+    display: block; 
+  }
+
+  &__content {
+    padding: 1.5rem;
+    text-align: center;
+    flex: 1; 
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: v.$text-dark;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: color.scale(v.$text-dark, $lightness: 20%);
+  }
+}
