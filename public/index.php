@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
 use Controllers\AuthController;
+use Controllers\AdminController;
 use Controllers\SiteController;
 
 $router = new Router();
@@ -34,5 +35,9 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 $router->get('/', [SiteController::class, 'inicio']);
 $router->get('/foro', [SiteController::class, 'foro']);
 $router->get('/perfil', [SiteController::class, 'perfil']);
+$router->get('/content', [SiteController::class, 'content']);
+
+
+$router->get('/admin', [AdminController::class, 'admin']);
 
 $router->comprobarRutas();

@@ -707,59 +707,12 @@ h3 {
   color: rgb(47, 65, 86);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
-}
-
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  background-color: rgb(245, 239, 235);
-  color: rgb(47, 65, 86);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .main-container {
   display: grid;
   grid-template-areas: "header header" "aside main";
   grid-template-rows: auto 1fr;
   grid-template-columns: 20% 1fr;
   height: 100vh;
-}
-.main-container .nav_header {
-  grid-area: header;
-  height: 100px;
-  background-color: rgb(47, 65, 86);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-}
-.main-container .nav_header h1 {
-  color: rgb(255, 255, 242);
-  margin-right: auto;
-  font-family: "Scripter";
-  font-size: 2.5rem;
-}
-.main-container .nav_header img {
-  border-radius: 5px;
-  margin-left: 1rem;
-}
-.main-container .nav_header label {
-  font-size: 1.2rem;
-  color: white;
-  padding: 0 1rem;
-}
-.main-container .nav_header .last_label {
-  margin-right: 4rem;
 }
 .main-container .main-content {
   grid-area: main;
@@ -904,26 +857,6 @@ body {
   font-size: 0.9rem;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
-}
-
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  background-color: rgb(245, 239, 235);
-  color: rgb(47, 65, 86);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .scrollbar-black::-webkit-scrollbar {
   width: 1rem;
 }
@@ -944,33 +877,6 @@ body {
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   height: 100vh;
-}
-.main-container .nav_header {
-  grid-area: header;
-  height: 100px;
-  background-color: rgb(47, 65, 86);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-}
-.main-container .nav_header h1 {
-  color: rgb(255, 255, 242);
-  margin-right: auto;
-  font-family: "Scripter";
-  font-size: 2.5rem;
-}
-.main-container .nav_header img {
-  border-radius: 5px;
-  margin-left: 1rem;
-}
-.main-container .nav_header label {
-  font-size: 1.2rem;
-  color: white;
-  padding: 0 1rem;
-}
-.main-container .nav_header .last_label {
-  margin-right: 4rem;
 }
 .main-container .main-content {
   grid-area: main;
@@ -1134,6 +1040,98 @@ body {
 }
 .article-card .article-actions button:hover {
   background-color: rgba(255, 255, 255, 0.8);
+}
+
+.content_container {
+  display: flex;
+  height: 100%;
+}
+.content_container .sidebar {
+  background-color: rgb(47, 65, 86);
+  width: 250px;
+  padding: 20px;
+  overflow-y: auto;
+}
+.content_container .sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: rgb(255, 255, 242);
+  text-transform: uppercase;
+}
+.content_container .sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.content_container .sidebar ul li {
+  margin-bottom: 10px;
+}
+.content_container .sidebar ul li a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+.content_container .sidebar ul li a:hover, .content_container .sidebar ul li a.active {
+  background-color: rgb(200, 217, 230);
+  color: #282C34;
+}
+.content_container .content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+.content_container .content .breadcrumb {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: rgb(86, 141, 136);
+}
+.content_container .content .breadcrumb a {
+  color: rgb(86, 124, 141);
+  text-decoration: none;
+}
+.content_container .content .breadcrumb span {
+  color: #FFFFFF;
+}
+.content_container .content h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+.content_container .content p {
+  font-size: 16px;
+  color: rgb(255, 255, 242);
+  margin-bottom: 20px;
+}
+.content_container .content .learning-card {
+  background-color: #333842;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.content_container .content .learning-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: rgb(200, 217, 230);
+}
+.content_container .content .learning-card ul {
+  list-style: disc;
+  padding-left: 20px;
+  color: rgb(255, 255, 242);
+}
+.content_container .content .learning-card ul li {
+  margin-bottom: 10px;
+}
+.content_container .content section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+.content_container .content section p {
+  font-size: 16px;
+  color: rgb(255, 255, 242);
 }
 
 .auth {

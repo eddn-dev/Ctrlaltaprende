@@ -1,181 +1,118 @@
 @use 'base/variables' as v;
-@use 'base/mixins' as m;
-@use 'sass:color';
 
-// Mixins
-@mixin flex-center($justify: center, $align: center) {
+// Contenedor principal
+.content_container {
   display: flex;
-  justify-content: $justify;
-  align-items: $align;
-}
+  height: 100%;
+  // Barra lateral
+  .sidebar {
+    background-color: v.$text-color;
+    width: 250px;
+    padding: 20px;
+    overflow-y: auto;
 
-@mixin transition($properties...) {
-  transition: $properties 0.3s ease;
-}
-
-// General Styles
-body {
-  font-family: $font-main;
-  margin: 0;
-  padding: 0;
-  background-color: $bg-light;
-}
-
-// Header and Navbar
-header {
-  background-color: $primary-color;
-  color: $text-light;
-  padding: 0;
-
-  .container-navbar {
-    @include flex-center(space-between, center);
-    max-width: auto;
-    padding: 0 2rem;
-
-    .container-logo img {
-      width: 100px;
-      height: auto;
+    h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: v.$secondary-color;
+      text-transform: uppercase;
     }
 
-    p {
-      font-family: $font-logo;
-      font-size: 30px;
-      margin: 0;
-    }
+    ul {
+      list-style: none;
+      padding: 0;
 
-    nav {
-      ul {
-        list-style: none;
-        @include flex-center(flex-start, center);
-        gap: 2rem;
-        margin: 0;
-        padding: 0;
+      li {
+        margin-bottom: 10px;
 
-        li {
-          text-transform: uppercase;
-          font-weight: bold;
+        a {
+          color: v.$text-color-light;
+          text-decoration: none;
+          font-size: 14px;
+          padding: 10px 15px;
+          border-radius: 4px;
+          display: block;
+          transition: background-color 0.3s ease;
 
-          a {
-            color: $text-light;
-            text-decoration: none;
-            @include transition(color);
-
-            &:hover {
-              color: $secondary-color;
-            }
+          &:hover,
+          &.active {
+            background-color: v.$light-gray;
+            color: v.$content-bg;
           }
         }
       }
     }
+  }
 
-    .search-form {
-      @include flex-center(flex-end, center);
-      background-color: $text-light;
-      border-radius: 25px;
-      padding: 0.5rem 1rem;
+  // Contenido principal
+  .content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
 
-      input {
-        border: none;
-        outline: none;
-        padding: 0.5rem;
-        font-size: 1rem;
+    .breadcrumb {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: v.$variation-color;
+
+      a {
+        color: v.$primary-color;
+        text-decoration: none;
       }
 
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: $text-dark;
-        font-size: 1.5rem;
+      span {
+        color: v.$text-color-light;
       }
     }
-  }
-}
 
-// Main Content
-main {
-  padding: 1rem 0;
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: v.$text-color-light;
+    }
 
-  .accordion {
-    background-color: $secondary-color;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    p {
+      font-size: 16px;
+      color: v.$secondary-color;
+      margin-bottom: 20px;
+    }
 
-    &-header {
-      @include flex-center(space-between, center);
-      padding: 15px;
-      cursor: pointer;
-      @include transition(background-color);
+    // Tarjeta de aprendizaje
+    .learning-card {
+      background-color: v.$card-bg;
+      padding: 20px;
+      border-radius: v.$card-border-radius;
+      margin-bottom: 20px;
 
-      &:hover {
-        background-color: $primary-color;
-        color: $text-light;
+      h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: v.$light-gray;
       }
 
-      h3 {
-        margin: 0;
+      ul {
+        list-style: disc;
+        padding-left: 20px;
+        color: v.$secondary-color;
+
+        li {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    // Sección de contenido
+    section {
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: v.$text-color-light;
+      }
+
+      p {
         font-size: 16px;
-        font-weight: bold;
-      }
-
-      svg {
-        width: 16px;
-        height: 16px;
-        @include transition(transform);
-      }
-    }
-
-    &.open {
-      .accordion-header svg {
-        transform: rotate(180deg);
-      }
-
-      .accordion-content {
-        display: block;
-      }
-    }
-
-    &-content {
-      background-color: $bg-accent;
-      padding: 10px 15px;
-      display: none;
-
-      .link-container {
-        background-color: $text-light;
-        border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: 8px 0;
-        padding: 10px;
-        @include transition(transform, box-shadow);
-
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        a {
-          text-decoration: none;
-          color: $text-dark;
-          font-weight: bold;
-        }
+        color: v.$secondary-color;
       }
     }
   }
-}
-
-// Media Queries
-@media (max-width: 768px) {
-  html {
-    font-size: 80%;
-  }
-
-  .container-navbar p {
-    font-size: 80%;
-  }
-}
-
-@media (max-width: 468px) {
-  // Add specific styles for mobile if necessary
 }

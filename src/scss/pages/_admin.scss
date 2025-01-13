@@ -1,27 +1,5 @@
 @use 'base/variables' as v;
-@use 'base/mixins' as m;
-@use 'sass:color';
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  html, body {
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  body {
-    background-color: $background-color;
-    color: $text-color;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
   // Scrollbar
   .scrollbar-black {
     &::-webkit-scrollbar {
@@ -33,11 +11,11 @@
     }
   
     &::-webkit-scrollbar-thumb {
-      background: $text-color;
+      background: v.$text-color;
       border-radius: 0.4rem;
   
       &:hover {
-        background: $primary-color;
+        background: v.$primary-color;
       }
     }
   }
@@ -51,46 +29,13 @@
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr;
     height: 100vh;
-  
-    // Header
-    .nav_header {
-      grid-area: header;
-      height: 100px;
-      background-color: $text-color;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1rem;
-  
-      h1 {
-        color: $secondary-color;
-        margin-right: auto;
-        font-family: 'Scripter';
-        font-size: 2.5rem;
-      }
-  
-      img {
-        border-radius: 5px;
-        margin-left: 1rem;
-      }
-  
-      label {
-        font-size: 1.2rem;
-        color: white;
-        padding: 0 1rem;
-      }
-  
-      .last_label {
-        margin-right: 4rem;
-      }
-    }
-  
+
     // Contenido Principal
     .main-content {
       grid-area: main;
       overflow-y: auto;
       padding: 1.5rem;
-      background-color: $secondary-color;
+      background-color: v.$secondary-color;
   
       .main-header {
         display: flex;
@@ -99,7 +44,7 @@
         margin-bottom: 1rem;
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
-        color: $text-color;
+        color: v.$text-color;
       }
   
       .admin-header {
@@ -118,7 +63,7 @@
     // Gestión de Contenido y Usuarios
     .admin-content,
     .admin-users {
-      background-color: $variation-color3;
+      background-color: v.$variation-color3;
       padding: 3rem 1rem 0;
       border-radius: 0.2rem;
       max-height: 24rem;
@@ -135,7 +80,7 @@
         top: 10;
         z-index: 10;
         width: 30%;
-        background-color: $text-color;
+        background-color: v.$text-color;
       }
     }
   
@@ -147,7 +92,7 @@
       justify-content: center;
   
       .user-card {
-        background-color: $primary-color;
+        background-color: v.$primary-color;
         color: white;
         border-radius: 10px;
         padding: 1rem;
@@ -167,7 +112,7 @@
           height: 50px;
           border-radius: 50%;
           object-fit: cover;
-          border: 2px solid $light-gray;
+          border: 2px solid v.$light-gray;
         }
   
         .user-info {
@@ -180,7 +125,7 @@
   
           .user-role {
             font-size: 0.9rem;
-            color: $light-gray;
+            color: v.$light-gray;
           }
         }
   
@@ -190,7 +135,7 @@
   
           .btn {
             background-color: white;
-            color: $primary-color;
+            color: v.$primary-color;
             border: none;
             border-radius: 5px;
             padding: 0.5rem;
@@ -198,7 +143,7 @@
             transition: background-color 0.2s ease;
   
             &:hover {
-              background-color: $light-gray;
+              background-color: v.$light-gray;
             }
           }
         }
@@ -230,7 +175,7 @@
   }
   
   .article-card {
-    background-color: $primary-color;
+    background-color: v.$primary-color;
     color: white;
     padding: 1rem;
     border-radius: 2rem;

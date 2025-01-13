@@ -19,4 +19,9 @@ class SiteController {
         $router->render('site/perfil', [
         ]);
     }
+
+    public static function content(Router $router) {
+        $router->render('site/content', [
+        ]);
+    }
 }

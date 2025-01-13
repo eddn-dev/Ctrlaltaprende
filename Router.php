@@ -53,7 +53,7 @@ class Router
         //Use the layout 
         $current = $_SERVER['PATH_INFO'] ?? '/';
         if(str_contains($current, '/admin')){
-            include_once __DIR__ . '/views/admin-layout.php';
+            include_once __DIR__ . '/views/layout.php';
         } else{
             include_once __DIR__ . '/views/layout.php';
         }
