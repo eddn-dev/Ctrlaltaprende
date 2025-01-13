@@ -1,118 +1,157 @@
 @use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
 
-// Contenedor principal
-.content_container {
+// Contenedor principal (BEM: bloque .content-container)
+.content-container {
+  // Mobile-first: la sidebar y el main se apilan (columna)
   display: flex;
-  height: 100%;
-  // Barra lateral
-  .sidebar {
-    background-color: v.$text-color;
-    width: 250px;
-    padding: 20px;
-    overflow-y: auto;
+  flex-direction: column;
+  overflow: hidden; // Si quieres ocultar overflow global
 
-    h2 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: v.$secondary-color;
-      text-transform: uppercase;
+  // A PARTIR DE "tablet" => display en fila (sidebar a la izq., contenido a la der.)
+  @include m.tablet {
+    flex-direction: row;
+  }
+
+  // ----- SIDEBAR -----
+  &__sidebar {
+    /* Para que la barra lateral tenga scroll interno y no se mueva en pantallas grandes */
+    overflow-y: auto;
+    background-color: v.$bg-light; // Ajusta a tu preferencia
+    padding: 2rem;
+    /* En mobile, ocupa todo el ancho (estará arriba); en tablet+ definimos ancho fijo */
+    width: 100%;
+
+    @include m.tablet {
+      flex: 0 0 25rem; // Un ancho fijo (ej. 25rem)
+      /* O si prefieres un %:
+         flex: 0 0 20%; */
     }
 
-    ul {
+    &-title {
+      font-size: 2rem;
+      font-weight: v.$bold;
+      margin-bottom: 2rem;
+      color: v.$text-dark; 
+    }
+
+    &-list {
       list-style: none;
+      margin: 0;
       padding: 0;
+    }
 
-      li {
-        margin-bottom: 10px;
+    &-item {
+      margin-bottom: 1rem;
+    }
 
-        a {
-          color: v.$text-color-light;
-          text-decoration: none;
-          font-size: 14px;
-          padding: 10px 15px;
-          border-radius: 4px;
-          display: block;
-          transition: background-color 0.3s ease;
+    &-link {
+      display: block;
+      color: v.$text-color;
+      font-size: 1.6rem;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      border-radius: 0.4rem;
+      transition: background-color 0.3s ease;
 
-          &:hover,
-          &.active {
-            background-color: v.$light-gray;
-            color: v.$content-bg;
-          }
-        }
+      &:hover {
+        background-color: color.adjust(v.$text-color, $lightness: 40%);
+      }
+
+      &--active {
+        font-weight: v.$bold;
+        background-color: color.adjust(v.$primary-color, $lightness: 30%);
       }
     }
   }
 
-  // Contenido principal
-  .content {
-    flex: 1;
-    padding: 20px;
+  // ----- CONTENIDO PRINCIPAL -----
+  &__main {
+    /* Ocupa todo el espacio disponible */
+    flex: 1;  
     overflow-y: auto;
+    padding: 2rem;
 
-    .breadcrumb {
-      font-size: 14px;
-      margin-bottom: 20px;
-      color: v.$variation-color;
+    // Migas de pan (breadcrumb)
+    .content-container__breadcrumb {
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      color: v.$text-dark;
 
-      a {
+      .content-container__breadcrumb-link {
         color: v.$primary-color;
         text-decoration: none;
-      }
 
-      span {
-        color: v.$text-color-light;
-      }
-    }
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-      color: v.$text-color-light;
-    }
-
-    p {
-      font-size: 16px;
-      color: v.$secondary-color;
-      margin-bottom: 20px;
-    }
-
-    // Tarjeta de aprendizaje
-    .learning-card {
-      background-color: v.$card-bg;
-      padding: 20px;
-      border-radius: v.$card-border-radius;
-      margin-bottom: 20px;
-
-      h2 {
-        font-size: 20px;
-        margin-bottom: 10px;
-        color: v.$light-gray;
-      }
-
-      ul {
-        list-style: disc;
-        padding-left: 20px;
-        color: v.$secondary-color;
-
-        li {
-          margin-bottom: 10px;
+        &:hover {
+          color: color.adjust(v.$primary-color, $lightness: -10%);
         }
       }
+
+      .content-container__breadcrumb-current {
+        color: v.$text-dark; // o un color diferente para el link actual
+      }
     }
 
-    // Sección de contenido
-    section {
-      h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-        color: v.$text-color-light;
+    // Título principal
+    .content-container__title {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: v.$bold;
+      color: v.$text-dark;
+    }
+
+    // Párrafo introductorio
+    .content-container__intro {
+      font-size: 1.6rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: v.$text-color;
+    }
+
+    // Secciones (subtemas)
+    .content-container__section {
+      margin-bottom: 3rem;
+
+      &-title {
+        font-size: 2rem;
+        font-weight: v.$bold;
+        margin-bottom: 1rem;
+        color: v.$text-dark;
       }
 
-      p {
-        font-size: 16px;
-        color: v.$secondary-color;
+      &-text {
+        font-size: 1.6rem;
+        line-height: 1.6;
+        color: v.$text-color;
       }
     }
   }
+}
+
+// Bloque independiente: .learning-card
+.learning-card {
+  background-color: v.$light-gray;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  margin-bottom: 2rem;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: v.$bold;
+    margin-bottom: 1.5rem;
+    color: v.$text-dark;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    color: v.$text-color;
+  } 
 }

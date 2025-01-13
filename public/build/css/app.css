@@ -1042,96 +1042,130 @@ h3 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-.content_container {
+.content-container {
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
 }
-.content_container .sidebar {
-  background-color: rgb(47, 65, 86);
-  width: 250px;
-  padding: 20px;
+@media (min-width: 768px) {
+  .content-container {
+    flex-direction: row;
+  }
+}
+.content-container__sidebar {
+  /* Para que la barra lateral tenga scroll interno y no se mueva en pantallas grandes */
   overflow-y: auto;
+  background-color: #f0f0f0;
+  padding: 2rem;
+  /* En mobile, ocupa todo el ancho (estará arriba); en tablet+ definimos ancho fijo */
+  width: 100%;
 }
-.content_container .sidebar h2 {
-  font-size: 18px;
-  margin-bottom: 15px;
-  color: rgb(255, 255, 242);
-  text-transform: uppercase;
+@media (min-width: 768px) {
+  .content-container__sidebar {
+    flex: 0 0 25rem;
+    /* O si prefieres un %:
+       flex: 0 0 20%; */
+  }
 }
-.content_container .sidebar ul {
+.content-container__sidebar-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #343a40;
+}
+.content-container__sidebar-list {
   list-style: none;
+  margin: 0;
   padding: 0;
 }
-.content_container .sidebar ul li {
-  margin-bottom: 10px;
+.content-container__sidebar-item {
+  margin-bottom: 1rem;
 }
-.content_container .sidebar ul li a {
-  color: #FFFFFF;
-  text-decoration: none;
-  font-size: 14px;
-  padding: 10px 15px;
-  border-radius: 4px;
+.content-container__sidebar-link {
   display: block;
+  color: rgb(47, 65, 86);
+  font-size: 1.6rem;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-radius: 0.4rem;
   transition: background-color 0.3s ease;
 }
-.content_container .sidebar ul li a:hover, .content_container .sidebar ul li a.active {
-  background-color: rgb(200, 217, 230);
-  color: #282C34;
+.content-container__sidebar-link:hover {
+  background-color: rgb(143.1353383459, 166.5488721805, 193.8646616541);
 }
-.content_container .content {
+.content-container__sidebar-link--active {
+  font-weight: 700;
+  background-color: rgb(174.2511013216, 196.013215859, 205.7488986784);
+}
+.content-container__main {
+  /* Ocupa todo el espacio disponible */
   flex: 1;
-  padding: 20px;
   overflow-y: auto;
+  padding: 2rem;
 }
-.content_container .content .breadcrumb {
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: rgb(86, 141, 136);
+.content-container__main .content-container__breadcrumb {
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  color: #343a40;
 }
-.content_container .content .breadcrumb a {
+.content-container__main .content-container__breadcrumb .content-container__breadcrumb-link {
   color: rgb(86, 124, 141);
   text-decoration: none;
 }
-.content_container .content .breadcrumb span {
-  color: #FFFFFF;
+.content-container__main .content-container__breadcrumb .content-container__breadcrumb-link:hover {
+  color: rgb(66.6784140969, 96.140969163, 109.3215859031);
 }
-.content_container .content h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  color: #FFFFFF;
+.content-container__main .content-container__breadcrumb .content-container__breadcrumb-current {
+  color: #343a40;
 }
-.content_container .content p {
-  font-size: 16px;
-  color: rgb(255, 255, 242);
-  margin-bottom: 20px;
+.content-container__main .content-container__title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #343a40;
 }
-.content_container .content .learning-card {
-  background-color: #333842;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+.content-container__main .content-container__intro {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: rgb(47, 65, 86);
 }
-.content_container .content .learning-card h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: rgb(200, 217, 230);
+.content-container__main .content-container__section {
+  margin-bottom: 3rem;
 }
-.content_container .content .learning-card ul {
-  list-style: disc;
-  padding-left: 20px;
-  color: rgb(255, 255, 242);
+.content-container__main .content-container__section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #343a40;
 }
-.content_container .content .learning-card ul li {
-  margin-bottom: 10px;
+.content-container__main .content-container__section-text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: rgb(47, 65, 86);
 }
-.content_container .content section h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #FFFFFF;
+
+.learning-card {
+  background-color: rgb(200, 217, 230);
+  padding: 2rem;
+  border-radius: 0.8rem;
+  margin-bottom: 2rem;
 }
-.content_container .content section p {
-  font-size: 16px;
-  color: rgb(255, 255, 242);
+.learning-card__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #343a40;
+}
+.learning-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.learning-card__item {
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  color: rgb(47, 65, 86);
 }
 
 .auth {
