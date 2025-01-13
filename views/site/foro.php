@@ -1,52 +1,92 @@
+<div class="main-container">
+    <!-- Navegación -->
+    <nav class="nav_header">
+        <img src="logo.jpg" width="95px" alt="Logo de Ctrl + Alt + Aprende"> 
+        <h1>Foro de Discusión</h1>
+        <label><a href="index.html"><i class="nav_header_label fas fa-home"></i> Inicio</a></label>
+        <label><a href="foro.html"><i class="nav_header_label fas fa-comments"></i> Foro de Discusión</a></label>
+        <label class="last_label"><a href="foro.html"><i class="nav_header_label fas fa-sign-in-alt"></i> Iniciar sesión</a></label>
+    </nav>
 
-<button id="open-modal" class="btn">Crear Post</button>
-
-<!-- Ventana Modal -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Crear post</h2>
-            <button id="close-modal" class="close-btn">&times;</button>
-        </div>
-        <div class="modal-body">
-            <label for="topics">Selecciona temas o materias relacionados</label>
-            <select id="topics">
-                <option value="tema1">Tema 1</option>
-                <option value="tema2">Tema 2</option>
-                <option value="materia1">Materia 1</option>
-            </select>
-
-            <!-- Tabs -->
-            <div class="tabs">
-                <button class="tab active" data-tab="text">Texto</button>
-                <button class="tab" data-tab="images">Imágenes & Video</button>
-                <button class="tab" data-tab="link">Link</button>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <nav class="nav_foro">
+            <div class="buscador-contenedor">
+                <button class="buscador-boton">
+                    <i class="fas fa-search"></i>                        
+                </button>
+                <input type="text" placeholder="Buscar..." class="buscador">
             </div>
-
-            <!-- Tab Content -->
-            <div class="tab-content">
-                <div id="text" class="tab-pane active">
-                    <input type="text" id="title" placeholder="Título*" maxlength="100">
-                    <textarea id="content" placeholder="Texto"></textarea>
-                </div>
-                <div id="images" class="tab-pane">
-                    <p>Sube tus imágenes o videos aquí.</p>
-                    <input type="file" accept="image/*,video/*">
-                </div>
-                <div id="link" class="tab-pane">
-                    <input type="url" id="link-url" placeholder="Pega tu enlace aquí">
-                </div>
+            <button class="new-topic-btn">Añadir nuevo tema/comentario<i class="fas fa-plus"></i></button>
+            <ul>
+                <li><a href="foro.html"><i class="fas fa-house-laptop"></i> Inicio</a></li>
+                <li><a href="foro.html"><i class="fas fa-fire"></i> Temas más hablados</a></li>
+                <li><a href="preguntas.html"><i class="fas fa-question-circle"></i> Preguntas</a></li>
+            </ul>
+            <div class="button-container">
+                <button class="login-btn">Iniciar sesión</button>
+                <div class="separator">o</div>
+                <button class="signup-btn">Registrarse</button>
             </div>
+        </nav>
+    </aside>
 
-            <!-- Nueva sección para descripción -->
-            <div class="description-section">
-                <label for="description">Descripción:</label>
-                <textarea id="description" placeholder="Añade una descripción breve..." maxlength="300"></textarea>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn save-btn">Guardar</button>
-            <button class="btn publish-btn">Publicar</button>
-        </div>
-    </div>
-</div>
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <h1 class="main-header">BIENVENIDX AL FORO</h1>
+        <section class="topics">
+            <?php
+            // Artículos dinámicos (simulados)
+            $articles = [
+                [
+                    'img' => './img/user1.jpeg',
+                    'title' => '¿Cómo solucionar errores comunes en C++?',
+                    'author' => 'Usuario1',
+                    'date' => '20/11/2024',
+                    'responses' => 10,
+                    'views' => 150
+                ],
+                [
+                    'img' => './img/user2.jpeg',
+                    'title' => 'Cliqué máximo, un problema NP-Completo',
+                    'author' => 'Usuario2',
+                    'date' => '14/10/2024',
+                    'responses' => 5,
+                    'views' => 18
+                ],
+                [
+                    'img' => './img/user3.jpeg',
+                    'title' => 'Optimizando LL(1) con Tablas Hash',
+                    'author' => 'Usuario3',
+                    'date' => '09/11/2024',
+                    'responses' => 35,
+                    'views' => 60
+                ],
+                [
+                    'img' => './img/user4.jpeg',
+                    'title' => 'Tutorial básico de Python para principiantes',
+                    'author' => 'Usuario4',
+                    'date' => '29/11/2024',
+                    'responses' => 52,
+                    'views' => 143
+                ]
+            ];
+
+            foreach ($articles as $article): ?>
+                <a href="articulo.html">
+                    <article class="topic-card">
+                        <img src="<?php echo $article['img']; ?>" alt="Imagen de <?php echo $article['author']; ?>">
+                        <div>
+                            <h3><?php echo $article['title']; ?></h3>
+                            <p>Publicado por <span><?php echo $article['author']; ?></span> el <?php echo $article['date']; ?></p>
+                            <div class="topic-stats">
+                                <span><i class="fas fa-comments"></i> <?php echo $article['responses']; ?> Respuestas</span>
+                                <span><i class="fas fa-eye"></i> <?php echo $article['views']; ?> Vistas</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+            <?php endforeach; ?>
+        </section>
+    </main>
+</div>    

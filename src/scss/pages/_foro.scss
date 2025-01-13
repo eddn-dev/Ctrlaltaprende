@@ -1,0 +1,231 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    background-color: $background-color;
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  // Estructura Principal
+  .main-container {
+    display: grid;
+    grid-template-areas: 
+      "header header"
+      "aside main";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 20% 1fr;
+    height: 100vh;
+  
+    // Header
+    .nav_header {
+      grid-area: header;
+      height: 100px;
+      background-color: $text-color;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+  
+      h1 {
+        color: $secondary-color;
+        margin-right: auto;
+        font-family: 'Scripter';
+        font-size: 2.5rem;
+      }
+  
+      img {
+        border-radius: 5px;
+        margin-left: 1rem;
+      }
+  
+      label {
+        font-size: 1.2rem;
+        color: white;
+        padding: 0 1rem;
+      }
+  
+      .last_label {
+        margin-right: 4rem;
+      }
+    }
+  
+    // Contenido Principal
+    .main-content {
+      grid-area: main;
+      overflow-y: auto;
+      padding: 1.5rem;
+      background-color: $background-color;
+  
+      .main-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+      }
+    }
+  }
+  
+  // Sidebar
+  .sidebar {
+    grid-area: aside;
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 0.5rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  
+    nav {
+      ul {
+        list-style: none;
+  
+        li {
+          margin: 1rem 0;
+          line-height: 2;
+  
+          a {
+            color: $secondary-color;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+  
+            &:hover {
+              color: $light-gray;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Componentes
+  .placeholder {
+    background-color: $primary-color-half;
+    color: $secondary-color;
+    padding: 0.5rem 0.5rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    margin-left: 40px;
+  }
+  
+  .search-topic-btn {
+    background-color: $text-color;
+    color: $secondary-color;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 80px;
+    margin-left: 10px;
+  
+    &:hover {
+      background-color: $secondary-color;
+      color: $text-color;
+    }
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: $text-color-half;
+    padding: 10px 30px;
+    margin: 5px 0;
+  
+    .login-btn {
+      background-color: $primary-color;
+      color: $secondary-color;
+      padding: 0.8rem 1.5rem;
+      border: solid;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bolder;
+  
+      &:hover {
+        background-color: $text-color;
+        color: $light-gray;
+      }
+    }
+  
+    .signup-btn {
+      background-color: $secondary-color;
+      color: $primary-color;
+      padding: 0.8rem 1.5rem;
+      border: 1px solid $primary-color;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: $variation-color;
+        color: $light-gray;
+        border-color: $light-gray;
+      }
+    }
+  }
+  
+  // Tarjetas de temas
+  .topic-card {
+    display: flex;
+    align-items: center;
+    background-color: $light-gray;
+    border: 1px solid $light-gray;
+    border-radius: 10px;
+    padding: 1rem;
+    gap: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+  
+    &:hover {
+      background-color: $primary-color;
+      border-color: $text-color;
+      transform: scale(1.02);
+  
+      h3 {
+        color: whitesmoke;
+      }
+    }
+  
+    img {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid $light-gray;
+    }
+  
+    h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $text-color;
+    }
+  
+    p {
+      font-size: 0.9rem;
+    }
+  }
