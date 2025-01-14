@@ -1,0 +1,88 @@
+{
+  "id": "7",
+  "subject": "Fundamentos de Programación",
+  "topic": "Funciones Recursivas en C",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Recursión"
+    },
+    {
+      "type": "paragraph",
+      "content": "La recursión es una técnica en la que una función se llama a sí misma. Es útil para resolver problemas que se pueden dividir en subproblemas similares al original.\n\nRecursión\n\nUna función es recursiva cuando se llama a sí misma para resolver un subproblema. Es importante que la recursión tenga un caso base para evitar que la función se llame infinitamente.\n\nTe compartimos un video interesante: https://youtu.be/YwRjEOFxvO0?si=Ibc-TXKT0TGKJDyr\n\nEjemplo de una función recursiva que calcula el factorial de un número:"
+    },
+    {
+      "type": "code",
+      "content": "int factorial(int n) {\n\tif (n == 0)  // Caso base\n\t\treturn 1;\n\telse\n\t\treturn n * factorial(n - 1);  // Llamada recursiva\n}"
+    },
+
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Pasos base y recursivos"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Paso base: Es la condición que termina la recursión. En el ejemplo del factorial, if (n == 0) es el caso base.",
+        "Paso recursivo: Es la llamada a la función dentro de sí misma con una versión más pequeña del problema. En el ejemplo, factorial(n - 1) es el paso recursivo."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Tipos de recursión"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Recursión directa: La función se llama a sí misma directamente, como en el ejemplo del factorial..",
+        "Recursión indirecta: La función se llama a través de otra función formando un ciclo de llamadas."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Recursión versus iteración"
+    },
+    {
+      "type": "paragraph",
+      "content": "La recursión puede ser más clara y concisa en problemas como el cálculo de factoriales o la búsqueda en árboles. Sin embargo, puede ser más ineficiente que la iteración en términos de uso de memoria y tiempo de ejecución debido a la sobrecarga de las llamadas de función. La iteración es más eficiente en problemas donde el cálculo se repite una y otra vez en un bucle sin necesidad de subproblemas más pequeños.\n\nA continuación algunos ejemplos interesantes de programas recursivos:"
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\n\nint Suma(int, int);\nint Multi(int, int);\n\nint main(){\n\tint a,b;\n\tprintf(\"\\tPrimer numeros: \");\n\tscanf(\"%d%d\",&a,&b);\n\tprintf(\"\\n\\tLa suma de %d + %d es: %d\",a,b,Suma(a,b));\n\tprintf(\"\\n\\tLa multiplicacion de %d x %d es: %d\",a,b,Multi(a,b));\n\treturn 0;\n}\n\nint Suma(int a, int b){\n\tif (a==0)\treturn b;\n\telse return Suma(a-1,b+1);\n}\n\nint Multi(int a, int b){\n\tif(b==1)\treturn a;\n\telse return Suma(a,Multi(a-1,b));\t\n}"
+    },
+    {
+      "type": "paragraph",
+      "content": "Otra implementación recursiva para la suma, además de la potencia es:"
+    },
+    {
+      "type": "code",
+      "content": "#include<stdio.h>\nint SumatoriaR(int);\nint Sumatoriai(int);\nint PotenciaR(int, int);\nint Potenciai(int, int);\n\nint main(){\n\tint s, b ,e;\n\tprintf(\"\\t\\t--------\\tSUMATORIA\\t---------\\n\");\n\tprintf(\"\\tDigite el numero del que desea conocer la sumatoria: \");\n\tscanf(\"%d\", &s);\n\tprintf(\"\\n\\tLa sumatoria de %d es: %d = %d\", s, Sumatoriai(s), SumatoriaR(s));\n\t\n\tprintf(\"\\n\\n\\t\\t---------\\tPOTENCIA\\t---------\\n\");\n\tprintf(\"\\tDigite la base y la potencia que desea ingresar, respectivamente: \");\n\tscanf(\"%d%d\", &b,&e);\n\tprintf(\"\\n\\t%d ^ %d es: %d = %d\", b, e, PotenciaR(b,e), Potenciai(b,e));\n\t\n\treturn 0;\n}\n\nint SumatoriaR(int n){\n\tif( n== 0 || n==1)\n\t\treturn n    ;\n\telse\n\t\treturn n+SumatoriaR(n-1);\n\t\n}\nint Sumatoriai(int n){\n\tint i=0, s=0;\n\twhile(i<=n){\n\t\ts+=i;\n\t\ti++;\n\t}\n\treturn s;\t\n}\n\nint PotenciaR( int b, int e){\n\tif(e==0)\n\t\treturn 1;\n\telse if(e==1)\n\t\treturn b;\n\telse\n\t\treturn b*PotenciaR(b,e-1);\n\t\n}\n\nint Potenciai( int b, int e){\n\tif (e==0)\n\t\treturn 1;\n\telse {\n\t\tint i=1, p=1;\n\t\twhile(i<=e){\n\t\t\tp*=b;\n\t\t\ti++;\n\t\t}\n\t\treturn p;\n\t}\n}"
+    },
+    {
+      "type": "paragraph",
+      "content": "Para la popular serie Fibonacci:"
+    },
+    {
+      "type": "code",
+      "content": "#include<stdio.h>\n\nvoid iFib(int);\nvoid rFib(int);\nint rFibu(int);\n\nint main(){\n\tint n;\n\tprintf(\"Digite el ultimo numero de la serie fibonacci que desea visualizar: \");\n\tscanf(\"%d\", &n);\n\tiFib(n);\n\tputchar('\\n');\n\trFib(n);\n\t\n\treturn 0;\n}\n\nvoid iFib(int n){\n\tint i, fib0=0, fib1=1, fibn;\n\tfor(i=0;i<=n;i++){\n\t\tprintf(\"%d \", fib0);\n\t\tfibn=fib0+fib1;\n\t\tfib0=fib1;\n\t\tfib1=fibn;\n\t}\n}\nvoid rFib(int n){\n\tint i;\n\tfor(i=0;i<=n;i++)\n\t\tprintf(\"%d \", rFibu(i));\n}\nint rFibu(int n){\n\tif(n==0 || n==1)\n\t\treturn n;\n\telse\n\t\treturn rFibu(n-1)+rFibu(n-2);\n\t\n}"
+    },
+    {
+      "type": "videos",
+      "src": [
+        "https://youtu.be/kQAMBopdYro?si=hCyF0wkO5F3iyJMi",
+        "https://youtu.be/i9roxX8z7tk?si=MrN7zJ-Y2bBLQkED",
+        "https://youtu.be/w4hEm241SLc?si=hmL90g9QQ5XAPxPT"
+      ],
+      "alt": "Videos sobre recursión",
+      "caption": "Aprende más sobre recursión en C"
+    }
+  ]
+}

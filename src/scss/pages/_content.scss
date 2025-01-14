@@ -2,31 +2,13 @@
 @use 'base/mixins' as m;
 @use 'sass:color';
 
-/* 
-  1) Asegúrate de que tu html, body tienen altura al 100% 
-  en tu _globals.scss o similar:
-
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-*/
-
+/* BLOQUE PRINCIPAL: .content-container */
 .content-container {
-  /* Mobile-first:
-     En pantallas menores a tablet, dejamos que todo se scrollee libremente. */
-  /* No fijamos height aquí todavía. */
-
+  /* Mobile-first => la sidebar y el main se apilan (columna) */
   display: flex;
   flex-direction: column;
 
-  /* 
-    A PARTIR DE TABLET:
-    - Forzamos la altura completa menos un navbar (6rem)
-    - Hacemos overflow hidden para que aside/main tengan scroll interno
-    - Cambiamos a flex-direction: row
-  */
+  /* A partir de tablet => flex-direction row y alto 100vh-6rem */
   @include m.tablet {
     height: calc(100vh - 6rem);
     overflow: hidden;
@@ -38,13 +20,12 @@
     background-color: v.$bg-light;
     padding: 2rem;
     width: 100%;
-    /* Mobile-first => no altura fija ni scroll forzado */
-    
+
     /* A PARTIR DE TABLET => ancho fijo y scroll interno */
     @include m.tablet {
       flex: 0 0 25rem;
       overflow-y: auto;
-      height: 100%; 
+      height: 100%;
     }
 
     &-title {
@@ -66,6 +47,7 @@
       &:hover {
         background-color: color.adjust(v.$text-color, $lightness: 40%);
       }
+
       &--active {
         font-weight: v.$bold;
         background-color: color.adjust(v.$primary-color, $lightness: 30%);
@@ -75,21 +57,15 @@
 
   /* CONTENIDO PRINCIPAL */
   &__main {
-    /* Por defecto (mobile): 
-       Ocupa todo el espacio, se scrollea la página global. */
     padding: 2rem;
-
-    /* 
-      A PARTIR DE TABLET:
-      - Toma el espacio restante 
-      - Scroll interno
-    */
+    /* A PARTIR DE TABLET => scroll interno */
     @include m.tablet {
       flex: 1;
       overflow-y: auto;
       height: 100%;
     }
 
+    /* Migas de pan (breadcrumb) */
     .content-container__breadcrumb {
       margin-bottom: 2rem;
       font-size: 1.4rem;
@@ -108,6 +84,7 @@
       }
     }
 
+    /* Título principal (nombre del tema) */
     .content-container__title {
       font-size: 3rem;
       margin-bottom: 1.5rem;
@@ -115,6 +92,7 @@
       color: v.$text-dark;
     }
 
+    /* Intro o texto inicial */
     .content-container__intro {
       font-size: 1.6rem;
       line-height: 1.6;
@@ -122,6 +100,7 @@
       color: v.$text-color;
     }
 
+    /* Bloque .content-container__section (subtemas o secciones) */
     .content-container__section {
       margin-bottom: 3rem;
 
@@ -135,6 +114,109 @@
         font-size: 1.6rem;
         line-height: 1.6;
         color: v.$text-color;
+      }
+    }
+
+    /* ---------------------------
+       ESTILOS PARA CONTENIDO JSON
+       (Bloques de heading, paragraph, code, etc.)
+       --------------------------- */
+
+    /* Encabezados generados dinámicamente (h1..h6) */
+    h1, h2, h3, h4, h5, h6 {
+      margin: 2rem 0 1rem 0;
+      font-weight: v.$bold;
+      color: v.$text-dark;
+      line-height: 1.3;
+
+      /* Ajuste de tamaños según el nivel */
+      &:nth-of-type(1) { font-size: 3rem; }
+      &:nth-of-type(2) { font-size: 2.6rem; }
+      &:nth-of-type(3) { font-size: 2.2rem; }
+      &:nth-of-type(4) { font-size: 1.8rem; }
+      &:nth-of-type(5) { font-size: 1.6rem; }
+      &:nth-of-type(6) { font-size: 1.4rem; }
+    }
+
+    /* Párrafos */
+    p {
+      font-size: 1.6rem;
+      line-height: 1.7;
+      color: v.$text-color;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Listas sin orden */
+    ul {
+      list-style: disc;
+      margin-left: 2rem;
+      margin-bottom: 1.5rem;
+      li {
+        margin-bottom: 0.5rem;
+        font-size: 1.6rem;
+        line-height: 1.6;
+        color: v.$text-color;
+      }
+    }
+    /* Listas ordenadas */
+    ol {
+      list-style: decimal;
+      margin-left: 2rem;
+      margin-bottom: 1.5rem;
+      li {
+        margin-bottom: 0.5rem;
+        font-size: 1.6rem;
+        line-height: 1.6;
+        color: v.$text-color;
+      }
+    }
+
+    /* Bloques de código */
+    pre.code-block {
+      background-color: v.$bg-lighter;
+      border-left: 4px solid v.$primary-color;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      code {
+        font-family: 'Courier New', monospace;
+        color: v.$text-dark;
+        font-size: 1.4rem;
+        line-height: 1.5;
+      }
+    }
+
+    /* Imagenes */
+    figure.content-image {
+      margin: 2rem 0;
+      text-align: center;
+      img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+      }
+      figcaption {
+        font-size: 1.4rem;
+        color: v.$text-dark;
+        margin-top: 0.5rem;
+      }
+    }
+
+    /* Videos (enlaces) */
+    .content-videos {
+      margin: 2rem 0;
+      a {
+        display: block;
+        font-size: 1.6rem;
+        color: v.$primary-color;
+        text-decoration: underline;
+        margin: 0.5rem 0;
+
+        &:hover {
+          color: color.adjust(v.$primary-color, $lightness: -20%);
+        }
+      }
+      p {
+        margin: 0.5rem 0;
       }
     }
   }

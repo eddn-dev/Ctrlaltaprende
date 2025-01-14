@@ -1298,26 +1298,6 @@ h3 {
   background-color: #d32f2f;
 }
 
-/* Contenido principal */
-.main-content {
-  grid-area: main;
-  overflow-y: auto;
-  padding: 1.5rem;
-  background-color: rgb(255, 255, 242); /* Fondo oscuro */
-}
-
-.main-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-  margin-top: -0.5rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  color: rgb(47, 65, 86);
-}
-
-/* Encabezado de administrador */
 .admin-header {
   display: flex;
   align-items: center;
@@ -1687,28 +1667,12 @@ h3 {
     opacity: 1;
   }
 }
-/* 
-  1) Asegúrate de que tu html, body tienen altura al 100% 
-  en tu _globals.scss o similar:
-
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-*/
+/* BLOQUE PRINCIPAL: .content-container */
 .content-container {
-  /* Mobile-first:
-     En pantallas menores a tablet, dejamos que todo se scrollee libremente. */
-  /* No fijamos height aquí todavía. */
+  /* Mobile-first => la sidebar y el main se apilan (columna) */
   display: flex;
   flex-direction: column;
-  /* 
-    A PARTIR DE TABLET:
-    - Forzamos la altura completa menos un navbar (6rem)
-    - Hacemos overflow hidden para que aside/main tengan scroll interno
-    - Cambiamos a flex-direction: row
-  */
+  /* A partir de tablet => flex-direction row y alto 100vh-6rem */
   /* SIDEBAR */
   /* CONTENIDO PRINCIPAL */
 }
@@ -1723,7 +1687,6 @@ h3 {
   background-color: #f0f0f0;
   padding: 2rem;
   width: 100%;
-  /* Mobile-first => no altura fija ni scroll forzado */
   /* A PARTIR DE TABLET => ancho fijo y scroll interno */
 }
 @media (min-width: 768px) {
@@ -1756,14 +1719,23 @@ h3 {
   background-color: rgb(174.2511013216, 196.013215859, 205.7488986784);
 }
 .content-container__main {
-  /* Por defecto (mobile): 
-     Ocupa todo el espacio, se scrollea la página global. */
   padding: 2rem;
-  /* 
-    A PARTIR DE TABLET:
-    - Toma el espacio restante 
-    - Scroll interno
-  */
+  /* A PARTIR DE TABLET => scroll interno */
+  /* Migas de pan (breadcrumb) */
+  /* Título principal (nombre del tema) */
+  /* Intro o texto inicial */
+  /* Bloque .content-container__section (subtemas o secciones) */
+  /* ---------------------------
+     ESTILOS PARA CONTENIDO JSON
+     (Bloques de heading, paragraph, code, etc.)
+     --------------------------- */
+  /* Encabezados generados dinámicamente (h1..h6) */
+  /* Párrafos */
+  /* Listas sin orden */
+  /* Listas ordenadas */
+  /* Bloques de código */
+  /* Imagenes */
+  /* Videos (enlaces) */
 }
 @media (min-width: 768px) {
   .content-container__main {
@@ -1812,6 +1784,101 @@ h3 {
   font-size: 1.6rem;
   line-height: 1.6;
   color: rgb(47, 65, 86);
+}
+.content-container__main h1, .content-container__main h2, .content-container__main h3, .content-container__main h4, .content-container__main h5, .content-container__main h6 {
+  margin: 2rem 0 1rem 0;
+  font-weight: 700;
+  color: #343a40;
+  line-height: 1.3;
+  /* Ajuste de tamaños según el nivel */
+}
+.content-container__main h1:nth-of-type(1), .content-container__main h2:nth-of-type(1), .content-container__main h3:nth-of-type(1), .content-container__main h4:nth-of-type(1), .content-container__main h5:nth-of-type(1), .content-container__main h6:nth-of-type(1) {
+  font-size: 3rem;
+}
+.content-container__main h1:nth-of-type(2), .content-container__main h2:nth-of-type(2), .content-container__main h3:nth-of-type(2), .content-container__main h4:nth-of-type(2), .content-container__main h5:nth-of-type(2), .content-container__main h6:nth-of-type(2) {
+  font-size: 2.6rem;
+}
+.content-container__main h1:nth-of-type(3), .content-container__main h2:nth-of-type(3), .content-container__main h3:nth-of-type(3), .content-container__main h4:nth-of-type(3), .content-container__main h5:nth-of-type(3), .content-container__main h6:nth-of-type(3) {
+  font-size: 2.2rem;
+}
+.content-container__main h1:nth-of-type(4), .content-container__main h2:nth-of-type(4), .content-container__main h3:nth-of-type(4), .content-container__main h4:nth-of-type(4), .content-container__main h5:nth-of-type(4), .content-container__main h6:nth-of-type(4) {
+  font-size: 1.8rem;
+}
+.content-container__main h1:nth-of-type(5), .content-container__main h2:nth-of-type(5), .content-container__main h3:nth-of-type(5), .content-container__main h4:nth-of-type(5), .content-container__main h5:nth-of-type(5), .content-container__main h6:nth-of-type(5) {
+  font-size: 1.6rem;
+}
+.content-container__main h1:nth-of-type(6), .content-container__main h2:nth-of-type(6), .content-container__main h3:nth-of-type(6), .content-container__main h4:nth-of-type(6), .content-container__main h5:nth-of-type(6), .content-container__main h6:nth-of-type(6) {
+  font-size: 1.4rem;
+}
+.content-container__main p {
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: rgb(47, 65, 86);
+  margin-bottom: 1.5rem;
+}
+.content-container__main ul {
+  list-style: disc;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+.content-container__main ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: rgb(47, 65, 86);
+}
+.content-container__main ol {
+  list-style: decimal;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+.content-container__main ol li {
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: rgb(47, 65, 86);
+}
+.content-container__main pre.code-block {
+  background-color: #f8f9fa;
+  border-left: 4px solid rgb(86, 124, 141);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.content-container__main pre.code-block code {
+  font-family: "Courier New", monospace;
+  color: #343a40;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+.content-container__main figure.content-image {
+  margin: 2rem 0;
+  text-align: center;
+}
+.content-container__main figure.content-image img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+.content-container__main figure.content-image figcaption {
+  font-size: 1.4rem;
+  color: #343a40;
+  margin-top: 0.5rem;
+}
+.content-container__main .content-videos {
+  margin: 2rem 0;
+}
+.content-container__main .content-videos a {
+  display: block;
+  font-size: 1.6rem;
+  color: rgb(86, 124, 141);
+  text-decoration: underline;
+  margin: 0.5rem 0;
+}
+.content-container__main .content-videos a:hover {
+  color: rgb(47.3568281938, 68.281938326, 77.6431718062);
+}
+.content-container__main .content-videos p {
+  margin: 0.5rem 0;
 }
 
 /* BLOQUE: .accordion */

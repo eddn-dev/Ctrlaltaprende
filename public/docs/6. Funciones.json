@@ -1,0 +1,105 @@
+{
+  "id": "6",
+  "subject": "Funciones en C",
+  "topic": "Definición y Uso de Funciones",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Funciones"
+    },
+    {
+      "type": "paragraph",
+      "content": "En lenguaje C, una función es el equivalente a una subrutina o función en Fortran, o a un procedimiento o función en Pascal. Una función proporciona una forma conveniente de encapsular algunos cálculos, que se pueden emplear después sin preocuparse de su implantación. Con funciones diseñadas adecuada- mente, es posible ignorar cómo se realiza un trabajo; es suficiente saber qué se hace. El lenguaje C hace que el uso de funciones sea fácil, conveniente y eficien- te; es común ver una función corta definida y empleada una sola vez, únicamente porque eso esclarece alguna parte del código.\n\nHasta ahora sólo se han utilizado funciones como printf, getchar y putchar, que nos han sido proporcionadas; ya es el momento de escribir unas pocas no- sotros mismos. Dado que C no posee un operador de exponenciación como el * * de Fortran, ilustremos el mecanismo de la definición de una función al escribir la función power (m, n), que eleva un entero m a una potencia entera y positiva n. Esto es, el valor de power (2,5) es 32. Esta función no es una rutina de exponen- ciación práctica, puesto que sólo maneja potencias positivas de enteros pe- queños, pero es suficiente para ilustración (la biblioteca estándar contiene una función pow(x,y) que calcula x^y).\n\nA continuación, se presenta la función power y un programa main para utili- zarla, de modo que se vea la estructura completa de una vez."
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\nint power(int m, int n);\n/* prueba la función power */\nmain()\n{\n\tint i;\n\tfor (i=0; i<10; ++i)\n\t\tprintf(\"%d %d°/od\\n\", i, power(2,i), power(-3,i));\n\treturn 0;\n}\n/* power: eleva la base a la n isima potencia; n >= 0 */\nint power(int base, int n)\n{\n\tint i, p;\n\tp = 1;\n\tfor (i = 1; i <= n; ++i)\n\t\tp = p * base;\n\treturn p;\n}"
+    },
+
+    {
+      "type": "paragraph",
+      "content": "Una definición de función tiene la forma siguiente:\n\ntipo-de-retorno nombre-de-función (declaración de parámetros, si los hay)\n{\n\tdeclaraciones \n\tproposiciones\n}\n\nLas definiciones de función pueden aparecer en cualquier orden y en uno o varios archivos fuente, pero una función no puede separarse en archivos diferentes.\n\nSi el programa fuente aparece en varios archivos, tal vez se tengan que especificar más cosas al compilar y cargarlo que si estuviera en uno solo, pero eso es cosa del sistema operativo, no un atributo del lenguaje.\n\nPor ahora supondremos que ambas funciones están en el mismo archivo y cualquier cosa que se haya aprendido acerca de cómo ejecutar programas en C, aún funcionarán.\n\nLa función power se invoca dos veces por main, en la línea\nprintf(\"%d %d %d\\n\", i, power(2,i), power(-3,i));\nCada llamada pasa dos argumentos a power, que cada vez regresa un entero, al que se pone formato y se imprime. En una expresión, power(2,i) es un entero tal como lo son 2 e i. (No todas las funciones producen un valor entero; lo que se verá en el capítulo 4.)\n\nLa primera línea de la función power,\nint power (int base, int n)\ndeclara los tipos y nombres de los parámetros, así como el tipo de resultado que la función devuelve. Los nombres que emplea power para sus parámetros son locales a la función y son invisibles a cualquier otra función: otras rutinas pueden utilizar los mismos nombres sin que exista problema alguno. Esto también es cierto para las variables i y p: la i de power no tiene nada que ver con la i de main.\n\nGeneralmente usaremos parámetro para una variable nombrada en la lista entre paréntesis de la definición de una función, y argumento para el valor empleado al hacer la llamada de la función. Los términos argumento formal y argumento real se emplean en ocasiones para hacer la misma distinción.\n\nEl valor que calcula power se regresa a main por medio de la proposición return, a la cual le puede seguir cualquier expresión:\nreturn expresión\n\nUna función no necesita regresar un valor; una proposición return sin expresión hace que el control regrese al programa, pero no devuelve algún valor de utilidad, como se haría al \"caer al final\" de una función al alcanzar la llave derecha de terminación. Además, la función que llama puede ignorar el valor que regresa una función.\n\nProbablemente haya notado que hay una proposición return al final de main. Puesto que main es una función como cualquier otra, también puede regresar un valor a quien la invoca, que es en efecto el medio ambiente en el que el programa se ejecuta. Típicamente, un valor de regreso cero implica una terminación normal; los valores diferentes de cero indican condiciones de terminación no comunes o erróneas. Para buscar la simplicidad, se han omitido hasta ahora las proposiciones return de las funciones main, pero se incluirán más adelante, como un recordatorio de que los programas deben regresar su estado final a su medio ambiente.\n\nLa declaración\nint power(int m, int n);\nprecisamente antes de main, indica que power es una función que espera dos argumentos int y regresa un int. Esta declaración, a la cual se le llama función prototipo, debe coincidir con la definición y uso de power. Es un error el que la definición de una función o cualquier uso que de ella se haga no corresponda con su prototipo.\n\nLos nombres de los parámetros no necesitan coincidir; de hecho, son optativos en el prototipo de una función, de modo que para el prototipo se pudo haber escrito\nint power(int, int);\n\nNo obstante, unos nombres bien seleccionados son una buena documentación, por lo que se emplearán frecuentemente.\n\nUna nota histórica: La mayor modificación entre ANSI C y las versiones anteriores es cómo están declaradas y definidas las funciones. En la definición original de C, la función power se pudo haber escrito de la siguiente manera:"
+
+    },
+
+    {
+      "type": "code",
+      "content": "/* power: eleva la base a n-ésima potencia; n >= 0 */\n/*(versión en estilo antiguo) */\npower (base, n)\nint base, n;\n{\n\tint i, p;\n\tp = 1;\n\tfor (i = 1; i < n; ++i)\n\t\tp = p * base;\n\treturn p;\n}"
+    },
+    {
+      "type": "paragraph",
+      "content": "Los parámetros se nombran entre los paréntesis y sus tipos se declaran antes de abrir la llave izquierda; los parámetros que no se declaran se toman como int. (El cuerpo de la función es igual a la anterior.)\nLa declaración de power al inicio del programa pudo haberse visto como sigue:\nint power();\nNo se permitió ninguna lista de parámetros, de modo que el compilador no pudo revisar con facilidad que power fuera llamada correctamente. De hecho, puesto que por omisión se podía suponer que power regresaba un entero, toda la declaración podría haberse omitido.\nLa nueva sintaxis de los prototipos de funciones permite que sea mucho más fácil para el compilador detectar errores en el número o tipo de argumentos. El viejo estilo de declaración y definición aún funciona en ANSI C, al menos por un periodo de transición, pero se recomienda ampliamente que se utilice la nueva forma si se tiene un compilador que la maneje.\n\nArgumentos y parámetros"
+    },
+    {
+      "type": "list-unord",
+      "content": ["Parámetros: Son las variables que se definen dentro de los paréntesis de la función. Ejemplo: int a, int b en la función suma.", "Argumentos: Son los valores que se pasan a los parámetros cuando se llama a la función. Ejemplo: 3, 5 en la llamada suma(3, 5)."]
+  },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Paso por valor y paso por referencia"
+    },
+    {
+      "type": "paragraph",
+      "content": "Paso por valor: Cuando los parámetros de una función se pasan por valor, la función recibe una copia del valor de las variables. Los cambios dentro de la función no afectan las variables originales.\n\nEs muy importante mencionar que cuando declaramos una variable dentro de una función esta es “temporal”, es decir, existe durante la ejecución de la función que se esté ejecutando, pero cuando salga de ella, esta variable que fue creada se destruye. Por ejemplo:"
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\n\nvoid sumar(int);\n\nint main (){\n\tint a = 1;\n\tsumar(a);\n\tint b = a;\n\treturn 0;\n}\n\nvoid sumar(int x){\n\tx++;\n}"
+    },
+
+    {
+      "type": "paragraph",
+      "content": "En el código anterior, la variable b va a valer 1, no 2 como tal vez podría pensarse porque se ha llamado a sumar.\n\nEste comportamiento se refiere al alcance local de las variables dentro de las funciones en C. Las variables declaradas dentro de una función existen únicamente durante la ejecución de esa función y se destruyen cuando la función termina. Este es un concepto clave del alcance local de las variables. Además, cuando se pasa una variable por valor a una función, se le pasa una copia de la variable, lo que significa que los cambios no afectan la variable original fuera de la función.\n\nPaso por referencia: En el paso por referencia, en lugar de pasar una copia de la variable, se pasa su dirección de memoria. Esto significa que la función puede modificar directamente el valor de la variable original. Aquí te muestro un ejemplo de cómo sería con paso por referencia:"
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\n\nvoid sumar(int*);  // Declaración de la función (usando punteros)\nint main() {\n\tint a = 1;\n\tsumar(&a);  // Paso por referencia: se pasa la dirección de 'a' a la función\n\tint b = a;  // b toma el valor actualizado de 'a' (b = 2)\n\tprintf(\"b = %d\\n\", b);  // Imprime: b = 2\n\treturn 0;\n}\n\nvoid sumar(int* x) {\n\t(*x)++;  // Incrementa el valor de 'a' a través del puntero\n}"
+
+    },
+
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Bibliotecas creadas por el usuario"
+    },
+
+    {
+      "type": "paragraph",
+      "content": "En C, se pueden crear bibliotecas propias utilizando funciones que se agrupan en un archivo .h (header) y .c (código). La biblioteca se incluye en el programa principal usando #include:\n\nEste es un archivo creado desde un editor de texto guardado con la extensión: mibiblioteca.h"
+    },
+    {
+      "type": "code",
+      "content": "int a = 5;"
+    },
+    {
+      "type": "paragraph",
+      "content": "Este es otro archivo, en la misma carpeta que biblioteca.h guardado con cualquier nombre .c"
+    },
+    {
+      "type": "code",
+      "content": "#include<stdio.h>\n#include \"mibiblioteca.h\"\n\nint main() {\n\tprintf(a);\n\treturn 0;\n}"
+    },
+    {
+      "type": "paragraph",
+      "content": "Esto permite reutilizar las funciones definidas en diferentes programas."
+    },
+
+
+    {
+      "type": "videos",
+      "src": [
+        "https://youtu.be/MMecMkU-B94?si=1Q2B72a-7F3SrNqM ",
+        "https://youtu.be/QI6DSciDzFo?si=IAqabStvMA8HGkjn",
+        "https://youtu.be/vLZymLKd6Mo?si=CnkoX9bXh0yB2mSj"
+      ],
+      "alt": "Videos sobre funciones en C",
+      "caption": "Aprende más sobre funciones en C"
+    }
+  ]
+}

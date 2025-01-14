@@ -1,0 +1,125 @@
+{
+  "id": "5",
+  "subject": "Fundamentos de programación",
+  "topic": "Datos definidos por el usuario",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Datos definidos por el usuario"
+    },
+    {
+      "type": "paragraph",
+      "content": "En C, los datos definidos por el usuario permiten al programador crear nuevos tipos de datos a partir de los tipos básicos del lenguaje. Esto se logra mediante estructuras y uniones, que permiten organizar datos relacionados bajo un solo nombre, facilitando la gestión y el acceso a los mismos."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Declaración de una estructura"
+    },
+    {
+      "type": "paragraph",
+      "content": "Las estructuras (struct) son una de las principales herramientas para definir tipos de datos compuestos. Se declaran mediante la palabra clave struct, seguida de un nombre para la estructura, y luego se definen sus miembros. Los miembros pueden ser de cualquier tipo de dato, incluyendo otros tipos de estructuras. La sintaxis básica es la siguiente:"
+    },
+    {
+      "type": "code",
+      "content": "struct nombre {\n\ttipo miembro1;\n\ttipo miembro2;\n\t// ... otros miembros\n};"
+    },
+    {
+      "type": "paragraph",
+      "content": "Por ejemplo, para definir una estructura que representa a una persona:"
+    },
+    {
+      "type": "code",
+      "content": "struct Persona {\n\tchar nombre[50];\n\tint edad;\n};"
+    },
+    {
+      "type": "paragraph",
+      "content": "Aquí, Persona es una estructura que contiene un miembro de tipo char[] y otro de tipo int."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Instancia de estructura y apuntador a estructura"
+    },
+    {
+      "type": "paragraph",
+      "content": "Una instancia de estructura es simplemente una variable de tipo struct. Se crea con el tipo de la estructura previamente definida:"
+    },
+    {
+      "type": "code",
+      "content": "struct Persona p1;  // Similar a int a;"
+    },
+    {
+      "type": "paragraph",
+      "content": "Se puede inicializar al mismo tiempo:"
+    },
+    {
+      "type": "code",
+      "content": "struct Persona p1 = {\"Juan\", 30};"
+    },
+    {
+      "type": "paragraph",
+      "content": "Un puntero a una estructura es una variable que almacena la dirección de memoria de una instancia de estructura. Se declara de la siguiente forma:"
+    },
+    {
+      "type": "code",
+      "content": "struct Persona *ptr;"
+    },
+    {
+      "type": "paragraph",
+      "content": "Para asignar un puntero a una estructura, usamos el operador de dirección &:"
+    },
+    {
+      "type": "code",
+      "content": "ptr = &p1;"
+    },
+
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Operadores de estructura"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Operador punto (.): Se usa para acceder a los miembros de una estructura directamente. Ejemplo: printf(\"%s\", p1.nombre);",
+        "Operador flecha (->): Se usa cuando se tiene un puntero a una estructura. Ejemplo: printf(\"%s\", ptr->nombre);"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Arreglos de estructuras"
+    },
+    {
+      "type": "paragraph",
+      "content": "Un arreglo de estructuras es un conjunto de instancias de una estructura. Cada elemento del arreglo se puede acceder como un miembro de la estructura, por ejemplo:"
+    },
+    {
+      "type": "code",
+      "content": "struct Persona personas[5];\npersonas[0].edad = 25;"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Estructuras anidadas"
+    },
+    {
+      "type": "paragraph",
+      "content": "Una estructura anidada es una estructura que tiene otra estructura como uno de sus miembros. Esto permite organizar de manera jerárquica los datos. Ejemplo:"
+    },
+    {
+      "type": "code",
+      "content": "struct Direccion {\n\tchar calle[50];\n\tint numero;\n};\n\nstruct Persona {\n\tchar nombre[50];\n\tstruct Direccion direccion;\n};"
+    },
+    {
+      "type": "paragraph",
+      "content": "En este caso, Persona tiene un miembro direccion, que es otra estructura de tipo Direccion. "
+    }
+  ]
+}

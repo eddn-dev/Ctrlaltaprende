@@ -23,10 +23,15 @@
          <?php echo ($_SERVER['PATH_INFO'] ?? '/') === '/' ? 'main-nav__link--active' : ''; ?>">
         Inicio
       </a>
+      <a href="/content" 
+         class="main-nav__link 
+         <?php echo ($_SERVER['PATH_INFO'] ?? '/') === '/content' ? 'main-nav__link--active' : ''; ?>">
+        Aprende
+      </a>
       <a href="/foro" 
          class="main-nav__link 
          <?php echo ($_SERVER['PATH_INFO'] ?? '/') === '/foro' ? 'main-nav__link--active' : ''; ?>">
-        Foro de Discusión
+        Foro
       </a>
     </div>
 
@@ -39,10 +44,10 @@
           type="button" 
           aria-label="Abrir Panel de Usuario"
         >
-          <!-- Podrías poner una imagen de avatar real, o un ícono por defecto -->
+
           <img 
-            src="<?php echo $usuario->profile 
-                      ? '/profiles/' . $usuario->profile
+            src="<?php echo $_SESSION['profile'] 
+                      ? '/profiles/' . $_SESSION['profile']
                       : '/build/img/profile-default.avif'; ?>" 
             alt="Tu perfil" 
             class="main-nav__avatar-img"

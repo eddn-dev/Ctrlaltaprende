@@ -1,98 +1,185 @@
+<?php
+/**
+ * Ejemplo de “site/content.php”
+ * Recibe variables:
+ *  - $materias  (para el índice - acordeón)
+ *  - $temaId    (el id del tema actual)
+ *  - $contenido (array decodificado del JSON)
+ */
+?>
+
 <div class="content-container">
   <!-- Barra lateral (sidebar) -->
   <aside class="content-container__sidebar">
     <h2 class="content-container__sidebar-title">Materias</h2>
-
-    <!-- Estructura de acordeón (Materia -> Unidad -> Temas) -->
     <ul class="accordion">
-      <!-- Materia 1 -->
+      <?php foreach($materias as $materia): ?>
       <li class="accordion__item">
-        <!-- Botón que al hacer clic despliega la unidad -->
         <button class="accordion__header">
-          Materia 1
+          <?php echo htmlspecialchars($materia->nombre); ?>
         </button>
-        <!-- Panel interno con unidades -->
         <ul class="accordion__panel">
-          <!-- Unidad 1 -->
+          <?php foreach($materia->unidades as $unidad): ?>
           <li class="accordion__item">
             <button class="accordion__header">
-              Unidad  1
-            </button>
-            <!-- Panel con los temas -->
-            <ul class="accordion__panel">
-              <li><a href="#" class="content-container__sidebar-link">Tema 1</a></li>
-              <li><a href="#" class="content-container__sidebar-link">Tema 2</a></li>
-              <li><a href="#" class="content-container__sidebar-link">Tema 3</a></li>
-            </ul>
-          </li>
-          <!-- Unidad 2 -->
-          <li class="accordion__item">
-            <button class="accordion__header">
-              Unidad  2
+              <?php echo htmlspecialchars($unidad->nombre); ?>
             </button>
             <ul class="accordion__panel">
-              <li><a href="#" class="content-container__sidebar-link">Tema 1</a></li>
-              <li><a href="#" class="content-container__sidebar-link">Tema 2</a></li>
+              <?php foreach($unidad->temas as $tema): ?>
+              <li>
+                <a 
+                  href="/content?id=<?php echo $tema->id; ?>" 
+                  class="content-container__sidebar-link"
+                >
+                  <?php echo htmlspecialchars($tema->titulo); ?>
+                </a>
+              </li>
+              <?php endforeach; ?>
             </ul>
           </li>
+          <?php endforeach; ?>
         </ul>
       </li>
-
-      <!-- Materia 2 -->
-      <li class="accordion__item">
-        <button class="accordion__header">Materia 2</button>
-        <ul class="accordion__panel">
-          <li class="accordion__item">
-            <button class="accordion__header">
-              Unidad  1
-            </button>
-            <ul class="accordion__panel">
-              <li><a href="#" class="content-container__sidebar-link">Tema 1</a></li>
-              <li><a href="#" class="content-container__sidebar-link">Tema 2</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+      <?php endforeach; ?>
     </ul>
   </aside>
 
   <!-- Contenido principal -->
   <main class="content-container__main">
+    <?php
+    // 1) Mostrar breadcrumb y título
+    //    (Opcional: $contenido['topic'] o $temaId para mostrar)
+    ?>
     <nav class="content-container__breadcrumb">
       <a href="#" class="content-container__breadcrumb-link">Secciones</a> 
       &gt; 
-      <span class="content-container__breadcrumb-current">Tema 1</span>
+      <span class="content-container__breadcrumb-current">
+        <?php echo !empty($contenido['topic']) 
+          ? htmlspecialchars($contenido['topic']) 
+          : 'Tema ' . htmlspecialchars($temaId); 
+        ?>
+      </span>
     </nav>
-    <h1 class="content-container__title">Tema 1</h1>
-    <p class="content-container__intro">
-      Explora los conceptos clave de este tema. A continuación, verás los subtemas relacionados.
-      Lorem ipsum dolor sit amet consectetur adipisicing.
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nemo dolores eveniet nesciunt voluptatem iusto voluptates sed facere sequi illo, nulla repellendus ratione asperiores vero esse itaque, provident temporibus. Ipsam.
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum eos maiores aliquid optio necessitatibus minus nisi corporis quae quas, quam cumque, impedit blanditiis ex magni est culpa maxime laudantium. Dicta.
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi, consequuntur sit! Illo veritatis eum magni at voluptatum incidunt voluptatibus, repellat, atque natus, sunt aspernatur commodi debitis facilis qui assumenda quae!
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ducimus voluptas porro accusantium, quasi ratione quo molestiae aliquam, accusamus provident id beatae, consequatur culpa iure sit modi earum voluptatum at.
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum dolorum voluptates provident quasi reiciendis quia non similique sint error. A deleniti facere autem nostrum est. Veritatis eos nulla voluptas hic.
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, neque amet nostrum nobis omnis sunt placeat ea asperiores delectus error dolor odit cumque praesentium ullam numquam illum dolore, dicta qui.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis facere cum magnam reprehenderit, officia ipsa itaque? Officiis veritatis labore natus asperiores voluptates quo cupiditate ab, repellat pariatur vel ut perferendis.
-    </p>
 
-    <div class="learning-card">
-      <h2 class="learning-card__title">Subtemas</h2>
-      <ul class="learning-card__list">
-        <li class="learning-card__item">Subtema 1: Introducción</li>
-        <li class="learning-card__item">Subtema 2: Conceptos básicos</li>
-        <li class="learning-card__item">Subtema 3: Ejemplos prácticos</li>
-        <li class="learning-card__item">Subtema 4: Resumen</li>
-      </ul>
-    </div>
+    <h1 class="content-container__title">
+      <?php 
+      // Si tu JSON tiene "topic", lo usas como título
+      echo !empty($contenido['topic']) 
+        ? htmlspecialchars($contenido['topic']) 
+        : 'Tema ' . htmlspecialchars($temaId);
+      ?>
+    </h1>
 
-    <!-- Secciones de subtemas -->
-    <section class="content-container__section">
-      <h2 class="content-container__section-title">Subtema 1: Introducción</h2>
-      <p class="content-container__section-text">
-        Este subtema abarca los conceptos iniciales necesarios para entender el resto del tema.
+    <?php 
+    // 2) Mostrar metadata: autor, fecha, etc. (opcional)
+    if(!empty($contenido['metadata'])): 
+      $author = $contenido['metadata']['author'] ?? '';
+      $createdAt = $contenido['metadata']['createdAt'] ?? '';
+    ?>
+      <p class="content-container__intro">
+        <strong>Autor:</strong> <?php echo htmlspecialchars($author); ?> 
+        <br>
+        <strong>Fecha:</strong> <?php echo htmlspecialchars($createdAt); ?>
       </p>
-    </section>
-    <!-- etc... -->
+    <?php endif; ?>
+
+    <?php
+    // 3) Renderizar cada bloque de "content"
+    //    creamos una función auxiliar para generar HTML según el 'type'
+    function renderBlock($block) {
+      switch($block['type']) {
+        case 'heading':
+          // block['level'] = 1,2,3,4,5,6
+          $lvl = isset($block['level']) ? (int)$block['level'] : 2; 
+          // Asegurarnos de no pasarnos de h6
+          if($lvl < 1 || $lvl > 6) $lvl = 2;
+          $text = htmlspecialchars($block['content'] ?? '');
+          echo "<h{$lvl}>{$text}</h{$lvl}>";
+          break;
+
+        case 'paragraph':
+          $text = nl2br(htmlspecialchars($block['content'] ?? ''));
+          echo "<p>{$text}</p>";
+          break;
+
+        case 'code':
+          // Podrías detectar un lenguaje y usar un <pre><code> 
+          // O sólo <pre>
+          $code = htmlspecialchars($block['content'] ?? '');
+          echo "<pre class='code-block'><code>{$code}</code></pre>";
+          break;
+
+        case 'list-unord':
+          // Lista sin orden
+          $items = $block['content'] ?? [];
+          echo "<ul>";
+          foreach($items as $item) {
+            echo "<li>" . htmlspecialchars($item) . "</li>";
+          }
+          echo "</ul>";
+          break;
+
+        case 'list-ord':
+          // Lista ordenada
+          $items = $block['content'] ?? [];
+          echo "<ol>";
+          foreach($items as $item) {
+            echo "<li>" . htmlspecialchars($item) . "</li>";
+          }
+          echo "</ol>";
+          break;
+
+        case 'image':
+          // block['src'] es un array de rutas. block['alt'] block['caption']
+          $srcArr = $block['src'] ?? [];
+          $alt = htmlspecialchars($block['alt'] ?? '');
+          $caption = htmlspecialchars($block['caption'] ?? '');
+          // Podrías mostrar múltiples imágenes si es un array
+          foreach($srcArr as $imgRoute) {
+            $imgRouteEsc = htmlspecialchars($imgRoute);
+            echo "<figure class='content-image'>";
+            echo "<img src='{$imgRouteEsc}' alt='{$alt}'>";
+            if($caption) {
+              echo "<figcaption>{$caption}</figcaption>";
+            }
+            echo "</figure>";
+          }
+          break;
+
+        case 'videos':
+          // block['src'] es un array de URLs
+          $videos = $block['src'] ?? [];
+          $alt = htmlspecialchars($block['alt'] ?? '');
+          $caption = htmlspecialchars($block['caption'] ?? '');
+          echo "<div class='content-videos'>";
+          foreach($videos as $vidUrl) {
+            $vidUrlEsc = htmlspecialchars($vidUrl);
+            // Podrías incrustar un <iframe> 
+            // o un simple <a href="...">
+            echo "<p><a href='{$vidUrlEsc}' target='_blank'>Ver video</a></p>";
+          }
+          if($caption) {
+            echo "<p><em>{$caption}</em></p>";
+          }
+          echo "</div>";
+          break;
+
+        default:
+          // Tipo no reconocido
+          // Podrías ignorarlo o mostrar un texto
+          // echo "<!-- Tipo desconocido: " . htmlspecialchars($block['type']) . " -->";
+          break;
+      }
+    }
+
+    // 4) Recorrer $contenido['content'] y renderizar cada bloque
+    if(!empty($contenido['content']) && is_array($contenido['content'])) {
+      foreach($contenido['content'] as $block) {
+        renderBlock($block);
+      }
+    } else {
+      echo "<p>No hay contenido disponible para este tema.</p>";
+    }
+    ?>
   </main>
 </div>

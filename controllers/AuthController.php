@@ -25,11 +25,10 @@ class AuthController {
                 } else {
                     // El Usuario existe
                     if( password_verify($_POST['password'], $usuario->password) ) {
-                           
                         $_SESSION['id'] = $usuario->id;
                         $_SESSION['nombre'] = $usuario->nombre;
-                        $_SESSION['apellido'] = $usuario->apellido;
                         $_SESSION['email'] = $usuario->email;
+                        $_SESSION['profile'] = $usuario->profile ?? null;
                         $_SESSION['admin'] = $usuario->admin ?? null;
                         // Redirect
                         if($usuario->admin == 1){

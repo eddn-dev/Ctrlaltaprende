@@ -1,0 +1,76 @@
+{
+  "id": "10",
+  "subject": "Fundamentos de Programación",
+  "topic": "Archivos",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Archivos"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Tipos de acceso a archivos"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Archivos de acceso secuencial: Se leen o escriben de manera ordenada, comenzando desde el principio y avanzando secuencialmente.",
+        "Archivos de acceso directo: Permiten acceder a cualquier parte del archivo de forma aleatoria, facilitando búsquedas y modificaciones."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Creación y apertura de archivos"
+    },
+    {
+      "type": "paragraph",
+      "content": "Los archivos se pueden crear y abrir con funciones como `fopen()` en C. Es necesario especificar el nombre del archivo y el modo de apertura, como lectura (`r`), escritura (`w`), o ambos (`r+`, `w+`)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Lectura y escritura de archivos"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Modo texto: Los datos se manejan como cadenas de caracteres, facilitando el trabajo con textos, pero con costos adicionales por la conversión de tipos.",
+        "Modo binario: Los datos se manejan como secuencias de bytes, lo que permite operaciones más rápidas y precisas."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Cierre de archivos"
+    },
+    {
+      "type": "paragraph",
+      "content": "Es importante cerrar un archivo después de usarlo con funciones como `fclose()` en C. Esto garantiza que los cambios se escriban correctamente y libera recursos del sistema, evitando problemas como pérdidas de datos."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Procesamiento y redireccionamiento de flujos"
+    },
+    {
+      "type": "paragraph",
+      "content": "El procesamiento de flujos incluye operaciones como leer datos de entrada (e.g., teclado) y escribir datos de salida (e.g., pantalla). El redireccionamiento de flujos permite cambiar la fuente o destino de estos datos, como redirigir la salida estándar a un archivo."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Ejemplo: Escritura y lectura de archivos"
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\n#include <stdlib.h>\n\nint main() {\n    FILE *file;\n    char filename[] = \"archivo_ejemplo.txt\";\n    char texto[100];\n\n    // Apertura del archivo en modo escritura\n    file = fopen(filename, \"w\");\n    if (file == NULL) {\n        perror(\"Error al abrir el archivo\");\n        return 1;\n    }\n\n    // Escritura en el archivo\n    fprintf(file, \"Esta es una línea escrita en el archivo.\\n\");\n    fprintf(file, \"El manejo de archivos en C es sencillo.\\n\");\n    fclose(file);\n\n    // Apertura del archivo en modo lectura\n    file = fopen(filename, \"r\");\n    if (file == NULL) {\n        perror(\"Error al abrir el archivo para lectura\");\n        return 1;\n    }\n\n    // Lectura del archivo línea por línea\n    while (fgets(texto, sizeof(texto), file) != NULL) {\n        printf(\"%s\", texto);\n    }\n    fclose(file);\n    return 0;\n}"
+    }
+  ]
+}

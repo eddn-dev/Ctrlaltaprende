@@ -1,0 +1,486 @@
+{
+  "id": "2",            
+  "subject": "Fundamentos de programación",    
+  "topic": "Programación en el Lenguaje C",
+  "metadata": {
+    "author": "Juan Pérez",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Lenguaje C"
+    },
+    {
+      "type": "paragraph",
+      "content": "C es un lenguaje de programación de propósito general que ha sido estrechamente asociado con el sistema operativo UNIX en donde fue desarrollado puesto que tanto el sistema como los programas que corren en él están escritos en lenguaje C. Sin embargo, este lenguaje no está ligado a ningún sistema operativo ni a ninguna máquina, y aunque se le llama \"lenguaje de programación de sistemas\" debido a su utilidad para escribir compiladores y sistemas operativos, se utiliza con igual eficacia para escribir importantes programas en diversas disciplinas.\n\nLa única forma de aprender un nuevo lenguaje de programación es escribiendo programas con él. El primer programa por escribir es el mismo para todos los lenguajes.\n\nEl verdadero reto a la hora de compilar un primer programa es tener las herramientas necesarias para poder compilar y ejecutar dicho programa. En la sección de “Herramientas de programación” del tema anterior hemos anexado una serie de videos que te ayudarán, en caso de ser necesario, a descargar un entorno IDE para la edición del código y las herramientas de compilación “gcc” necesarias para poder ejecutar cualquier programa escrito en lenguaje C."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Unidades de medida de memoria"
+    },
+    {
+      "type": "paragraph",
+      "content": "La memoria central de una computadora es una zona de almacenamiento organizada en centenares o millares de unidades de almacenamiento individual o celdas.\n\nLa memoria central consta de un conjunto de celdas de memoria (estas celdas o posiciones de memoria se denominan también palabras, aunque no \"guardan\" analogía con las palabras del lenguaje). Cada palabra puede ser un grupo de 8 bits, 16 bits, 32 bits o incluso 64 bits, en las computadoras más modernas y potentes. Si la palabra es de 8 bits se conoce como byte. El término bit (dígito binario) se deriva de las palabras inglesas \"binary digit\" y es la unidad de información más pequeña que puede tratar una computadora. El término byte es muy utilizado en la jerga informática y, normalmente, las palabras de 16 bits se suelen conocer como palabras de 2 bytes, y las palabras de 32 bits como palabras de 4 bytes."
+    },
+    {
+      "type": "image",
+      "src": ["/material/2/img1.jpg"],
+      "alt": "Un byte",
+      "caption": "Un byte"
+    },
+    {
+      "type": "paragraph",
+      "content": "La memoria central de una computadora puede tener desde unos centenares de millares de bytes hasta millones de bytes. Como el byte es una unidad elemental de almacenamiento, se utilizan múltiplos para definir el tamaño de la memoria central: "
+    },
+    {
+      "type": "image",
+      "src": ["/material/2/img2.jpg"],
+      "alt": "Equivalencias a bytes",
+      "caption": "Equivalencias a bytes"
+    },
+    {
+      "type": "videos",
+      "src": ["https://youtu.be/Sq3OjI3tVIM?si=8MZyI8_WfGmAyucb"],
+      "alt": "Cómo funciona la memoria de la computadora",
+      "caption": "Cómo funciona la memoria de la computadora"
+    },
+    {
+        "type": "heading",
+        "level": 3,
+        "content": "Espacio de direccionamiento "
+    },
+    {
+        "type": "paragraph",
+        "content": "Para tener acceso a una palabra en la memoria se necesita un identificador que a nivel de hardware se le conoce como dirección. Existen dos conceptos importantes asociados a cada celda o posición de memoria: su dirección y su con tenido. Cada celda o byte tiene asociada una única dirección que indica su posición relativa en memoria y mediante la cual se puede acceder a la posición para almacenar o recuperar información. La información almacenada en una posición de memoria es su contenido. La Figura 1.5 muestra una memoria de computadora que consta de 1.000 posiciones en memoria con direcciones de 0 a 999 en código decimal. El contenido de estas direcciones o posiciones de memoria se llaman palabras, que como ya se ha comentado pueden ser de 8, 16, 32 y 64 bits. Por consiguiente, si trabaja con una máquina de 32 bits, significa que en cada posición de memoria de su computadora puede alojar 32 bits, es decir 32 dígitos, bien ceros o unos."
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img3.jpg"],
+        "alt": "Memoria central de un computador",
+        "caption": "Memoria central de un computador"
+    },
+    {
+        "type": "note",
+        "content": "NOTA:\nCódigo ASCII (American Standard Code for Information Interchange). \nEl código ASCII básico utiliza 7 bits y permite representar 128 caracteres (letras mayúsculas y minúsculas del alfabeto inglés, símbolos de puntuación, dígitos 0 a 9 y ciertos controles de información tales como retorno de carro, salto de línea, tabulaciones, etc.). Este código es el más utilizado en computadoras, aunque el ASCII ampliado con 8 bits permite llegar a 28 (256) caracteres distintos, entre ellos ya símbolos y caracteres especiales de otros idiomas como el español.\n\nEl código ASCII incluso es útil a la hora de escribir caracteres especiales en cualquier computador, sin importar el lenguaje del teclado, puesto que es un código internacional. Por ejemplo, intenta pulsar: “ALT + 92” y observarás que accedes al carácter de barra invertida “\\” o el famoso símbolo de @ con “ALT + 64”. Esto es útil también para teclados de habla inglesa donde caracteres como la “ñ” no aparecen en el teclado, basta con pulsar “ALT + 164”.\n\nTe invitamos a consultar el Código ASCII completo en: https://elcodigoascii.com.ar "
+    },
+    {
+        "type": "paragraph",
+        "content": "Con el código ASCII es posible representar cualquier caracter con un número, cuando queremos almacenar una letra en la memoria de nuestro computador, nuestra máquina solo entiende ceros y unos, entonces la letra recibe su valor ASCII y este numero decimal es guardado en formato binario en la memoria de nuestro computador.\n\nEntonces, si en algún punto queremos acceder a una letra o palabra guardada en la memoria de nuestro ordenador, podemos acceder a ella como caracteres, números decimales o incluso en formato binario, nuestro computador almacena todos estos formatos para el mismo valor."
+    },
+    {
+        "type": "videos",
+        "src": ["https://youtu.be/6ByPEh6IXlQ?si=pguds9c2nTK6UZda", "https://youtu.be/kZBflI56vMg?si=28SRPlHMsnFhXciM"],
+        "alt": "Espacio de dirección ",
+        "caption": "Información y procesamiento de la información"
+    },
+    {
+        "type": "heading",
+        "level": 4,
+        "content": "Tipos de datos primitivos y operadores aritméticos "
+    },
+    {
+        "type": "paragraph",
+        "content": "Bajo este contexto, ahora sí te presentamos los tipos de datos primitivos del lenguaje C:"
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img4.jpg"],
+        "alt": "Tipos de datos del lenguaje C",
+        "caption": "Tipos de datos del lenguaje C"
+    },
+    {
+        "type": "note",
+        "content": "Un dato interesante:\nEn las técnicas de mapas de bits, una imagen se considera como una colección de puntos, cada uno de los cuales se llama pixel (abreviatura de “picture element”). Una imagen en blanco y negro se representa como una cadena lar ga de bits que representan las filas de píxeles en la imagen, donde cada bit es bien 1 o bien 0, dependiendo de que el píxel correspondiente sea blanco o negro. En el caso de imágenes en color, cada píxel se representa por una combinación de bits que indican el color del pixel. Cuando se utilizan técnicas de mapas de bits, el patrón de bits resultante se llama mapa de bits, significando que el patrón de bits resultante que representa la imagen es poco más que un mapa de la imagen. \nMuchos de los periféricos de computadora —tales como cámaras de vídeo, escáneres, etc.— convierten imágenes de color en formato de mapa de bits. Los formatos más utilizados en la representación de imágenes se muestran a continuación."
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img5.jpg"],
+        "alt": "Procesamiento de imagenes en un computador",
+        "caption": "Procesamiento de imagenes en un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "Por otro lado, los operadores del lenguaje C se clasifican en:\n\nOperadores aritméticos:"
+    },
+    {
+        "type": "list-unord",
+        "content": ["+: símbolo de suma", "-: símbolo de resta", "*: símbolo de multiplicación", "/: símbolo de división", "%: símbolo de módulo"]
+    },
+    {
+        "type": "paragraph",
+        "content": "Por ejemplo:\nint a = 5 + 3;\nEn esta línea de código estamos declarando una variable con nombre “a” de tipo int (número entero de 4 bytes), es decir, declarar significa asignarle una dirección en la memoria central (figura 1.5 en el tema anterior). Y al contenido de esta dirección le asignamos el valor 8.\n\nEl módulo es una operación de devuelve el residuo de una división entre dos números, por ejemplo:\nint b = 10 % 2;\nEl contenido de la variable “b” en este caso será cero porque la división de 10/2 es exacta, pero:\nint c = 10 % 3;\nEl contenido de la variable c en este caso será 1 porque 10/3 es 3 y nos sobra 1 unidad. Este operador es útil al verificar si un numero es par o no.\n\n Operadores de asignación:\n"
+    },
+    {
+        "type": "list-unord",
+        "content": ["=: Asignación simple", "+=: Suma y asigna", "-=: Resta y asigna", "*=: Multiplica y asigna", "/=: Divide y asigna", "%=: Calcula módulo y asignación"]
+    },
+    {
+        "type": "paragraph",
+        "content": "El operador de asignación y operador funciona de la siguiente manera:\nint a = 3;\na += 5;\nEl resultado final de a es 8. Es decir, otra manera de escribir a += 5 es: a = a + 5 donde primero se ejecuta el lado derecho de la igualdad, se toma el valor de a antes de la asignación, se realiza la suma y se asigna este nuevo valor a “a”.\n\nExisten otros tipos de operadores propios del lenguaje C, operadores relacionales, lógicos, bit a bit, etc. Pero estos se abordarán en el subtema “Sentencias de control” puesto que son propios de esta estructura."
+    },
+    {
+        "type": "videos",
+        "src": ["https://youtu.be/hJCuVK2YiwA?si=mtUl8iHF8EZ-SYoz ", "https://youtu.be/9kraokTxaqs?si=BRPEN-MpqMlCDWxO ", "https://youtu.be/NqAPnmXzKDs?si=agjb3qTpiaAUHZ1L "],
+        "alt": "Operadores lógicos",
+        "caption": "Operadores lógicos"
+    },
+    {
+        "type": "heading",
+        "level": 5,
+        "content": "Manejo de la entrada y salida estándar "
+    },
+    {
+        "type": "paragraph",
+        "content": "Te dejamos un video de guía para tu primera compilación:\nhttps://youtu.be/WS4NbRlwfpg?si=xg5jGucVhCTtpnif\n\nUna librería en programación es un conjunto de funciones predefinidas por otros programadores que se encargaron de facilitarte a ti, nuevo programador, un conjunto de comandos para que puedas realizar funciones básicas en un lenguaje. Es decir, una librería es un código hecho por otra persona que contiene comandos que tú vas a usar para tus propios programas.\n\nEso es una función, una sección de código que ejecuta una serie de instrucciones a las que puedes acceder usando el nombre de la función; pero no te agobies si te parece un concepto complicado, más adelante estudiaremos a profundidad lo que una función es.\n\nLa biblioteca estándar en lenguaje C es: stdio.h (que significa Standard Input/Output) y ofrece funciones para manejar operaciones de entrada y salida. Entre sus funciones más comunes están printf para mostrar datos formateados (es decir mostrar información en la pantalla de tu computador), scanf para leer entradas (datos que teclearas en tu computador), fgets y putchar para manejo de cadenas y caracteres, además de funciones para trabajar con archivos como fopen, fclose, fprintf, y fread. Es indispensable para operaciones básicas y avanzadas de entrada/salida en programas C.\n\nLa función printf se utiliza para imprimir texto y valores en la consola. Forma parte de la biblioteca estándar de entrada/salida y requiere incluir el encabezado #include <stdio.h>.\n\nSintaxis:"
+    },
+    {
+        "type": "code",
+        "content": "Printf(“texto para mostrar en la consola o IDE”);\n"
+    },
+    {
+        "type": "paragraph",
+        "content": "También es posible imprimir variables propias del código en la pantalla, por ejemplo:"
+    },
+    {
+        "type": "code",
+        "content": "int x = 10;\nfloat y = 3.14;\nchar z = 'A';\nprintf(\"Entero: %d, Flotante: %.2f, Caracter: %c\n\", x, y, z);"
+    },
+    {
+        "type": "paragraph",
+        "content": "Formatos comunes en printf:"
+    },
+    {
+        "type": "table",
+        "content": [
+            ["Formato", "Descripción", "Ejemplo de tipo"],
+            ["%d", "Entero con signo", "int"],
+            ["%u", "Entero sin signo", "unsigned int"],
+            ["%f", "Número de punto flotante", "float, double"],
+            ["%.nf", "Flotante con n decimales", "float"],
+            ["%c", "Carácter individual", "char"],
+            ["%s", "Cadena de texto", "char*"],
+            ["%x", "Entero en hexadecimal", "unsigned int"],
+            ["%p", "Dirección de puntero", "void*"]
+        ]
+    },
+    {
+        "type": "paragraph",
+        "content": "Notas\n"
+    },
+    {
+        "type": "list-unord",
+        "content": [
+            "Los valores a imprimir deben coincidir con los especificadores de formato.",
+            "La función devuelve un entero que indica el número de caracteres impresos."
+        ]        
+    },  
+    {
+        "type": "paragraph",
+        "content": "La función scanf permite leer datos ingresados por el usuario desde la consola y almacenarlos en variables.\nSintaxis:"
+    },  
+    {
+        "type": "code",
+        "content": "Scanf(“formato de lo que esperamos leer desde el teclado”, dirección de memoria donde vamos a gurdar esta información);"
+    },
+    {
+        "type": "paragraph",
+        "content": "Por ejemplo:"
+    },  
+    {
+        "type": "code",
+        "content": "int x;\nfloat y;\nprintf(\"Introduce un entero y un flotante: \");\nscanf(\"%d%f\", &x, &y);\nprintf(\"Entero: %d, Flotante: %.2f\n\", x, y);"
+    },
+    {
+        "type": "paragraph",
+        "content": "Notas\n"
+    },
+    {
+        "type": "list-ord",
+        "content": [
+            "Los argumentos deben ser punteros a las variables donde se almacenan los valores. Por ejemplo, si queremos leer un entero, usamos &variable.",
+            "scanf devuelve el número de entradas exitosas leídas. Si hay un error o no se ingresaron valores correctamente, puede devolver 0 o un valor menor al esperado.",
+            "Para cadenas, no es necesario usar & porque un nombre de array ya es un puntero."
+        ]
+        
+    },
+    {
+        "type": "paragraph",
+        "content": "Es aquí donde vas a crear tu primer programa, una vez instalas las “Herramientas de programación” necesarias. El primer programa por escribir es el mismo para todos los lenguajes (como una tradición entre programadores).\n\nEjercicio: Imprimir las palabras: “hola, mundo”"
+    },
+    {
+        "type": "code",
+        "content": "#include <stdio.h>\nmain(){\n\tprintf(“hola, mundo\\n”);\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "Esta es la estructura para incluir cualquier librería en C\n#include <librería>\n\nTodas las instrucciones que quieras ejecutar deben encontrarse de la función main, más adelante te explicaremos porqué, pero por ahora solo debes saber que este es el formato que un código debe seguir.\nmain() {\n\tInstrucciones que van a ejecutarse\n}\nEn la función printf(“hola, mundo\\n”); el símbolo “\\n” indica un salto de línea.\n\nPara ejecutar el programa puedes usar el compilador de tu editor de texto preferido o bien la consola de comandos de tu computador."
+    },
+    {
+        "type": "heading",
+        "level": 6,
+        "content": "Sentencias de control"
+    },
+    {
+        "type": "paragraph",
+        "content": "El término flujo de control se refiere al orden en que se ejecutan las sentencias del programa. Otros términos utilizados son secuenciación y control del flujo. A menos que se especifique expresamente, el flujo normal de control de todos los programas es el secuencial. "
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img6.jpg"],
+        "alt": "Organización de un computador",
+        "caption": "Organización de un computador"
+    },
+    {
+        "type": "heading",
+        "level": 7,
+        "content": "Condicionales o estructuras selectivas"
+    },
+    {
+        "type": "paragraph",
+        "content": "En las estructuras selectivas se evalúa una condición y en función del resultado de esta se realiza una opción u otra. Las condiciones se especifican usando expresiones lógicas.\n\nLas representaciones gráficas de la estructura condicional simple se muestran a continuación:"
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img7.jpg"],
+        "alt": "Condicional",
+        "caption": "Condicional"
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img8.jpg"],
+        "alt": "Condicional",
+        "caption": "Condicional"
+    },
+    {
+        "type": "paragraph",
+        "content": "Los operadores que son admitidos en una condición lógica son:"
+    },
+    {
+        "type": "list-unord",
+        "content": ["Operadores lógicos (&&, ||, !): Se utilizan para combinar y manipular condiciones booleanas.",
+    "Operadores relacionales (==, !=, >, <, >=, <=): Se utilizan para comparar valores y obtener un resultado booleano.",
+    "Operadores bit a bit (&, |, ^, ~, <<, >>): Se usan para realizar operaciones a nivel de bits entre operandos enteros, útiles para manipular datos a nivel más bajo."]
+    },
+    {
+        "type": "paragraph",
+        "content": "Estos operadores son muy comunes en las sentencias condicionales en C, y se utilizan para controlar el flujo del programa de acuerdo a ciertas condiciones."
+    },
+    {
+        "type": "table",
+        "content": [
+            ["Operador", "Descripción"],
+            ["&&", "Devuelve verdadero si ambas condiciones son verdaderas. Se utiliza para combinar dos expresiones condicionales. Ejemplo: (a > 0 && b < 10)"],
+            ["!", "Invierte el valor de la condición. Si la condición es verdadera, devuelve falso; si es falsa, devuelve verdadero. Ejemplo: !(a == 0)"],
+            ["==", "Compara si dos valores son iguales. Devuelve verdadero si son iguales. Ejemplo: (a == b)"],
+            ["!=", "Compara si dos valores son diferentes. Devuelve verdadero si no son iguales. Ejemplo: (a != b)"],
+            [">","Compara si el valor de la izquierda es mayor que el de la derecha. Ejemplo: (a > b)"],
+            ["<","Compara si el valor de la izquierda es menor que el de la derecha. Ejemplo: (a < b)"],
+            [">=","Compara si el valor de la izquierda es mayor o igual que el de la derecha. Ejemplo: (a >= b)"],
+            ["<=","Compara si el valor de la izquierda es menor o igual que el de la derecha. Ejemplo: (a <= b)"],
+            ["&","Realiza una operación AND a nivel de bits. Compara cada bit de dos operandos y devuelve un bit 1 solo si ambos bits son 1. Ejemplo: a & b.\nSi a = 5 = 00000101 y b = 6 = 00000110. Entonces a&b = 00000100 = 4"],
+            ["^","Realiza una operación XOR a nivel de bits. Devuelve un bit 1 si los bits son diferentes. Ejemplo: a ^ b.\nSi a = 5 = 00000101 y b = 6 = 00000110. Entonces a^b = 00000011 = 3"],
+            ["~","Realiza una operación NOT a nivel de bits. Invierte todos los bits del operando. Ejemplo: ~a Si a = 1 = 00000001 Entonces ~a = 11111110 = 254"],
+            ["<<","Desplaza los bits de un número a la izquierda. Se utiliza para multiplicar un número por una potencia de 2. Ejemplo: a << 2 (equivalente a multiplicar por 4).\nSi a = 5 = 00000101. Entonces a<<2 = 00010100 = 20"],
+            [">>","Desplaza los bits de un número a la derecha. Se utiliza para dividir un número por una potencia de 2. Ejemplo: a >> 2 (equivalente a dividir por 4).\nSi a = 20 = 00010100. Entonces a>>2 = 00000101 = 5"]
+        ]
+    },
+    {
+        "type": "paragraph",
+        "content": "Por ejemplo:"
+    },
+    {
+        "type": "code",
+        "content": "#include <stdio.h>\nmain(){\n\tInt a = 5;\nIf(a < 10){\nprintf(“a es menor a diez);\n}\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "En este caso sí se imprimirá el mensaje del printf, pero sí a = 10, en este caso no se ejecuta ninguna acción, no se imprime nada y el programa finaliza.\n"
+    },
+    {
+        "type": "code",
+        "content": "Int a = 10;\nIf(a < 10){\nprintf(“a es menor a diez);\n}\nelse{\nprintf(“a es mayor o igual a diez”);\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "En este caso se imprimirá el segundo printf(“a es mayor a diez”),.\n"
+    },
+    {
+        "type": "code",
+        "content": "Int a = 9;\nIf(a < 8){\nprintf(“a es menor a ocho”);\n}\nelse if(a<10){\nprintf(“a es menor a diez”);\n}\nelse{\nprintf(“a es mayor o igual a diez”);\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "En este caso se imprimirá el segundo printf(“a es menor a diez”), puesto que no se cumplió la primer condición "
+    },
+    {
+        "type": "videos",
+        "src": ["https://youtu.be/EH5p2o65Ny0?si=LnF-auRkasGxiZY9 ", "https://youtu.be/0o3hwGX8MiQ?si=H-RYZXEb2q_bwhyT "],
+        "alt": "Cómo funciona la memoria de la computadora",
+        "caption": "Cómo funciona la memoria de la computadora"
+    },
+    {
+        "type": "paragraph",
+        "content": "Es importante mencionar que podemos agregar tantos else if como deseemos, pero hay que tener cuidado en que si queremos cachar un caso, este caso no venga incluido en una sentencia de algún condicional anterior. Por ejemplo"
+    },
+    {
+        "type": "code",
+        "content": "Int a = 7;\nIf(a < 10){\nprintf(“a es menor a diez”);\n}\nelse if(a<8){\nprintf(“a es menor a ocho”);\n}\nelse{\nprintf(“a es mayor o igual a diez”);\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "En el ejemplo de lado izquierdo es posible que quisiéramos clasificar al 7 como menor a 8, pero debido a que primero hicimos la comparación con 10 y esta condición también es verdadera, entonces el programa la toma por valida, ejecuta sus instrucciones e ignora al resto de else’s. El orden correcto sería el código de lado derecho.\n\nTambién hay que mencionar que podemos anidar condicionales dentro de otras condicionales. Por ejemplo, otra manera de escribir el código anterior puede ser:"
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img9.jpg"],
+        "alt": "Memoria central de un computador",
+        "caption": "Memoria central de un computador"
+    },
+    {
+        "type": "code",
+        "content": "Int a = 7;\nIf(a < 10){\nIf(a < 8){\nprintf(“a es menor a 8”);\n}\nelse{\nprintf(“a es menor a 10”);\n}\n}\nelse{\nIf(a == 10){\nprintf(“a es 10”);\n}\nelse{\nprintf(“a es mayor a diez”);\n}\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "Otra sintaxis para un condicional, para ese tipo de if’s que solo realizan una operación es el if taquigráfico:\n\t(condición) ? (instrucciones_verdadero) : (instrucciones_falso)"
+    },
+    {
+        "type": "code",
+        "content": "Int a = 5;\n(a<10) ? printf(“es menor a diez”) : printf(“es mayor o igual a diez”);"
+    },
+    {
+        "type": "paragraph",
+        "content": "El programa va a imprimir “es menor a diez”.\nFinalmente, otra estructura para un condicional es switch-case para esos casos donde tenemos varios else if:"
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img10.jpg"],
+        "alt": "Memoria central de un computador",
+        "caption": "Memoria central de un computador"
+    },
+    {
+        "type": "code",
+        "content": "switch (expresión) {\ncase valor1:\n// Bloque de código para valor1\nbreak;\ncase valor2:\n// Bloque de código para valor2\nbreak;\n.\n.\n.\ndefault:\n// Bloque de código si ningún caso coincide\nbreak;\n}"
+    },
+    {
+        "type": "heading",
+        "level": 8,
+        "content": "Ciclos, bucles o estructuras repetitivas"
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img14.jpg"],
+        "alt": "Memoria central de un computador",
+        "caption": "Memoria central de un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "Las estructuras que repiten una secuencia de instrucciones un número determinado de veces se denominan bucles y se denomina iteración al hecho de repetir la ejecución de una secuencia de acciones."
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img11.jpg"],
+        "alt": "Memoria central de un computador",
+        "caption": "Memoria central de un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "Imagina un círculo al que das vueltas y vueltas, pero cada que inicia una vuelta ejecutas un condicional (un if) si este es verdadero das una vuelta más, si es falso entonces dejas de dar vueltas (en este ejemplo dar una vuelta es el equivalente a realizar todas las instrucciones que hay dentro del bucle) y avanzas a la siguiente instrucción fuera del bucle.\n\nExisten 3 tipos de bucles en el lenguaje C, te presentamos sus sintaxis:"
+    },
+    {
+        "type": "code",
+        "content": "while (Expresion_lógica) {\n\tsentencia_1;\n\tsentencia_2;\n\t.\n\t.\n\t.\n\tsentencia_n;\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "La estructura while comienza con la evaluación de su condición, si esta es verdadera hace la primera ejecución de las n sentencias dentro de sus llaves, pero si no lo es no se ejecuta ni una sola vez."
+    },
+    {
+        "type": "code",
+        "content": "do {\n\tsentencia_1;\n\tsentencia_2;\n\t.\n\t.\n\t.\n\tsentencia_n;\n} while (expresion_lógica);"
+    },
+    {
+        "type": "paragraph",
+        "content": "La estructura do-while por su parte comienza ejecutando “de cajón” las n sentencias de su contenido al menos una vez, después, evalúa la expresión lógica y si es verdadera repite su proceso anterior, si no, sigue con la siguiente instrucción después del while. Es común en la impresión de menús o índices."
+    },
+    {
+        "type": "code",
+        "content": "for (inicialización; condición; actualización) {\n\tsentencia_1;\n\tsentencia_2;\n\t.\n\t.\n\t.\n\tsentencia_n;\n}"
+
+    },
+    {
+        "type": "paragraph",
+        "content": "La estructura for guía la cantidad de vueltas que hará por una variable. Recibe entre parámetros la “inicialización” de la variable de iteración. Mientras esta variable cumpla con la “condición” del segundo parámetro el for se seguirá repitiendo. Y esta variable va a actualizarse según el parámetro “actualización”\n\nAlgunos ejemplos:\n\nPara hacer la impresión de los números del 1 al 100 y dando saltos cada 10 números usando un while:"
+    },
+    {
+        "type": "code",
+        "content": "#include <stdio.h>\nint main (){\n\tint i=1;\n\twhile (i<=100){\n\t\tprintf(\"%d \", i);\n\t\tif (i % 10==0){\n\t\t\tprintf(\"\\n\");\n\t\t}\n\ti++;\n\t}\n\treturn 0;\n}"
+    },
+    {
+        "type": "paragraph",
+        "content": "Para una mini calculadora de las operaciones aritméticas básicas usando do-while:"
+    },
+    {
+        "type": "code",
+        "content": "#include <stdio.h>\nint main(){\n\tint op,a,b,repetir;\n\tprintf(\"\\t\\tMenu de operaciones\\n\");\n\tdo{\n\t\tprintf(\"Por favor ingrese dos numeros: \");\n\t\tscanf(\"%d%d\", &a, &b);\n\t\tprintf(\"Que operacion desea realizar?\\n1.Suma\\n2.Resta\\n3.Multiplicacion\\n4.Division\\n\");\n\t\tscanf(\"%d\",&op);\n\t\tswitch (op){\n\t\t\tcase 1: \n\t\t\t\tprintf(\"La Suma de %d + %d = %d\\n\", a, b, a+b);\t \n\t\t\tbreak;\n\t\t\tcase 2: \n\t\t\t\tprintf(\"La Resta de %d - %d = %d\\n\", a, b, a-b);\t \n\t\t\tbreak;\n\t\t\tcase 3: \n\t\t\t\tprintf(\"La Multiplicacion de %d x %d = %d\\n\", a, b, a*b);\t \n\t\t\tbreak;\n\t\t\tcase 4: \n\t\t\t\tprintf(\"La Division de %d / %d = %d\\n\", a, b, a/b);\t \n\t\t\tbreak;\n\t\t}\n\t\tprintf(\"Desea realizar otra operacion? 1.Si 2.No  \");\n\t\tscanf(\"%d\", &repetir);\n\t}while (repetir == 1); \n\t\n\treturn 0;\n}"
+
+    },
+    {
+        "type": "paragraph",
+        "content": "Para dibujar un árbol de asteriscos de n líneas ingresadas por el usuario usando un ciclo for. Te recomendamos dibujar el árbol en papel cuadriculado, analizar su estructura e intentar el problema: "
+    },
+    {
+        "type": "code",
+        "content": "#include<stdio.h>\nint main(){\n\tint n, i, cont = 1;\n\tprintf(\"\\n\\tBienvenidx\\n\\tCuantas lineas tendra el triangulo? \");\n\tscanf(\"%d\", &n);\n\n\tint cont2 = n - 1;\n\tfor (i = 1; i <= n; i++){\n\t\tprintf(\"\\n\\t\");\n\t\tfor (int j = 1; j <= cont2; j++){\n\t\t\tprintf(\" \");\n\t\t}\n\t\tfor (int k = 1; k <= cont; k++){\n\t\t\tprintf(\"*\");\n\t\t}\n\t\tcont += 2; cont2--;\n\t}\n\n\tprintf(\"\\n\");\n\n\treturn 0;\n}"
+    },
+    {
+        "type": "videos",
+        "src": ["https://youtu.be/PJoE7P1_7S4?si=d3LEI2xzWCeoRRMz", "https://youtu.be/GSOWJ0fYbYw?si=QROPrlndSejihzBj "],
+        "alt": "Cómo funciona la memoria de la computadora",
+        "caption": "Cómo funciona la memoria de la computadora"
+    },
+    {
+        "type": "heading",
+        "level": 9,
+        "content": "Arreglos"
+    },
+    {
+        "type": "paragraph",
+        "content": "Un array o arreglo (matriz o vector) es un conjunto finito y ordenado de elementos homogéneos. La propiedad “ordenado” significa que el elemento primero, segundo, tercero, ..., enésimo de un array puede ser identificado. \n\nLos elementos de un array son homogéneos, es decir, del mismo tipo de datos. Un array puede estar compuesto de todos sus elementos de tipo cadena, otro puede tener todos sus elementos de tipo entero, etc. Los arrays se conocen también como matrices —en matemáticas— y tablas —en cálculos financieros—. El tipo más simple de array es el array unidimensional o vector (matriz de una dimensión)."
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img12.jpg"],
+        "alt": "Memoria central de un computador",
+        "caption": "Memoria central de un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "Sintaxis para declarar un arreglo:"
+    },
+    {
+        "type": "code",
+        "content": "tipo nombre_arreglo[n];"
+    },
+    {
+        "type": "paragraph",
+        "content": "El nombre_arreglo es en realidad un apuntador o puntero, pero ya veremos este término más adelante.\n\nEl subíndice o índice de un elemento (1, 2, ..., i, n) designa su posición en la ordenación del vector.\n\nNosotros los humanos comenzamos a contar desde 1 cuando numeramos objetos, pero en programación al declarar un arreglo le asignamos una dirección en la memoria a todos los elementos del arreglo, que inicia con el primer elemento y termina en el último. Para la computadora los índices son los espacios que debemos movernos a partir del inicio del arreglo, así que si quieres acceder al primer elemento del arreglo debes acceder a la posición cero porque no nos estamos recorriendo del inicio del arreglo o vector."
+    },
+    {
+        "type": "image",
+        "src": ["/material/2/img13.jpg"],
+        "alt": "Memoria central de un computador",
+        "caption": "Memoria central de un computador"
+    },
+    {
+        "type": "videos",
+        "src": ["https://youtu.be/k24J92Hod50?si=WGBB5Au8t2QTDPoK ", "https://youtu.be/A51zeydBFfk?si=2eVwV8uQ_xbUcsTc ", "https://youtu.be/jC1eyfXpkgg?si=0FPemgSiR0oylqkm "],
+        "alt": "Operadores lógicos",
+        "caption": "Operadores lógicos"
+    }
+
+    ]
+}

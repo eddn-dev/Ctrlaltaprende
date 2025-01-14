@@ -24,7 +24,7 @@
     
     <!-- Tarjeta 1 -->
     <div class="section__item">
-      <a href="#fundamentos" class="section__link">
+      <a href="/content" class="section__link">
         <article class="card">
           <img src="/build/img/materias/FP.jpg" alt="Fundamentos de programación" class="card__img">
 
@@ -42,7 +42,7 @@
 
     <!-- Tarjeta 2 -->
     <div class="section__item">
-      <a href="#algoritmos" class="section__link">
+      <a href="/content" class="section__link">
         <article class="card">
           <img src="/build/img/materias/AED.jpg" alt="Algoritmos y estructuras de datos" class="card__img">
 
@@ -61,7 +61,7 @@
 
     <!-- Tarjeta 3 -->
     <div class="section__item">
-      <a href="#analisis" class="section__link">
+      <a href="/content" class="section__link">
         <article class="card">
           <img src="/build/img/materias/ADA.jpg" alt="Análisis y diseño de algoritmos" class="card__img">
 
@@ -79,7 +79,7 @@
 
     <!-- Tarjeta 4 -->
     <div class="section__item">
-      <a href="#paradigmas" class="section__link">
+      <a href="/content" class="section__link">
         <article class="card">
           <img src="/build/img/materias/PP.jpg" alt="Paradigmas de programación" class="card__img">
 

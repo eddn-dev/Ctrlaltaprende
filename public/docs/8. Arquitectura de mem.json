@@ -1,0 +1,115 @@
+{
+  "id": "8",
+  "subject": "Fundamentos de Programación",
+  "topic": "Arquitectura de Memoria",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Arquitectura de Memoria"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Harvard"
+    },
+    {
+      "type": "paragraph",
+      "content": "La arquitectura Harvard es una de las principales arquitecturas de computadoras, basada en la idea de usar dos memorias separadas: una para las instrucciones y otra para los datos. Esto se traduce en un sistema que puede realizar operaciones de lectura y escritura de instrucciones y datos de manera simultánea, lo que mejora la eficiencia y el rendimiento. La memoria para instrucciones es de solo lectura (ROM), mientras que la memoria para datos es de lectura y escritura (RAM). Esta separación de memorias permite una mayor velocidad en la ejecución de los programas, pues las instrucciones y los datos pueden ser accedidos de forma paralela."
+    },
+    {
+      "type": "image",
+      "src": ["/material/8/img1.jpg"],
+      "alt": "Harvard",
+      "caption": "Harvard"
+    },
+    {
+      "type": "paragraph",
+      "content": "La arquitectura Harvard se caracteriza por utilizar memorias separadas para las instrucciones y los datos. Esto significa que las instrucciones que el procesador necesita para ejecutar un programa se almacenan en una memoria, mientras que los datos asociados se almacenan en otra.\n\nEsta separación permite que el procesador acceda simultáneamente tanto a las instrucciones como a los datos, optimizando el tiempo de ejecución. Las memorias pueden tener diferentes anchos de banda, tiempos de acceso e incluso tecnologías. Esta arquitectura es común en sistemas embebidos y microcontroladores, donde la eficiencia es clave.\n\nVentajas:"
+    },
+    {
+      "type": "list-unord",
+      "content": ["Acceso simultáneo a instrucciones y datos.", "Optimizado para aplicaciones de alta velocidad."]
+    },
+    {
+      "type": "paragraph",
+      "content": "Desventajas:"
+    },
+    {
+      "type": "list-unord",
+      "content": ["Requiere hardware más complejo y costoso." ]
+    },
+
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Von Neumann"
+    },
+    {
+      "type": "paragraph",
+      "content": "La arquitectura Von Neumann es otro modelo clásico de computadoras, en el cual tanto las instrucciones como los datos se almacenan en una única memoria compartida. Esto implica que el procesador debe alternar entre leer las instrucciones y acceder a los datos, lo que puede generar un cuello de botella conocido como \"cuello de botella de Von Neumann\". A pesar de esta limitación, la arquitectura Von Neumann es más simple en términos de diseño y construcción, ya que solo necesita una memoria común para ambos tipos de información, lo que reduce la complejidad en comparación con la arquitectura Harvard.\n\nLa arquitectura Von Neumann utiliza una única memoria para almacenar tanto las instrucciones como los datos. El procesador debe acceder a estas dos entidades de forma secuencial, lo que puede causar un cuello de botella conocido como el \"Von Neumann Bottleneck\".\nEsta arquitectura es más sencilla y económica que la Harvard y es común en las computadoras personales y otros dispositivos de uso general."
+    },
+    {
+      "type": "paragraph",
+      "content": "Ventajas:"
+    },
+    {
+      "type": "list-unord",
+      "content": ["Sencillez en el diseño del hardware.", "Menores costos de fabricación."]
+    },
+    {
+      "type": "paragraph",
+      "content": "Desventajas:"
+    },
+    {
+      "type": "list-unord",
+      "content": ["Rendimiento limitado por el acceso secuencial a memoria." ]
+    },
+    {
+      "type": "image",
+      "src": ["/material/8/img2.jpg"],
+      "alt": "Von Neumann",
+      "caption": "Von Neumann"
+    },
+    {
+      "type": "videos",
+      "src": ["https://youtu.be/cRVhNEyBWJc"],
+      "alt": "Video sobre arquitectura de memoria",
+      "caption": "Introducción a la arquitectura de memoria Harvard y Von Neumann"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Memoria de un proceso en el modelo de memoria única"
+    },
+    {
+      "type": "paragraph",
+      "content": "En el modelo de memoria única, cada proceso en ejecución tiene asignada un área específica de memoria que contiene las siguientes secciones:"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Memoria de instrucciones: Aquí se almacenan las instrucciones del programa.",
+        "Pila (Stack): Usada para almacenar variables locales y las direcciones de retorno de las funciones.",
+        "Heap (Memoria dinámica): Utilizada para la asignación de memoria dinámica en tiempo de ejecución.",
+        "Datos estáticos: Almacena las variables globales y constantes que permanecen durante toda la ejecución del programa. Este modelo simplifica la gestión de memoria al asignar una sola área de memoria para cada proceso, asegurando que no se solapen ni se compartan recursos entre procesos de manera no controlada."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "En un modelo de memoria única, la memoria de un proceso se divide generalmente en tres segmentos:"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Segmento de Código: Contiene las instrucciones ejecutadas por el procesador (solo lectura).",
+        "Segmento de Datos: Almacena variables globales y estáticas.",
+        "Segmento de Pila: Maneja llamadas a funciones y variables locales, creciendo dinámicamente."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "3",
+  "subject": "Fundamentos de programacion",
+  "topic": "Programación y diseño estructurado",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Teorema de la programación estructurada"
+    },
+    {
+      "type": "paragraph",
+      "content": "El Teorema de la Programación Estructurada es uno de los fundamentos teóricos más importantes en el campo de la informática y la ingeniería de software. Formulado por Corrado Böhm y Giuseppe Jacopini en 1966, este teorema establece que cualquier algoritmo puede ser implementado utilizando exclusivamente tres estructuras de control: secuencia, selección e iteración."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Estructuras básicas de control"
+    },
+    {
+      "type": "list-ord",
+      "content": [
+        "Secuencia: Consiste en ejecutar instrucciones de manera lineal, una tras otra, en el orden en que aparecen. Por ejemplo, asignar un valor a una variable y luego imprimirlo es un caso de secuencia..",
+        "Selección: Permite tomar decisiones en función de una condición. Las estructuras más comunes son if-else y switch-case, que permiten ejecutar diferentes bloques de código dependiendo del resultado de una evaluación lógica.",
+        "Iteración: Facilita la ejecución repetitiva de un bloque de código mientras se cumpla una condición. Los bucles for, while y do-while son ejemplos de estructuras de iteración."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Importancia"
+    },
+    {
+      "type": "paragraph",
+      "content": "El Teorema de la Programación Estructurada marcó el fin del uso excesivo de las instrucciones de salto incondicional (goto), las cuales dificultaban la comprensión y mantenimiento del código. La programación estructurada promueve un diseño más claro, modular y fácil de depurar, sentando las bases para paradigmas más avanzados como la programación orientada a objetos y la programación funcional."
+    },
+    {
+      "type": "note",
+      "content": "Contexto:\nUn salto incondicional, como el comando goto, es una instrucción en algunos lenguajes de programación que permite transferir el control de ejecución a otra parte del código directamente, sin seguir el flujo lógico normal. En esencia, el programa \"salta\" a una etiqueta o línea específica indicada en el código.\nEjemplo:\n"
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\n\nint main() {\n    printf(\"Inicio del programa\\n\");\n    goto salto; // Salta directamente a la etiqueta 'salto'\n    printf(\"Este texto no se ejecutará\\n\");\n\n    salto:\n    printf(\"Ejecutando después del salto\\n\");\n    return 0;\n}"
+
+    },
+    {
+      "type": "paragraph",
+      "content": "Ejemplo práctico de un programa que sigue el teorema de la programación estructurada\nConsideremos el cálculo de la factorial de un número:"
+    },
+    {
+      "type": "list-ord",
+      "content": [
+        "Secuencia: Inicializar una variable para almacenar el resultado.",
+        "Selección: Multiplicar la variable por cada número desde 1 hasta el valor deseado.",
+        "Iteración: Comprobar que el número de entrada sea mayor o igual a 0 antes de realizar los cálculos."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "Críticas y extensiones\nAunque el teorema es una base sólida, se ha argumentado que no contempla ciertos aspectos prácticos como el manejo de errores y la concurrencia, que son esenciales en el desarrollo de software moderno. Sin embargo, sus principios siguen siendo fundamentales para comprender los lenguajes y paradigmas de programación.\n\nEn resumen, el Teorema de la Programación Estructurada es un pilar de la computación que impulsa buenas prácticas de diseño y organización del código, contribuyendo al desarrollo de sistemas más comprensibles y mantenibles."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "content": "Características de un programa estructurado"
+    },
+    {
+      "type": "list-ord",
+      "content": [
+        "Modularidad: División del código en módulos independientes.",
+        "Claridad: Organización lógica y flujo de control bien definido.",
+        "Uso de estructuras de control básicas: Secuencia, selección e iteración.",
+        "Reusabilidad: Módulos reutilizables en diferentes proyectos.",
+        "Mantenibilidad: Fácil de cambiar y corregir.",
+        "Pruebas fáciles: Cada módulo puede probarse por separado."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 5,
+      "content": "Diseño estructurado y modularidad"
+    },
+    {
+      "type": "paragraph",
+      "content": "El diseño estructurado y la modularidad son principios fundamentales en el desarrollo de software que buscan mejorar la organización comprensibilidad y mantenibilidad de los sistemas. El diseño estructurado se centra en descomponer jerárquicamente un sistema en partes funcionales, representando cómo interactúan entre sí. Utiliza diagramas y un enfoque descendente, desde un panorama general hasta los detalles.\n\nLa modularidad, por su parte, enfatiza dividir un sistema en módulos independientes, cada uno con una función específica. Promueve la independencia funcional, la reusabilidad, el encapsulamiento y facilita el mantenimiento al reducir las dependencias entre componentes.\n\nAmbos principios ofrecen beneficios clave como la reducción de la complejidad, la escalabilidad, la facilidad de mantenimiento y la mejora en la colaboración. Esto permite desarrollar sistemas más comprensibles, flexibles y preparados para el futuro, facilitando tanto su implementación inicial como su evolución a largo plazo.\n\nUn código que implementa la modularidad de forma muy clara:"
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\nvoid sumar();\nvoid restar();\nvoid mostrarMenu();\nint main() {\n\tint opcion;\n\tdo {\n\t\tmostrarMenu();\n\t\tprintf(\"Elige una opción: \");\n\t\tscanf(\"%d\", &opcion);\n\n\t\tswitch(opcion) {\n\t\t\tcase 1:\n\t\t\t\tsumar();\n\t\t\t\tbreak;\n\t\t\tcase 2:\n\t\t\t\trestar();\n\t\t\t\tbreak;\n\t\t\tcase 3:\n\t\t\t\tprintf(\"Saliendo del programa...\\n\");\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tprintf(\"Opción no válida. Inténtalo de nuevo.\\n\");\n\t\t}\n\t\tprintf(\"\\n\");\n\t} while(opcion != 3);\n\n\treturn 0;\n}\nvoid sumar() {\n\tint a, b;\n\tprintf(\"Introduce dos números para sumar: \");\n\tscanf(\"%d %d\", &a, &b);\n\tprintf(\"El resultado de la suma es: %d\\n\", a + b);\n}\nvoid restar() {\n\tint a, b;\n\tprintf(\"Introduce dos números para restar: \");\n\tscanf(\"%d %d\", &a, &b);\n\tprintf(\"El resultado de la resta es: %d\\n\", a - b);\n}\n\nvoid mostrarMenu() {\n\tprintf(\"=== Menú de Operaciones ===\\n\");\n\tprintf(\"1. Sumar\\n\");\n\tprintf(\"2. Restar\\n\");\n\tprintf(\"3. Multiplicar\\n\");\n\tprintf(\"4. Dividir\\n\");\n\tprintf(\"5. Salir\\n\");\n}"
+
+
+    }
+  ]
+}

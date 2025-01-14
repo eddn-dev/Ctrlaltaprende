@@ -7,7 +7,6 @@ use MVC\Router;
 
 class PerfilController {
     public static function perfil(Router $router) {
-        session_start();
     
         // ID por GET o Session
         $id = $_GET['id'] ?? $_SESSION['id'];

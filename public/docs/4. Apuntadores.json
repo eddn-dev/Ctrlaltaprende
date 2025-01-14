@@ -1,0 +1,133 @@
+{
+  "id": "4",
+  "subject": "Fundamentos de programación",
+  "topic": "Apuntadores",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "Un apuntador es una variable que contiene la dirección de una variable. Los apuntadores se utilizan mucho en C, en parte debido a que ellos son en ocasiones la única forma de expresar una operación, y en parte debido a que por lo general llevan un código más compacto y eficiente de lo que se puede obtener en otras formas. Los apuntadores y los arreglos están relacionados íntimamente; este capítulo también explora estas relaciones y muestra cómo explotarlas.\n\nLos apuntadores se han puesto junto a la proposición goto como una forma maravillosa de crear programas ininteligibles. Esto es verdadero cuando se utilizan en forma descuidada, y es fácil crear apuntadores que señalen a algún lugar inesperado. Sin embargo, con disciplina, los apuntadores pueden también emplear- se para obtener claridad y simplicidad. Este es el aspecto que trataremos de ilustrar.\n\nEl principal cambio en ANSI C es hacer explícitas las reglas acerca de cómo pueden manipularse los apuntadores, obligando a lo que los buenos programado- res ya practican y lo que los buenos compiladores ya imponen. Además, el tipo void * (apuntador a void) reemplaza a char * como el tipo apropiado para un apuntador genérico."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Apuntadores y direcciones de memoria"
+    },
+    {
+      "type": "paragraph",
+      "content": "Empecemos con un dibujo simplificado de cómo se organiza la memoria. Una maquina típica tiene un arreglo de celdas de memoria numeradas o direccionadas consecutivamente, que pueden manipularse individualmente o en grupos contiguos.\n\nUna situación común es que cualquier byte puede ser un char, un par de celdas de un byte pueden tratarse como un entero short, y cuatro bytes adyacentes como un long. Un apuntador es un grupo de celdas (generalmente dos o cuatro) que pueden mantener una dirección. Así, si c es un char y p es un apuntador que apunta a él, podría representarse la situación de esta manera:"
+    },
+    {
+      "type": "image",
+      "src": ["/material/3/img1.jpg"],
+      "alt": "Apuntadores",
+      "caption": "Apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "El operador unario & da la dirección de un objeto, de modo que la proposición.\np = &c;\nAsigna la dirección de c a la variable p, y se dice que p \"apunta a\" c. El operador & sólo se aplica a objetos que están en memoria: variables y elementos de arreglos. No puede aplicarse a expresiones, constantes o variables tipo registro.\n\nEl operador unario es el operador de indirección o desreferencia., cuando se aplica a un apuntador, da acceso al objeto al que señala el apuntador. Supóngase que x y y son enteros e ip es un apuntador a int. Esta secuencia artificial muestra cómo declarar un apuntador y cómo emplear & y *:"
+    },
+    {
+      "type": "code", 
+      "content": "int x = 1, y = 2, z[10];\nint *ip;\t/* ip es un apuntador a int */\nip = &x;\t/* ip ahora apunta a x */\ny = *ip;\t/* y es ahora 1 */\n*ip = 0;\t/* x es ahora o */\nip = &z[0];\t/* ip ahora apunta a z[0] */"
+    },
+    {
+      "type": "paragraph",
+      "content": "Las declaraciones de x, y y z son lo que hemos visto todo el tiempo. La declara- ción del apuntador ip,\nint *ip;\nfunciona como mnemonico; dice que la expresión *ip es un int. La sintaxis de la declaración para una variable imita la sintaxis de expresiones en las que la va- riable puede aparecer. Este razonamiento se aplica también a la declaración de funciones. Por ejemplo,\ndouble dp, atoi (char *);\nindica que en una expresión *dp y atof(s) tienen valores de tipo double, y que el argumento de atof es un apuntador a char.\n\nTambién se debe notar la implicación que tiene el hecho de que un apuntador está restringido a señalar a una clase particular de objeto: cada apuntador señala a un tipo específico de datos. (Hay una excepción: un \"apuntador a void\" se em- plea para mantener cualquier tipo de apuntador, pero en sí mismo no puede ser desreferenciado. Esto se volverá a tratar en la sección 5.11.)\nSi ip apunta al entero x, entonces *ip puede presentarse en cualquier contexto donde x pueda hacerlo, así que:\nip = *ip + 10;\tincrementa *ip en 10."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Operadores de dirección e indirección"
+    },
+    {
+      "type": "paragraph",
+      "content": "En C, los operadores de dirección (&) e indirección (*) son fundamentales para trabajar con punteros, que permiten manipular directamente las direcciones de memoria. A continuación, se explica su función y cómo se utilizan.\n\nLos operadores unarios * y & se ligan más estrechamente que los operadores aritméticos; así, la asignación\ny = *ip + 1\ntoma aquello a lo que apunte ip, le agrega 1, y asigna el resultado a y, mientras que\n*ip + = 1\nincrementa en uno aquello a que ip apunta, como lo hace \n+ + *ip\ty\t(*ip) + +\n\nLos paréntesis son necesarios en este último ejemplo; sin ellos, la expresión incrementaría ip en lugar de a lo que apunta, debido a que los operadores unarios como * y + + se asocian de derecha a izquierda.\n\nPor último, puesto que los apuntadores son variables, se pueden emplear sin desreferenciamiento. Por ejemplo, si iq es otro apuntador a int,\niq = ip\ncopia el contenido de ip en iq; así, hace que iq apunte a lo que ip está apuntando."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "content": "Aritmética de apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "Si p es un apuntador a algún elemento de un arreglo, entonces p + + incrementa p para apuntar al siguiente elemento, y p + = i la incrementa para apuntar i elemen- tos adelante de donde actualmente lo hace. Esas y otras construcciones semejantes son las formas más simples de aritmética de apuntadores o de direcciones.\n\nEl lenguaje C es consistente y regular en su enfoque a la aritmética de direcciones; su integración de apuntadores, arreglos y aritmética de direcciones es uno de los aspectos que le dan fuerza. Lo ilustraremos al escribir un rudimentario asignador de memoria. Hay dos rutinas: la primera, alloc(n), regresa un apuntador pa n posiciones consecutivas, que pueden ser empleadas por el invocador de alloc para almacenar caracteres. La segunda, afree (p), libera el almacenamiento adquirido en esta forma, de modo que pueda ser reutilizado posteriormente. Las rutinas son rudimentarias, puesto que las llamadas a airee deben realizarse en el orden opuesto a las llamadas realizadas a alloc. Es decir, el almacenamiento maneja- do por alloc y airee es una pila o lista del tipo último-que entra, primero que sale. La biblioteca estándar proporciona funciones análogas llamadas malloc y free que no tienen tales restricciones.\n\nLa implantación más sencilla es hacer que alloc maneje piezas de un gran arreglo de caracteres al que llamaremos allocbuf. Este arreglo está reservado para alloc y para airee. Puesto que éstas hacen su trabajo con apuntadores, no con índices, ninguna otra rutina necesita conocer el nombre del arreglo, el cual puede ser declarado como static en el archivo fuente que contiene a alloc y a airee, y así Ser invisible hacia afuera. En la implantación práctica, el arreglo puede incluso no tener un nombre; podría obtenerse llamando a malloc o pidiendo al sistema operativo un apuntador hacia algún bloque sin nombre de memoria."
+    },
+    {
+      "type": "heading",
+      "level": 5,
+      "content": "Manejo de arreglos con apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "En C existe una fuerte relación entre apuntadores y arreglos, tan fuerte que deben discutirse simultáneamente. Cualquier operación que pueda lograrse por indexación de un arreglo también puede realizarse con apuntadores. La versión con apuntadores será por lo general más rápida, pero, al menos para los no iniciados, algo más difícil de entender.\nLa declaración\nint a[10];\ndefine un arreglo a de tamaño 10, esto es, un bloque de 10 objetos consecutivos llamados: a[0],a[1],...,a[9]."
+    },
+    {
+      "type": "image",
+      "src": ["/material/3/img2.jpg"],
+      "alt": "Apuntadores",
+      "caption": "Apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "La notación a [i] se refiere al i-ésimo elemento del arreglo. Si pa es un apuntador a un entero, declarado como:\n\tint *pa;\nentonces la asignación\n\tpa = &a[0];\nhace que pa apunte al elemento cero de a; esto es, pa contiene la dirección de a[0]."
+    },
+    {
+      "type": "image",
+      "src": ["/material/3/img3.jpg"],
+      "alt": "Apuntadores",
+      "caption": "Apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "Ahora la asignación:\n\tx = *pa;\ncopiará el contenido de a[0] en x.\nSi pa apunta a un elemento en particular de un arreglo, entonces por definición pa + 1 apunta al siguiente elemento, pa + i apunta i elementos después de pa, y pa-i apunta i elementos antes. Así, si pa apunta a a[0],\n\t* (pa +1)\nse refiere al contenido de a [1], pa + i es la dirección de a [i] y *(pa + i) es el contenido de a [i]."
+    },
+    {
+      "type": "image",
+      "src": ["/material/3/img4.jpg"],
+      "alt": "Apuntadores",
+      "caption": "Apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "Lo anterior es verdadero sin importar el tipo o tamaño de las variables del arreglo a. El significado de \"agregar 1 a un apuntador\", y por extensión, toda la aritmética de apuntadores, es que pa + 1 apunta al siguiente objeto, y pa + i apunta al i-ésimo objeto adelante de pa.\n\nLa correspondencia entre indexación y aritmética de apuntadores es muy estrecha. Por definición, el valor de una variable o expresión de tipo arreglo es la dirección del elemento cero del arreglo. Así, que después de la asignación.\n\tpa = &a[0];\npa y a tienen valores idénticos. Puesto que el nombre de un arreglo es un sinónimo para la localidad del elemento inicial, la asignación pa = &a[0] puede escribirse también como:\n\tpa = a;\nMás sorprendente, al menos a primera vista, es el hecho de que una referencia a a [i] también puede escribirse como *(a + i). Al evaluar a [i], C la convierte inmediatamente a * (a + i)]; las dos formas son equivalentes. Al aplicar el operador & a ambas partes de esta equivalencia, se deriva que &a[i] y a + i también son idénticas: a + i es la dirección del i-ésimo elemento delante de a. Por otra parte, si pa es un apuntador, las expresiones pueden usarlo con un subíndice; pa[i] es idéntico a *(pa + i). En resumen, cualquier expresión de arreglo e índice es equivalente a una opresión escrita como un apuntador y un desplazamiento.\nExiste una diferencia entre un nombre de arreglo y un apuntador, que debe tenerse en mente. Un apuntador es una variable, por esto pa = a y pa + + son legaos. Pero un nombre de arreglo no es una variable; construcciones como a = pa y a++ son ilegales.\n\nCuando un nombre de arreglo se pasa a una función, lo que se pasa es la localidad del elemento inicial. Dentro de la función que se llama, este argumento es una variable local, y por lo tanto, un parámetro de nombre de arreglo es un apuntador, esto es, una variable que contiene una dirección. Se puede utilizar este hecho para escribir otra versión de strlen, que calcula la longitud de una cadena."
+    },
+    {
+      "type": "code", 
+      "content": "/* strlen: regresa la longitud de la cadena s */\nint strlen(char *s){\n\tint n;\n\tfor (n = 0; *s != '\\0'; s++)\n\t\tn++;\n\treturn n;\n}"
+    },
+    {
+      "type": "paragraph",
+      "content": "Puesto que s es un apuntador, es perfectamente legal incrementarlo; s+ + no tiene efecto alguno sobre la cadena de caracteres de la función que llamó a strlen, sino que simplemente incrementa la copia privada del apuntador de strlen. Eso significa que llamadas como:"
+    },
+    {
+      "type": "code", 
+      "content": "strlen(\"hola, mundo\");\t/* constante de cadena */\nstrlen(array);\t\t/* char array[100]; */\nstrlen(ptr);\t\t/* char *ptr; */"
+    },
+    {
+      "type": "paragraph",
+      "content": "sí funcionan.\nPuesto que los parámetros formales en una definición de función, \n\tchar s[ ];\ty\tchar *s;\nson equivalentes, preferimos el último, porque indica más explícitamente que el parámetro es un apuntador. Cuando un nombre de arreglo se pasa a una función, ésta puede interpretar a su conveniencia que se ha manejado un arreglo o un apuntador, y manipularlo en consecuencia. Puede incluso emplear ambas notaciones si ello lo hace apropiado y claro.\n\nEs posible pasar parte de un arreglo a una función, pasando un apuntador al inicio del subarreglo. Por ejemplo, si [a]es un arreglo,\\n\\tf(&a[2])\\ty\\tf(a + 2)\\nambas pasan a la función í la dirección del subarreglo que inicia en a[2]. Dentro de f, Ia declaración de parámetros puede ser\\n\\tf(int arr[]) { ... }\\tó\\tf(int *arr) { ... }\\nAsí, hasta donde a f le concierne, el hecho de que el parámetro se refiera a parte de un arreglo más grande no es de consecuencia.Si se está seguro de que los elementos existen, también es posible indexar hacia atrás en un arreglo; p[-1], p[-2], etc., son legítimos desde el punto de vista sintáctico, y se refieren a elementos que preceden inmediatamente a p[0]. Por supuesto, es ilegal hacer referencia a objetos que no estén dentro de los límites del arreglo."
+    },
+    {
+      "type": "heading",
+      "level": 6,
+      "content": "Funciones y apuntadores"
+    },
+    {
+      "type": "paragraph",
+      "content": "Cuando un nombre de arreglo se pasa a una función, lo que se pasa es la dirección del elemento inicial. Dentro de la función, el parámetro es tratado como un apuntador. Esto permite escribir funciones como strlen:"
+    },
+    {
+      "type": "code",
+      "content": "int strlen(char *s) {\n    int n;\n    for (n = 0; *s != '\\0'; s++) {\n        n++;\n    }\n    return n;\n}"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "9",
+  "subject": "Manejo de Memoria Dinámica y Archivos",
+  "topic": "Memoria Dinámica",
+  "metadata": {
+    "author": "Desconocido",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Memoria Dinámica"
+    },
+    {
+      "type": "paragraph",
+      "content": "Reservación dinámica de memoria\nLa reservación dinámica de memoria es el proceso mediante el cual se asigna memoria a un programa en tiempo de ejecución. A diferencia de la memoria estática, donde las variables y estructuras de datos tienen un tamaño fijo determinado en tiempo de compilación, la memoria dinámica permite que el programa solicite bloques de memoria según sea necesario. Las funciones como malloc() en C o new en C++ son utilizadas para asignar memoria dinámicamente. Esta memoria se puede redimensionar o liberar cuando ya no se necesita, proporcionando flexibilidad en el uso de los recursos del sistema."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Reservación Dinámica de Memoria"
+    },
+    {
+      "type": "paragraph",
+      "content": "La memoria dinámica permite asignar y liberar memoria en tiempo de ejecución. Esto es útil cuando no se conoce el tamaño exacto de los datos al compilar el programa."
+
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "malloc(): Reserva memoria contigua pero no la inicializa.",
+        "calloc(): Reserva e inicializa la memoria con ceros.",
+        "realloc(): Cambia el tamaño de un bloque de memoria previamente reservado."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Acceso y direccionamiento de arreglos dinámicos"
+    },
+    {
+      "type": "paragraph",
+      "content": "Los arreglos dinámicos permiten que el programa cambie su tamaño durante la ejecución. Al ser de tamaño variable, el acceso a los elementos de un arreglo dinámico se hace a través de índices, que son calculados en tiempo de ejecución. En lenguajes como C y C++, la dirección base de un arreglo dinámico puede ser referenciada mediante punteros, lo que permite modificar el arreglo dinámicamente. El direccionamiento se realiza utilizando una combinación de punteros y aritmética de punteros, lo que hace posible acceder a cualquier elemento del arreglo sin importar su tamaño original.\n\nLos arreglos dinámicos se crean en tiempo de ejecución utilizando memoria dinámica. Pueden ser accedidos usando punteros, donde cada elemento del arreglo es una posición relativa al puntero base."
+    },
+    {
+      "type": "code",
+      "content": "int *arr = (int *)malloc(n * sizeof(int));\narr[0] = 10;  // Acceso al primer elemento"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Liberación de memoria"
+    },
+    {
+      "type": "paragraph",
+      "content": "Una vez que un programa termina de usar una sección de memoria dinámica, esta debe ser liberada para evitar fugas de memoria. En lenguajes como C, la liberación de memoria se realiza mediante la función free(), y en C++ con delete o delete[]. Esta liberación es crucial, ya que la memoria no liberada ocupa recursos del sistema, lo que puede llevar a la ralentización del programa o incluso a la interrupción del sistema por falta de memoria disponible.\n\nLa memoria dinámica debe ser liberada para evitar fugas de memoria. En C/C++, esto se realiza con free(). Liberar memoria que ya fue liberada o nunca reservada puede causar errores.\n\nMemoria estática vs memoria dinámica"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Memoria estática vs memoria dinámica"
+    },
+    {
+      "type": "list-unord",
+      "content": [
+        "Memoria estática: Reservada en tiempo de compilación, tamaño fijo, más rápida pero menos flexible.",
+        "Memoria dinámica: Reservada en tiempo de ejecución, tamaño ajustable, más flexible pero con mayor costo computacional."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "La memoria estática se reserva en tiempo de compilación y tiene un tamaño fijo que no puede cambiar durante la ejecución del programa. Es más rápida y eficiente en cuanto a acceso, pero es menos flexible. La memoria dinámica, por otro lado, se asigna y libera en tiempo de ejecución, lo que permite al programa adaptarse a las necesidades cambiantes. Sin embargo, la memoria dinámica tiene un costo adicional en términos de tiempo de ejecución y gestión de recursos, ya que la asignación y liberación de memoria requieren operaciones más complejas.\n\nEjemplo en un código:"
+    },
+    {
+      "type": "code",
+      "content": "#include <stdio.h>\n#include <stdlib.h>\n\nint main() {\n\tint *arreglo;   // Puntero para el arreglo dinámico\n\tint tamanio;    // Tamaño del arreglo\n\tint suma = 0;   // Variable para almacenar la suma de los elementos\n\n\t// 1. Solicitar al usuario el tamaño del arreglo\n\tprintf(\"Ingrese el tamaño del arreglo: \");\n\tscanf(\"%d\", &tamanio);\n\n\t// 2. Reservar memoria dinámica para el arreglo\n\tarreglo = (int *)malloc(tamanio * sizeof(int));\n\tif (arreglo == NULL) { // Verificar si la memoria fue asignada correctamente\n\t\tperror(\"Error al asignar memoria\");\n\t\treturn 1;\n\t}\n\n\t// 3. Llenar el arreglo con números ingresados por el usuario\n\tprintf(\"Ingrese %d números enteros:\\n\", tamanio);\n\tfor (int i = 0; i < tamanio; i++) {\n\t\tprintf(\"Elemento %d: \", i + 1);\n\t\tscanf(\"%d\", &arreglo[i]);\n\t}\n\n\t// 4. Calcular la suma de los elementos del arreglo\n\tfor (int i = 0; i < tamanio; i++) {\n\t\tsuma += arreglo[i];\n\t}\n\n\t// 5. Mostrar la suma de los elementos\n\tprintf(\"La suma de los elementos del arreglo es: %d\\n\", suma);\n\n\t// 6. Liberar la memoria asignada dinámicamente\n\tfree(arreglo);\n\tprintf(\"Memoria liberada exitosamente.\\n\");\n\n\treturn 0;\n}"
+    }
+  ]
+}

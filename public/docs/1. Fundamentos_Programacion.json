@@ -1,0 +1,164 @@
+{
+  "id": "1",            
+  "subject": "Fundamentos de programación",    
+  "topic": "Fundamentos de Programación",
+  "metadata": {
+    "author": "Juan Pérez",
+    "createdAt": "2025-01-13"
+  },
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Introducción"
+    },
+    {
+      "type": "paragraph",
+      "content": "La programación es el proceso de crear un conjunto de instrucciones que le dicen a una computadora cómo realizar una tarea específica. Es decir, en este curso vas a aprender cómo comunicarte con una computadora y decirle exactamente qué hacer.\n\nLos fundamentos de programación son los pilares que permiten comprender cómo las computadoras procesan información, cómo se estructuran las instrucciones y cómo interactúan con el hardware. A partir de estos conceptos básicos, se construyen sistemas y aplicaciones más complejos."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "¿Qué es una computadora?"
+    },
+    {
+      "type": "paragraph",
+      "content": "Empecemos por lo básico, quizá al escuchar el termino “computadora” lo primero que venga a tu mente sea una PC o una laptop de escritorio, pero este termino es mucho más extenso. Las computadoras se construyen y se incluyen en todo tipo de dispositivos: automóviles (coches/carros), aviones, trenes, relojes, televisiones, etc.\n\nUna computadora es un dispositivo electrónico, utilizado para procesar información y obtener resultados, capaz de ejecutar cálculos y tomar decisiones a velocidades millones o cientos de millones más rápidas que puedan hacer los seres humanos.\n\nLa primera computadora digital que reseña la historia de la informática se puede considerar, fue diseñada a finales de la década de los treinta por el Dr. John Atanasoff y el estudiante de postgrado Clifford Berry en la Universidad de Iowa (Iowa State University). Diseñaron la computadora para realizar cálculos matemáticos en física nuclear. \n\nSin embargo, la primera computadora electrónica digital de propósito general se llamaba ENIAC y se terminó en 1946 en la Universidad de Pennsylvania, fue financiada por el Ejército de EE.UU. (U.S. Army). La ENIAC pesaba 30 toneladas y ocupaba un espacio de 30 por 50 pies. Se utilizaba esencialmente para predicciones de tiempo, cálculos da tablas balísticas, cálculos de energía atómica. Sus diseñadores fueron J. Prespert Eckert y John Mauchley."
+    },
+    {
+      "type": "videos",
+      "src": ["https://youtu.be/4d0UQGVL-oo?si=8aJrkuCpI43FZ14l", "https://youtu.be/VZe9tjqa9xw?feature=shared", "https://youtu.be/mIVbUb7shE8?si=404RBOsvCXXSOKqH"],
+      "alt": "Introducción a la Programación",
+      "caption": "Introducción a la Programación"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Arquitectura de Von Neumann "
+    },
+    {
+      "type": "paragraph",
+      "content": "En el mismo año de 1946, el Dr. John Von Neumann de Princeton University propuso el concepto de computadora con programa almacenado que consistía en un programa cuyas instrucciones se almacenaban en la memoria de la computadora. \n\nVon Neumann descubrió que era posible que los programas se almacenaran en la memoria de la computadora y que se podrían cambiar más fácilmente que las complejas conexiones de cables y fijaciones de interruptores del ENIAC. Von Neumann diseñó una computadora basada en esta idea. Su diseño ha constituido el nacimiento de la computación moderna y ha dado origen a la denominada arquitectura de Von Neumann que es la base de las computadoras digitales actuales.\n\nEstas computadoras primitivas utilizaban tubos de vacío como componentes electrónicos básicos. No sólo eran muy voluminosas, sino lentas y difíciles de manipular a la par que requerían usos y cuidados especiales. Los avances tecnológicos en semiconductores, transistores y circuitos integrados concluyeron en diseñar y fabricar las nuevas generaciones de computadoras que conducían a máquinas más pequeñas, más rápidas y más económicas que sus predecesoras.\n\nLa mayoría de las computadoras, grandes o pequeñas, están organizadas como se muestra a continuación. Una computadora consta fundamentalmente de cinco componentes principales:\n"
+    },
+    {
+      "type": "list-ord",
+      "content": ["Dispositivos de entrada: tales como ratón y teclado.", "Dispositivos de salida: tales como monitores o impresoras.","Unidad central de proceso (UCP) o procesador (compuesto de la UAL, unidad aritmética y lógica y la UC, unidad de control)", "La memoria principal o central", "Memoria secundaria o externa y el programa: tales como USB, disco duro, CD, etc."]
+    },
+    {
+      "type": "image",
+      "src": ["/material/1/img1.jpg"],
+      "alt": "Organización de un computador",
+      "caption": "Organización de un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "La principal innovación de esta arquitectura es que utiliza una memoria única para almacenar tanto datos como instrucciones, lo que facilita la ejecución secuencial de programas."
+    },
+    {
+        "type": "image",
+        "src": ["/material/1/img2.jpg"],
+        "alt": "Organización de un computador",
+        "caption": "Organización de un computador"
+    },
+    {
+        "type": "heading",
+        "level": 4,
+        "content": "Clasificación de los Lenguajes de Programación"
+    },
+    {
+        "type": "paragraph",
+        "content": "Los lenguajes de programación son herramientas que permiten a los desarrolladores escribir instrucciones comprensibles para las computadoras. \n\nUn programa se escribe en un lenguaje de programación y las operaciones que conducen a expresar un algoritmo en forma de programa se llaman programación.\n\nEn la realidad la computadora no entiende directamente los lenguajes de programación, sino que se requiere un programa (llamado compilador o intérprete) se encarga de traducir el código fuente (programa) a otro lenguaje que sí entiende la máquina directamente, pero muy complejo para las personas; este lenguaje se conoce como lenguaje máquina y el código correspondiente código máquina.\n\nPara que un procesador realice un proceso se le debe suministrar en primer lugar un algoritmo adecuado. El procesador debe ser capaz de interpretar el algoritmo, lo que significa: "
+    },
+    {
+        "type": "list-unord",
+        "content": ["Comprender las instrucciones de cada paso.", "Realizar las operaciones correspondientes."]
+    },
+    {
+        "type": "paragraph",
+        "content": "Cuando el procesador es una computadora, el algoritmo se ha de expresar en un formato que se denomina programa, ya que el pseudocódigo o el diagrama de flujo no son comprensibles por la computadora, aunque pueda entenderlos cualquier programador. "
+    },
+    {
+        "type": "image",
+        "src": ["/material/1/img3.jpg"],
+        "alt": "Organización de un computador",
+        "caption": "Organización de un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "Los principales tipos de lenguajes de programación son: "
+    },
+    {
+        "type": "list-unord",
+        "content": ["Lenguajes de bajo nivel o máquina: Trabajan directamente con el hardware, como el lenguaje ensamblador o el lenguaje máquina. Son rápidos pero difíciles de usar.", "Lenguajes de alto nivel: Son más cercanos al lenguaje humano, como Python, Java o C++. Facilitan la escritura de código, aunque requieren traducción al lenguaje máquina mediante compiladores o intérpretes."]
+    },
+    {
+        "type": "paragraph",
+        "content": "Los lenguajes de programación se clasifican en: "
+    },
+    {
+        "type": "list-unord",
+        "content": ["Alto nivel: Pascal, FORTRAN, Visual Basic, C, Ada, Modula-2, C++, Java, Delphi, C#, etc.", "Bajo nivel: Ensamblador.", "Máquina: Código máquina.", "Diseño de Web: SMGL, HTML, XML, PHP..."]
+    },
+    {
+        "type": "paragraph",
+        "content": "En el contexto histórico:"
+    },
+    {
+        "type": "image",
+        "src": ["/material/1/img4.jpg"],
+        "alt": "Organización de un computador",
+        "caption": "Organización de un computador"
+    },
+    {
+        "type": "heading",
+        "level": 5,
+        "content": "Herramientas de Programación "
+    },
+    {
+        "type": "paragraph",
+        "content": "Las dos herramientas más utilizadas comúnmente para diseñar algoritmos son: diagramas de flujo y pseudocódigos. Un diagrama de flujo (flowchart) es una representación gráfica de un algoritmo. Los símbolos utilizados han sido normalizados por el Instituto Norteamericano de Normalización (ANSI)."
+    },
+    {
+        "type": "image",
+        "src": ["/material/1/img5.jpg"],
+        "alt": "Organización de un computador",
+        "caption": "Organización de un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "Un ejemplo del funcionamiento de un diagrama de flujo: "
+    },
+    {
+        "type": "image",
+        "src": ["/material/1/img6.jpg"],
+        "alt": "Organización de un computador",
+        "caption": "Organización de un computador"
+    },
+    {
+        "type": "paragraph",
+        "content": "El pseudocódigo es una herramienta de programación en la que las instrucciones se escriben en palabras similares al inglés o español, que facilitan tanto la escritura como la lectura de programas. En esencia, el pseudocódigo se puede definir como un lenguaje de especificaciones de algoritmos."
+    },
+    {
+        "type": "code",
+        "content": "Previsiones de depreciacion\nIntroducir coste \n\tvida util \n\tvalor final de rescate (recuperacion) \nimprimir cabeceras \nEstablecer el valor inicial del año\nCalcular depreciacion"
+    },
+    {
+        "type": "paragraph",
+        "content": "Es decir, el pseudocódigo no es más que escribir en tus palabras en tu idioma la serie de pasos que vas a realizar en un programa, obviamente la máquina no va a entender estas indicaciones, pero es el primer paso y una especie de “borrador” para tu uso personal, su objetivo es que identifiques claramente qué indicaciones quieres darle a tu computador, en qué orden y con qué finalidad.\n\nPara desarrollar software de manera eficiente, los programadores recurren a diversas herramientas diseñadas para facilitar el trabajo:"
+    },
+    {
+        "type": "list-ord",
+        "content": ["Editores de texto: Herramientas ligeras para escribir código, como Sublime Text o Notepad++.", "Entornos de Desarrollo Integrado (IDE): Ofrecen características avanzadas como autocompletado, depuración y control de versiones. Ejemplos populares incluyen Visual Studio Code, PyCharm y Eclipse.","Compiladores e intérpretes: Transforman el código fuente en ejecutable. Por ejemplo, GCC para C/C++ o el intérprete de Python.", "Sistemas de control de versiones: Como Git, permiten rastrear cambios en el código, colaborar en equipo y mantener un historial detallado del proyecto."]
+    },
+    {
+        "type": "paragraph",
+        "content": "Estas herramientas no solo aumentan la productividad, sino que también aseguran la calidad del código al facilitar su revisión y mantenimiento."
+    },
+    {
+        "type": "videos",
+        "src": ["https://youtu.be/oGeSl58_1Ms?si=RJnRZ7Rfy9mGMnmc", "https://youtu.be/R9n7j-u9ijc?si=gM9OmHjyZVtePD1s", "https://youtu.be/cDuvyi5vRv4?si=HD7c9e8rJYWsdEkk", "https://youtu.be/8Pc-PqdzD_I?si=0-wmLFZFykVbTfJc", "https://youtu.be/v3ENcQpoA5A?si=xUUP9us5IhZ6Qu89", "https://youtu.be/NbbsmEpgSpE?si=s7hayi9KCiqPl35C", "https://youtu.be/Y7pVaOiGNKI?si=cDUOy71FEMbLLfkM"],
+        "alt": "Instalación de algunas herramientas de programación",
+        "caption": "Instalación de algunas herramientas de programación"
+    }
+    ]
+}
