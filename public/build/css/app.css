@@ -1111,20 +1111,7 @@ h3 {
   background-color: #d32f2f;
 }
 
-.scrollbar-black::-webkit-scrollbar {
-  width: 1rem;
-}
-.scrollbar-black::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-.scrollbar-black::-webkit-scrollbar-thumb {
-  background: rgb(47, 65, 86);
-  border-radius: 0.4rem;
-}
-.scrollbar-black::-webkit-scrollbar-thumb:hover {
-  background: rgb(86, 124, 141);
-}
-
+/* Estructura principal */
 .main-container {
   display: grid;
   grid-template-areas: "header header" "main main";
@@ -1132,97 +1119,141 @@ h3 {
   grid-template-columns: 1fr;
   height: 100vh;
 }
-.main-container .main-content {
+
+/* Contenido principal */
+.main-content {
   grid-area: main;
   overflow-y: auto;
   padding: 1.5rem;
-  background-color: rgb(255, 255, 242);
+  background-color: rgb(255, 255, 242); /* Fondo oscuro */
 }
-.main-container .main-content .main-header {
+
+.main-header {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  margin-top: -0.5rem;
   font-family: "Poppins", sans-serif;
   font-weight: 800;
   color: rgb(47, 65, 86);
 }
-.main-container .main-content .admin-header {
+
+/* Encabezado de administrador */
+.admin-header {
   display: flex;
   align-items: center;
   font-size: 3rem;
+  margin-right: 1rem;
 }
-.main-container .main-content .admin-header img {
+.admin-header img {
   width: 30px;
   height: 30px;
   margin-right: 10px;
 }
-.main-container .admin-content,
-.main-container .admin-users {
+
+/* Sección de gestión de contenido */
+.admin-content,
+.admin-users {
   background-color: rgb(151, 159, 170);
-  padding: 3rem 1rem 0;
+  padding: 1.5rem 1rem;
   border-radius: 0.2rem;
-  max-height: 24rem;
+  max-height: 38rem;
   overflow-y: auto;
 }
-.main-container .admin-content .admin-content-h2,
-.main-container .admin-users .admin-content-h2 {
+
+.admin-content-h {
   color: white;
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  margin: -0.5rem auto -2rem auto;
+  font-weight: 500;
+  font-style: oblique;
+  margin: -0.5rem auto 1rem auto;
   padding: 1rem 1.5rem;
   text-align: center;
   position: sticky;
   top: 10;
-  z-index: 10;
-  width: 30%;
+  z-index: 100;
+  width: 40%;
   background-color: rgb(47, 65, 86);
 }
-.main-container .users-container {
+
+/* Contenedor de la sección de usuarios */
+.admin-users {
+  background-color: rgb(151, 159, 170);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Títulos de la sección */
+.admin-content-h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background-color: rgb(47, 65, 86);
+  border-radius: 0.5rem;
+}
+
+/* Contenedor de usuarios */
+.users-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   justify-content: center;
 }
-.main-container .users-container .user-card {
+
+/* Tarjetas de usuario */
+.user-card {
   background-color: rgb(86, 124, 141);
   color: white;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1.3rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.main-container .users-container .user-card:hover {
+.user-card:hover {
   transform: translateY(-3px);
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
 }
-.main-container .users-container .user-card .user-avatar {
+
+/* Avatar del usuario */
+.user-avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgb(200, 217, 230);
 }
-.main-container .users-container .user-card .user-info {
+
+/* Información del usuario */
+.user-info_admin {
   flex: 1;
 }
-.main-container .users-container .user-card .user-info .user-name {
-  font-size: 1rem;
+.user-info_admin .user-name {
+  font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 0.2rem;
 }
-.main-container .users-container .user-card .user-info .user-role {
-  font-size: 0.9rem;
+.user-info_admin .user-role {
+  font-size: 1.2rem;
   color: rgb(200, 217, 230);
 }
-.main-container .users-container .user-card .user-actions {
+
+/* Acciones del usuario */
+.user-actions {
   display: flex;
   gap: 0.5rem;
 }
-.main-container .users-container .user-card .user-actions .btn {
+.user-actions .btn {
   background-color: white;
   color: rgb(86, 124, 141);
   border: none;
@@ -1231,10 +1262,16 @@ h3 {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-.main-container .users-container .user-card .user-actions .btn:hover {
+.user-actions .btn:hover {
   background-color: rgb(200, 217, 230);
 }
 
+/* Responsividad */
+@media (max-width: 1024px) {
+  .users-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media (max-width: 768px) {
   .users-container {
     grid-template-columns: repeat(2, 1fr);
@@ -1249,18 +1286,36 @@ h3 {
   display: flex;
   gap: 1rem;
 }
-.articles-container .articles-column {
+
+.articles-column {
   width: 50%;
+}
+
+.navigation-arrows {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.navigation-arrows button {
+  background-color: rgb(86, 124, 141);
+  color: white;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0.3rem 0.5rem;
 }
 
 .article-card {
   background-color: rgb(86, 124, 141);
-  color: white;
   padding: 1rem;
   border-radius: 2rem;
   margin-bottom: 1rem;
+  color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-height: 8rem;
 }
 .article-card:hover {
   transform: translateY(-3px);
@@ -1271,15 +1326,26 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 .article-card .article-header h3,
 .article-card .article-footer h3 {
-  font-size: 1.2rem;
+  margin: 0 1.5rem;
+  font-size: 2rem;
 }
 .article-card .article-header p,
 .article-card .article-footer p {
-  font-size: 0.9rem;
+  margin: 0 2rem;
+  font-size: 1.2rem;
   font-style: italic;
+}
+.article-card .article-footer .author {
+  font-weight: bold;
+  margin: 0 0.4rem;
+}
+.article-card .article-footer .comments {
+  color: #ccc;
+  margin: 0 0.4rem;
 }
 .article-card .article-actions {
   display: flex;
@@ -1290,12 +1356,159 @@ h3 {
   border: none;
   border-radius: 50%;
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 .article-card .article-actions button:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* Acciones de administrador */
+.admin-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.admin-actions button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.admin-actions button:hover {
+  color: #007bff;
+}
+
+/* Tarjetas de temas (para el foro) */
+.topics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.topic-card {
+  display: flex;
+  align-items: center;
+  background-color: rgb(200, 217, 230);
+  border: 1px solid rgb(200, 217, 230);
+  border-radius: 10px;
+  padding: 1rem;
+  gap: 1rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+}
+.topic-card:hover {
+  background-color: rgb(86, 124, 141);
+  border-color: rgb(47, 65, 86);
+  color: rgb(200, 217, 230);
+  transform: scale(1.02);
+}
+.topic-card:hover h3 {
+  color: whitesmoke;
+}
+.topic-card img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgb(200, 217, 230);
+}
+.topic-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(47, 65, 86);
+}
+.topic-card p {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+}
+.topic-card .topic-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.topic-card .topic-stats span {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.topic-card .topic-stats span i {
+  font-size: 1rem;
+}
+
+.topics a,
+.topic-card a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.admin-users {
+  display: none;
+}
+
+/* Responsivo Articles Container 
+@media (max-width: 768px) {
+  .articles-container {
+    flex-direction: column; 
+  }
+
+  .articles-column {
+    width: 100%; 
+  }
+}*/
+/* Animaciones */
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 /* 
   1) Asegúrate de que tu html, body tienen altura al 100% 
   en tu _globals.scss o similar:
