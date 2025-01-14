@@ -4,7 +4,7 @@
         <i class="admin-header fas fa-chalkboard-user"></i>
         BIENVENIDX ADMINISTRADORX
     </h1>
-    <h2 id="admin-content-title" class="admin-content-h2">GESTIÓN DE CONTENIDO</h2>
+    <h3 id="admin-content-title" class="admin-content-h">GESTIÓN DE CONTENIDO</h3>
 
     <!-- Artículos Generados Dinámicamente -->
     <section class="admin-content scrollbar-black"> 
@@ -39,12 +39,11 @@
 
     <!-- Usuarios Administrativos -->
     <section class="admin-users scrollbar-black">
-        <h2 class="admin-content-h2">Gestión de Usuarios</h2>
         <div class="users-container">
             <?php for ($i = 0; $i < 20; $i++):  ?>
                 <div class="user-card">
                     <img src="user-avatar.jpg" alt="Avatar de Usuario" class="user-avatar">
-                    <div class="user-info">
+                    <div class="user-info_admin">
                         <h3 class="user-name">Usuario <?php echo $i + 1; ?></h3>
                         <p class="user-role">Administrador</p>
                     </div>
