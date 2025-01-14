@@ -1,11 +1,12 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
+@use 'sass:color';
 
 $border-radius: 15px;
 $button-color: #007BFF;
 $button-hover: #0056b3;
 
-/* CONTENEDOR DEL PERFIL */
+/* BLOQUE PRINCIPAL: .profile-container */
 .profile-container {
   max-width: 900px;
   background-color: v.$color-white;
@@ -15,75 +16,142 @@ $button-hover: #0056b3;
   @include m.container;
   margin-top: 5rem;
 
-
-  /* Foto de portada */
-  .cover-photo {
-    img {
+  /* ELEMENTO: cover (foto de portada) */
+  &__cover {
+    &-img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-bottom-left-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
-      
+      border-radius: $border-radius;
     }
   }
 
-  /* Encabezado del perfil */
-  .profile-header {
+  /* ELEMENTO: header (encabezado de perfil) */
+  &__header {
     margin-top: -70px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
 
-    .profile-photo-container {
-      position: relative;
-      display: inline-block;
+  /* sub-elemento: wrapper para la foto y el botón */
+  &__photo-wrapper {
+    position: relative;
+    display: inline-block;
+  }
 
-      .profile-photo {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border: 4px solid v.$color-white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
+  /* sub-elemento: la foto de perfil */
+  &__photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid v.$color-white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-      .edit-profile {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        background-color: $button-color;
-        color: v.$text-color;
-        border: none;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        @include m.flex-center; /* Para centrar el ícono */
-        cursor: pointer;
-        @include m.transition(background-color);
+  /* sub-elemento: el botón de edición sobre la foto */
+  &__edit-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: $button-color;
+    color: v.$text-color;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    @include m.flex-center;
+    cursor: pointer;
+    @include m.transition(background-color);
 
-        &:hover {
-          background-color: $button-hover;
-        }
-      }
-    }
-
-    h1 {
-      margin: 10px 0;
-      font-size: 22px;
-      color: v.$text-color;
+    &:hover {
+      background-color: $button-hover;
     }
   }
 
-  /* Descripción del perfil */
-  .profile-description {
+  /* sub-elemento: título del usuario */
+  &__title {
+    margin: 10px 0;
+    font-size: 22px;
+    color: v.$text-color;
+  }
+
+  /* ELEMENTO: description */
+  &__description {
     margin-top: 15px;
     padding: 10px 20px;
     font-size: 14px;
     color: v.$text-color;
+    position: relative;
+
+    /* El botón de editar la descripción */
+    &-btn {
+      margin-top: 1rem;
+      background-color: $button-color;
+      color: v.$color-white;
+      border: none;
+      border-radius: 0.4rem;
+      padding: 0.5rem 1rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: block;
+      @include m.transition(background-color);
+
+      &:hover {
+        background-color: $button-hover;
+      }
+
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+
+    /* El textarea que se agrega dinámicamente */
+    &-textarea {
+      width: 100%;
+      min-height: 8rem;
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      padding: 1rem;
+      border: 1px solid color.scale(#ccc, $lightness: -10%);
+      border-radius: 0.4rem;
+      resize: vertical; /* Permitir redimensionar verticalmente */
+      &:focus {
+        outline: none;
+        border-color: color.adjust($button-color, $lightness: -20%);
+      }
+    }
+
+    /* Botones de guardar/cancelar descripción */
+    &-save,
+    &-cancel {
+      display: inline-block;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      background-color: $button-color;
+      color: v.$color-white;
+      border: none;
+      border-radius: 0.4rem;
+      padding: 0.5rem 1rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+      @include m.transition(background-color);
+
+      &:hover {
+        background-color: $button-hover;
+      }
+    }
+
+    &-cancel {
+      background-color: color.scale(#333, $lightness: 30%); // algo más oscuro
+      &:hover {
+        background-color: color.scale(#333, $lightness: 20%);
+      }
+    }
   }
 
-  /* Info de seguidores */
-  .followers-info {
+  /* ELEMENTO: followers */
+  &__followers {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -91,85 +159,220 @@ $button-hover: #0056b3;
     font-size: 16px;
     font-weight: bold;
 
-    /* Antes: @media (min-width: 768px) => ahora @include tablet */
     @include m.tablet {
       flex-direction: column;
       gap: 10px;
     }
   }
 
-  /* Sección de habilidades */
-  .skills-section {
+  /* ELEMENTO: skills */
+  &__skills {
     padding: 20px;
     text-align: center;
 
-    .skills-header {
+    /* sub-elemento: header */
+    &-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 15px;
       padding: 0 20px;
+    }
 
-      h2 {
-        margin: 0;
-        font-size: 18px;
-        color: v.$text-color;
-      }
+    &-title {
+      margin: 0;
+      font-size: 18px;
+      color: v.$text-color;
+    }
 
-      .edit-skills {
-        background-color: $button-color;
-        color: v.$text-color;
-        padding: 8px 15px;
-        border: none;
-        border-radius: $border-radius;
-        cursor: pointer;
-        font-size: 14px;
-        @include m.transition(background-color);
+    &-edit {
+      background-color: $button-color;
+      color: v.$text-color;
+      padding: 8px 15px;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-size: 14px;
+      @include m.transition(background-color);
 
-        &:hover {
-          background-color: $button-hover;
-        }
+      &:hover {
+        background-color: $button-hover;
       }
     }
 
-    .skills-row {
+    /* sub-elemento: row de tarjetas */
+    &-row {
       display: flex;
       justify-content: center;
       gap: 15px;
       flex-wrap: wrap;
       margin-top: 10px;
 
-      /* Antes: @media (min-width: 768px) => ahora @include tablet */
       @include m.tablet {
         gap: 20px;
       }
+    }
 
-      .skill-card {
-        background-color: v.$light-gray; /* Ajusta a tu variable real */
-        padding: 15px;
-        border-radius: $border-radius;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        flex: 1 1 200px;
-        max-width: 250px;
+    &-card {
+      background-color: v.$light-gray;
+      padding: 15px;
+      border-radius: $border-radius;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      flex: 1 1 200px;
+      max-width: 250px;
 
-        i {
-          font-size: 24px;
-          color: v.$primary-color;
-          margin-bottom: 10px;
-        }
-
-        h3 {
-          font-size: 18px;
-          color: v.$text-color;
-          margin-bottom: 5px;
-        }
-
-        p {
-          font-size: 14px;
-          color: v.$text-color;
-        }
+      i {
+        font-size: 24px;
+        color: v.$primary-color;
+        margin-bottom: 10px;
       }
+
+      h3 {
+        font-size: 18px;
+        color: v.$text-color;
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-size: 14px;
+        color: v.$text-color;
+      }
+    }
+  }
+}
+
+
+// MODAL (bloque .modal-overlay)
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  /* Para centrar su contenido vertical/horizontal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Por defecto: visible, 
+     si deseas ocultarlo al no tener .is-active, 
+     puedes hacer: display: none; 
+     y togglear con JS.
+  */
+
+  &__content {
+    background-color: v.$color-white;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    width: min(95%, 50rem);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    /* Si lo deseas, un max-height con overflow auto */
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: v.$text-dark;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: v.$text-dark;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__label {
+    font-size: 1.4rem;
+    color: v.$text-dark;
+  }
+
+  &__input {
+    font-size: 1.4rem;
+    padding: 1rem;
+    border: 1px solid v.$border-color;
+    border-radius: 0.4rem;
+    &:focus {
+      outline: none;
+      border-color: color.adjust(v.$primary-color, $lightness: -20%);
+    }
+  }
+
+  &__tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* Cada <li> lo generas con JS */
+  }
+
+  // Botones (guardar/cancelar)
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+
+  &__btn {
+    background-color: v.$primary-color;
+    color: v.$color-white;
+    border: none;
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-decoration: none; // si es <a>
+    text-align: center;
+    @include m.transition(background-color);
+
+    &:hover {
+      background-color: color.adjust(v.$primary-color, $lightness: -10%);
+    }
+
+    &--cancel {
+      background-color: v.$text-dark;
+      &:hover {
+        background-color: color.adjust(v.$text-dark, $lightness: -15%);
+      }
+    }
+  }
+
+  &__photo-preview {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem; /* centrado y algo de espacio abajo */
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; // un fondo gris claro, por si la imagen no carga
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
   }
 }

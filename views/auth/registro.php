@@ -47,8 +47,8 @@
                     <input 
                         type="text" 
                         class="form__input" 
-                        id="number" 
-                        name="number" 
+                        id="boleta" 
+                        name="boleta" 
                         placeholder="Escribe tu boleta institucional" 
                         required
                     >

@@ -549,7 +549,7 @@ h3 {
   color: rgb(87.324137931, 97.4, 107.475862069);
 }
 
-/* CONTENEDOR DEL PERFIL */
+/* BLOQUE PRINCIPAL: .profile-container */
 .profile-container {
   max-width: 900px;
   background-color: white;
@@ -559,37 +559,40 @@ h3 {
   width: min(95%, 140rem);
   margin: 0 auto;
   margin-top: 5rem;
-  /* Foto de portada */
-  /* Encabezado del perfil */
-  /* Descripción del perfil */
-  /* Info de seguidores */
-  /* Sección de habilidades */
+  /* ELEMENTO: cover (foto de portada) */
+  /* ELEMENTO: header (encabezado de perfil) */
+  /* sub-elemento: wrapper para la foto y el botón */
+  /* sub-elemento: la foto de perfil */
+  /* sub-elemento: el botón de edición sobre la foto */
+  /* sub-elemento: título del usuario */
+  /* ELEMENTO: description */
+  /* ELEMENTO: followers */
+  /* ELEMENTO: skills */
 }
-.profile-container .cover-photo img {
+.profile-container__cover-img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius: 15px;
 }
-.profile-container .profile-header {
+.profile-container__header {
   margin-top: -70px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.profile-container .profile-header .profile-photo-container {
+.profile-container__photo-wrapper {
   position: relative;
   display: inline-block;
 }
-.profile-container .profile-header .profile-photo-container .profile-photo {
+.profile-container__photo {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   border: 4px solid white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.profile-container .profile-header .profile-photo-container .edit-profile {
+.profile-container__edit-btn {
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -602,59 +605,123 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Para centrar el ícono */
   cursor: pointer;
   transition-property: background-color;
   transition-duration: 0.3s;
   transition-timing-function: ease;
   transition-delay: 0s;
 }
-.profile-container .profile-header .profile-photo-container .edit-profile:hover {
+.profile-container__edit-btn:hover {
   background-color: #0056b3;
 }
-.profile-container .profile-header h1 {
+.profile-container__title {
   margin: 10px 0;
   font-size: 22px;
   color: rgb(47, 65, 86);
 }
-.profile-container .profile-description {
+.profile-container__description {
   margin-top: 15px;
   padding: 10px 20px;
   font-size: 14px;
   color: rgb(47, 65, 86);
+  position: relative;
+  /* El botón de editar la descripción */
+  /* El textarea que se agrega dinámicamente */
+  /* Botones de guardar/cancelar descripción */
 }
-.profile-container .followers-info {
+.profile-container__description-btn {
+  margin-top: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: block;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+.profile-container__description-btn:hover {
+  background-color: #0056b3;
+}
+.profile-container__description-btn i {
+  margin-right: 0.5rem;
+}
+.profile-container__description-textarea {
+  width: 100%;
+  min-height: 8rem;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  padding: 1rem;
+  border: 1px solid rgb(183.6, 183.6, 183.6);
+  border-radius: 0.4rem;
+  resize: vertical; /* Permitir redimensionar verticalmente */
+}
+.profile-container__description-textarea:focus {
+  outline: none;
+  border-color: rgb(0, 73.8, 153);
+}
+.profile-container__description-save, .profile-container__description-cancel {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+.profile-container__description-save:hover, .profile-container__description-cancel:hover {
+  background-color: #0056b3;
+}
+.profile-container__description-cancel {
+  background-color: rgb(112.2, 112.2, 112.2);
+}
+.profile-container__description-cancel:hover {
+  background-color: rgb(91.8, 91.8, 91.8);
+}
+.profile-container__followers {
   display: flex;
   justify-content: center;
   gap: 30px;
   margin: 20px 0;
   font-size: 16px;
   font-weight: bold;
-  /* Antes: @media (min-width: 768px) => ahora @include tablet */
 }
 @media (min-width: 768px) {
-  .profile-container .followers-info {
+  .profile-container__followers {
     flex-direction: column;
     gap: 10px;
   }
 }
-.profile-container .skills-section {
+.profile-container__skills {
   padding: 20px;
   text-align: center;
+  /* sub-elemento: header */
+  /* sub-elemento: row de tarjetas */
 }
-.profile-container .skills-section .skills-header {
+.profile-container__skills-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
   padding: 0 20px;
 }
-.profile-container .skills-section .skills-header h2 {
+.profile-container__skills-title {
   margin: 0;
   font-size: 18px;
   color: rgb(47, 65, 86);
 }
-.profile-container .skills-section .skills-header .edit-skills {
+.profile-container__skills-edit {
   background-color: #007BFF;
   color: rgb(47, 65, 86);
   padding: 8px 15px;
@@ -667,24 +734,23 @@ h3 {
   transition-timing-function: ease;
   transition-delay: 0s;
 }
-.profile-container .skills-section .skills-header .edit-skills:hover {
+.profile-container__skills-edit:hover {
   background-color: #0056b3;
 }
-.profile-container .skills-section .skills-row {
+.profile-container__skills-row {
   display: flex;
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
   margin-top: 10px;
-  /* Antes: @media (min-width: 768px) => ahora @include tablet */
 }
 @media (min-width: 768px) {
-  .profile-container .skills-section .skills-row {
+  .profile-container__skills-row {
     gap: 20px;
   }
 }
-.profile-container .skills-section .skills-row .skill-card {
-  background-color: rgb(200, 217, 230); /* Ajusta a tu variable real */
+.profile-container__skills-card {
+  background-color: rgb(200, 217, 230);
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -692,19 +758,141 @@ h3 {
   flex: 1 1 200px;
   max-width: 250px;
 }
-.profile-container .skills-section .skills-row .skill-card i {
+.profile-container__skills-card i {
   font-size: 24px;
   color: rgb(86, 124, 141);
   margin-bottom: 10px;
 }
-.profile-container .skills-section .skills-row .skill-card h3 {
+.profile-container__skills-card h3 {
   font-size: 18px;
   color: rgb(47, 65, 86);
   margin-bottom: 5px;
 }
-.profile-container .skills-section .skills-row .skill-card p {
+.profile-container__skills-card p {
   font-size: 14px;
   color: rgb(47, 65, 86);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  /* Para centrar su contenido vertical/horizontal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Por defecto: visible, 
+     si deseas ocultarlo al no tener .is-active, 
+     puedes hacer: display: none; 
+     y togglear con JS.
+  */
+}
+.modal-overlay__content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  width: min(95%, 50rem);
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  /* Si lo deseas, un max-height con overflow auto */
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-overlay__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #343a40;
+}
+.modal-overlay__title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #343a40;
+  text-align: center;
+}
+.modal-overlay__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modal-overlay__label {
+  font-size: 1.4rem;
+  color: #343a40;
+}
+.modal-overlay__input {
+  font-size: 1.4rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.4rem;
+}
+.modal-overlay__input:focus {
+  outline: none;
+  border-color: rgb(47.3568281938, 68.281938326, 77.6431718062);
+}
+.modal-overlay__tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  /* Cada <li> lo generas con JS */
+}
+.modal-overlay__buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+.modal-overlay__btn {
+  background-color: rgb(86, 124, 141);
+  color: white;
+  border: none;
+  font-size: 1.4rem;
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+.modal-overlay__btn:hover {
+  background-color: rgb(66.6784140969, 96.140969163, 109.3215859031);
+}
+.modal-overlay__btn--cancel {
+  background-color: #343a40;
+}
+.modal-overlay__btn--cancel:hover {
+  background-color: rgb(17.7068965517, 19.75, 21.7931034483);
+}
+.modal-overlay__photo-preview {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem; /* centrado y algo de espacio abajo */
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+.modal-overlay__photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .main-container {
@@ -1702,126 +1890,29 @@ h3 {
   color: #001a00;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #2f4157;
-  color: white;
-  width: 60rem;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-.modal-content .modal-header,
-.modal-content .modal-footer {
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgb(29.1119402985, 40.2611940299, 53.8880597015);
-}
-.modal-content .modal-header h2 {
+/* Contenedor para las tags (puedes usarlo en un <ul> o <div>) */
+.skill__tags {
+  list-style: none;
   margin: 0;
-}
-.modal-content .modal-header .close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-.modal-content .modal-body {
-  padding: 20px;
-}
-.modal-content .modal-body label {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-  display: block;
-}
-.modal-content .modal-body select,
-.modal-content .modal-body input,
-.modal-content .modal-body textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  outline: none;
-}
-.modal-content .modal-footer {
-  gap: 10px;
-}
-.modal-content .modal-footer .btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-.modal-content .modal-footer .btn.save-btn {
-  background-color: #4caf50;
-  color: white;
-}
-.modal-content .modal-footer .btn.publish-btn {
-  background-color: #008cba;
-  color: white;
-}
-
-.tabs {
+  padding: 0;
   display: flex;
-  margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 1rem; /* Espacio horizontal/vertical entre tags */
 }
-.tabs .tab {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  background-color: #3b4a5a;
-  border: none;
+
+/* Cada etiqueta (tag) */
+.skill__tag {
+  display: inline-block;
+  background-color: #eee; /* Ajusta a tus variables, si prefieres */
+  color: #333; /* o usa color: v.$text-color; */
+  font-size: 1.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
   cursor: pointer;
-  transition-property: background-color;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-  transition-delay: 0s;
+  transition: background-color 0.3s ease;
+  user-select: none; /* Evita seleccionar texto al hacer doble click */
 }
-.tabs .tab.active {
-  background-color: #5a7184;
-}
-
-.tab-content .tab-pane {
-  display: none;
-}
-.tab-content .tab-pane.active {
-  display: block;
-}
-
-.description-section {
-  margin-top: 20px;
-}
-.description-section label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
-  color: white;
-}
-.description-section textarea {
-  width: 100%;
-  height: 80px;
-  resize: none;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px;
-  font-size: 0.9rem;
+.skill__tag:hover {
+  background-color: #ccc; /* Efecto hover */
 }
 /*# sourceMappingURL=app.css.map */

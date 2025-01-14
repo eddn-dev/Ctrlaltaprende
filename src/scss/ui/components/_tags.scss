@@ -1,0 +1,30 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+/* Contenedor para las tags (puedes usarlo en un <ul> o <div>) */
+.skill__tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Espacio horizontal/vertical entre tags */
+}
+
+/* Cada etiqueta (tag) */
+.skill__tag {
+  display: inline-block;
+  background-color: #eee; /* Ajusta a tus variables, si prefieres */
+  color: #333;           /* o usa color: v.$text-color; */
+  font-size: 1.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none; /* Evita seleccionar texto al hacer doble click */
+
+  &:hover {
+    background-color: #ccc; /* Efecto hover */
+  }
+}
