@@ -1,13 +1,4 @@
-<div class="main-container">
-    <!-- Navegación -->
-    <nav class="nav_header">
-        <img src="logo.jpg" width="95px" alt="Logo de Ctrl + Alt + Aprende"> 
-        <h1>Foro de Discusión</h1>
-        <label><a href="index.html"><i class="nav_header_label fas fa-home"></i> Inicio</a></label>
-        <label><a href="foro.html"><i class="nav_header_label fas fa-comments"></i> Foro de Discusión</a></label>
-        <label class="last_label"><a href="foro.html"><i class="nav_header_label fas fa-sign-in-alt"></i> Iniciar sesión</a></label>
-    </nav>
-
+<div class="foro-container">
     <!-- Barra lateral -->
     <aside class="sidebar">
         <nav class="nav_foro">
@@ -24,16 +15,16 @@
                 <li><a href="preguntas.html"><i class="fas fa-question-circle"></i> Preguntas</a></li>
             </ul>
             <div class="button-container">
-                <button class="login-btn">Iniciar sesión</button>
+                <button class="loginforo-btn">Iniciar sesión</button>
                 <div class="separator">o</div>
-                <button class="signup-btn">Registrarse</button>
+                <button class="signupforo-btn">Registrarse</button>
             </div>
         </nav>
     </aside>
 
     <!-- Contenido Principal -->
-    <main class="main-content">
-        <h1 class="main-header">BIENVENIDX AL FORO</h1>
+    <main class="foro_main-content">
+        <h1 class="foro_main-header">BIENVENIDX AL FORO</h1>
         <section class="topics">
             <?php
             // Artículos dinámicos (simulados)
@@ -77,11 +68,11 @@
                     <article class="topic-card">
                         <img src="<?php echo $article['img']; ?>" alt="Imagen de <?php echo $article['author']; ?>">
                         <div>
-                            <h3><?php echo $article['title']; ?></h3>
+                            <h4><?php echo $article['title']; ?></h4>
                             <p>Publicado por <span><?php echo $article['author']; ?></span> el <?php echo $article['date']; ?></p>
                             <div class="topic-stats">
-                                <span><i class="fas fa-comments"></i> <?php echo $article['responses']; ?> Respuestas</span>
-                                <span><i class="fas fa-eye"></i> <?php echo $article['views']; ?> Vistas</span>
+                                <span class="icon-card"><i class="fas fa-comments"></i> <?php echo $article['responses']; ?> Respuestas</span>
+                                <span class="icon-card"><i class="fas fa-eye"></i> <?php echo $article['views']; ?> Vistas</span>
                             </div>
                         </div>
                     </article>
