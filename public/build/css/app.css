@@ -1042,29 +1042,50 @@ h3 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* 
+  1) Asegúrate de que tu html, body tienen altura al 100% 
+  en tu _globals.scss o similar:
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+*/
 .content-container {
+  /* Mobile-first:
+     En pantallas menores a tablet, dejamos que todo se scrollee libremente. */
+  /* No fijamos height aquí todavía. */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* 
+    A PARTIR DE TABLET:
+    - Forzamos la altura completa menos un navbar (6rem)
+    - Hacemos overflow hidden para que aside/main tengan scroll interno
+    - Cambiamos a flex-direction: row
+  */
+  /* SIDEBAR */
+  /* CONTENIDO PRINCIPAL */
 }
 @media (min-width: 768px) {
   .content-container {
+    height: calc(100vh - 6rem);
+    overflow: hidden;
     flex-direction: row;
   }
 }
 .content-container__sidebar {
-  /* Para que la barra lateral tenga scroll interno y no se mueva en pantallas grandes */
-  overflow-y: auto;
   background-color: #f0f0f0;
   padding: 2rem;
-  /* En mobile, ocupa todo el ancho (estará arriba); en tablet+ definimos ancho fijo */
   width: 100%;
+  /* Mobile-first => no altura fija ni scroll forzado */
+  /* A PARTIR DE TABLET => ancho fijo y scroll interno */
 }
 @media (min-width: 768px) {
   .content-container__sidebar {
     flex: 0 0 25rem;
-    /* O si prefieres un %:
-       flex: 0 0 20%; */
+    overflow-y: auto;
+    height: 100%;
   }
 }
 .content-container__sidebar-title {
@@ -1072,14 +1093,6 @@ h3 {
   font-weight: 700;
   margin-bottom: 2rem;
   color: #343a40;
-}
-.content-container__sidebar-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.content-container__sidebar-item {
-  margin-bottom: 1rem;
 }
 .content-container__sidebar-link {
   display: block;
@@ -1098,10 +1111,21 @@ h3 {
   background-color: rgb(174.2511013216, 196.013215859, 205.7488986784);
 }
 .content-container__main {
-  /* Ocupa todo el espacio disponible */
-  flex: 1;
-  overflow-y: auto;
+  /* Por defecto (mobile): 
+     Ocupa todo el espacio, se scrollea la página global. */
   padding: 2rem;
+  /* 
+    A PARTIR DE TABLET:
+    - Toma el espacio restante 
+    - Scroll interno
+  */
+}
+@media (min-width: 768px) {
+  .content-container__main {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+  }
 }
 .content-container__main .content-container__breadcrumb {
   margin-bottom: 2rem;
@@ -1145,6 +1169,57 @@ h3 {
   color: rgb(47, 65, 86);
 }
 
+/* BLOQUE: .accordion */
+.accordion {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.accordion__item {
+  margin-bottom: 1rem;
+}
+.accordion__header {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #343a40;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.accordion__header::after {
+  content: "\f078";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s;
+}
+.accordion__header:hover {
+  color: rgb(17.7068965517, 19.75, 21.7931034483);
+}
+.accordion__header.is-open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+.accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion__panel.is-open {
+  max-height: 600px; /* Valor mayor que la altura esperada */
+}
+.accordion li {
+  list-style: none;
+}
+
+/* .learning-card como antes... */
 .learning-card {
   background-color: rgb(200, 217, 230);
   padding: 2rem;

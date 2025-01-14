@@ -55,4 +55,6 @@
       // Opcional: podrías cerrar el panel si se hace click fuera del mismo, etc.
     });
   })();
+
+
   

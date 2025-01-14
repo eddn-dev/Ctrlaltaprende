@@ -2,48 +2,56 @@
 @use 'base/mixins' as m;
 @use 'sass:color';
 
-// Contenedor principal (BEM: bloque .content-container)
+/* 
+  1) Asegúrate de que tu html, body tienen altura al 100% 
+  en tu _globals.scss o similar:
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+*/
+
 .content-container {
-  // Mobile-first: la sidebar y el main se apilan (columna)
+  /* Mobile-first:
+     En pantallas menores a tablet, dejamos que todo se scrollee libremente. */
+  /* No fijamos height aquí todavía. */
+
   display: flex;
   flex-direction: column;
-  overflow: hidden; // Si quieres ocultar overflow global
 
-  // A PARTIR DE "tablet" => display en fila (sidebar a la izq., contenido a la der.)
+  /* 
+    A PARTIR DE TABLET:
+    - Forzamos la altura completa menos un navbar (6rem)
+    - Hacemos overflow hidden para que aside/main tengan scroll interno
+    - Cambiamos a flex-direction: row
+  */
   @include m.tablet {
+    height: calc(100vh - 6rem);
+    overflow: hidden;
     flex-direction: row;
   }
 
-  // ----- SIDEBAR -----
+  /* SIDEBAR */
   &__sidebar {
-    /* Para que la barra lateral tenga scroll interno y no se mueva en pantallas grandes */
-    overflow-y: auto;
-    background-color: v.$bg-light; // Ajusta a tu preferencia
+    background-color: v.$bg-light;
     padding: 2rem;
-    /* En mobile, ocupa todo el ancho (estará arriba); en tablet+ definimos ancho fijo */
     width: 100%;
-
+    /* Mobile-first => no altura fija ni scroll forzado */
+    
+    /* A PARTIR DE TABLET => ancho fijo y scroll interno */
     @include m.tablet {
-      flex: 0 0 25rem; // Un ancho fijo (ej. 25rem)
-      /* O si prefieres un %:
-         flex: 0 0 20%; */
+      flex: 0 0 25rem;
+      overflow-y: auto;
+      height: 100%; 
     }
 
     &-title {
       font-size: 2rem;
       font-weight: v.$bold;
       margin-bottom: 2rem;
-      color: v.$text-dark; 
-    }
-
-    &-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    &-item {
-      margin-bottom: 1rem;
+      color: v.$text-dark;
     }
 
     &-link {
@@ -58,7 +66,6 @@
       &:hover {
         background-color: color.adjust(v.$text-color, $lightness: 40%);
       }
-
       &--active {
         font-weight: v.$bold;
         background-color: color.adjust(v.$primary-color, $lightness: 30%);
@@ -66,14 +73,23 @@
     }
   }
 
-  // ----- CONTENIDO PRINCIPAL -----
+  /* CONTENIDO PRINCIPAL */
   &__main {
-    /* Ocupa todo el espacio disponible */
-    flex: 1;  
-    overflow-y: auto;
+    /* Por defecto (mobile): 
+       Ocupa todo el espacio, se scrollea la página global. */
     padding: 2rem;
 
-    // Migas de pan (breadcrumb)
+    /* 
+      A PARTIR DE TABLET:
+      - Toma el espacio restante 
+      - Scroll interno
+    */
+    @include m.tablet {
+      flex: 1;
+      overflow-y: auto;
+      height: 100%;
+    }
+
     .content-container__breadcrumb {
       margin-bottom: 2rem;
       font-size: 1.4rem;
@@ -87,13 +103,11 @@
           color: color.adjust(v.$primary-color, $lightness: -10%);
         }
       }
-
       .content-container__breadcrumb-current {
-        color: v.$text-dark; // o un color diferente para el link actual
+        color: v.$text-dark;
       }
     }
 
-    // Título principal
     .content-container__title {
       font-size: 3rem;
       margin-bottom: 1.5rem;
@@ -101,7 +115,6 @@
       color: v.$text-dark;
     }
 
-    // Párrafo introductorio
     .content-container__intro {
       font-size: 1.6rem;
       line-height: 1.6;
@@ -109,7 +122,6 @@
       color: v.$text-color;
     }
 
-    // Secciones (subtemas)
     .content-container__section {
       margin-bottom: 3rem;
 
@@ -119,7 +131,6 @@
         margin-bottom: 1rem;
         color: v.$text-dark;
       }
-
       &-text {
         font-size: 1.6rem;
         line-height: 1.6;
@@ -129,7 +140,64 @@
   }
 }
 
-// Bloque independiente: .learning-card
+/* BLOQUE: .accordion */
+.accordion {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    margin-bottom: 1rem;
+  }
+
+  &__header {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: v.$bold;
+    color: v.$text-dark;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+
+    &::after {
+      content: "\f078"; // fa-chevron-down (Font Awesome)
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s;
+    }
+
+    &:hover {
+      color: color.adjust(v.$text-dark, $lightness: -15%);
+    }
+    &.is-open::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  &__panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  &__panel.is-open {
+    max-height: 600px; /* Valor mayor que la altura esperada */
+  }
+
+  li {
+    list-style: none; 
+  }
+}
+
+/* .learning-card como antes... */
 .learning-card {
   background-color: v.$light-gray;
   padding: 2rem;
@@ -153,5 +221,5 @@
     margin-bottom: 0.8rem;
     font-size: 1.6rem;
     color: v.$text-color;
-  } 
+  }
 }
