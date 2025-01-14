@@ -33,7 +33,7 @@ class AuthController {
                         $_SESSION['admin'] = $usuario->admin ?? null;
                         // Redirect
                         if($usuario->admin == 1){
-                            header('Location: /admin/dashboard');
+                            header('Location: /');
                         } else {
                             header('Location: /');
                         }

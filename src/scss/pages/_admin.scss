@@ -2,16 +2,6 @@
 @use 'base/mixins' as m;
 @use 'sass:color';
 
-/* Estructura principal */
-.main-container {
-  display: grid;
-  grid-template-areas: 
-    "header header"
-    "main main"; 
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr; 
-  height: 100vh;
-}
 
 /* Contenido principal */
 .main-content {

@@ -41,7 +41,9 @@
         >
           <!-- Podrías poner una imagen de avatar real, o un ícono por defecto -->
           <img 
-            src="/build/img/profile-default.jpg" 
+            src="<?php echo $usuario->profile 
+                      ? '/profiles/' . $usuario->profile
+                      : '/build/img/profile-default.avif'; ?>" 
             alt="Tu perfil" 
             class="main-nav__avatar-img"
           >

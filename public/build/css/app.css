@@ -307,7 +307,6 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   height: 100%;
-  overflow: hidden;
 }
 
 *, *:before, *:after {
@@ -1297,15 +1296,6 @@ h3 {
 }
 .logout-btn:hover {
   background-color: #d32f2f;
-}
-
-/* Estructura principal */
-.main-container {
-  display: grid;
-  grid-template-areas: "header header" "main main";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr;
-  height: 100vh;
 }
 
 /* Contenido principal */
