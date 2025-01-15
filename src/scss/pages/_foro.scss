@@ -2,466 +2,260 @@
 @use 'base/mixins' as m;
 @use 'sass:color';
 
-/* Estructura principal */
-.foro-container {
-  display: grid;
-  grid-template-areas: 
-    "header header"
-    "aside main";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 20% 1fr;
-  height: 100vh;
-}
-
-/* Elementos sueltos */
-.last_label {
-  margin-right: 4rem;
-}
-
-.placeholder {
-  background-color: v.$primary-color-half;
-  color: v.$secondary-color; 
-  padding: 0.5rem 0.5rem;
-  border: none;
-  border-radius: 2px;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: 40px;
-}
-
-.introduce {
-  font-size: 1rem;  
-  width: 15em;  
-}
-
-.search-topic-btn {
-  background-color: v.$text-color;
-  color: v.$secondary-color;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 80px;
-  margin-left: 10px;
-
-  &:hover {
-    background-color: v.$secondary-color;
-    color: v.$text-color;
-  }
-}
-
-/* Sidebar */
-.sidebar {
-  align-items: center;
-  grid-area: aside;
-  background-color: v.$primary-color;
-  color: v.$secondary-color;
-  padding: 2rem 1rem;
+/* BLOQUE PRINCIPAL: .forum 
+   (parecido a .content-container, pero para el foro) */
+.forum {
+  /* Mobile-first => la sidebar y el main se apilan (columna) */
   display: flex;
   flex-direction: column;
-  height: 100%; 
 
-  nav {
-    ul {
-      list-style: none;
+  /* A PARTIR DE TABLET => row y alto 100vh - 6rem */
+  @include m.tablet {
+    height: calc(100vh - 8rem);
+    overflow: hidden;
+    flex-direction: row;
+  }
 
-      li {
-        margin: 1.5rem 0rem; 
-        line-height: 2.2;
+  /* ASIDE: .forum__aside */
+  &__aside {
+    background-color: v.$light-gray;
+    padding: 2rem;
+    width: 100%;
 
-        a {
-          color: v.$secondary-color;
-          text-decoration: none;
-          font-size: 1.8rem;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
+    /* A PARTIR DE TABLET => ancho fijo y scroll interno */
+    @include m.tablet {
+      flex: 0 0 28rem; /* un poco más amplio si deseas */
+      overflow-y: auto;
+      height: 100%;
+    }
 
-          &:hover {
-            color: v.$light-gray;
+    /* Título del aside (por ej. 'Foro', 'Opciones', etc.) */
+    &-title {
+      font-size: 2.2rem;
+      font-weight: v.$bold;
+      margin-bottom: 2rem;
+      color: v.$text-dark;
+      text-align: center;
+    }
+
+    /* Bloque de accesos rápidos */
+    &-quick-access {
+      margin-bottom: 2rem;
+      h3 {
+        font-size: 1.8rem;
+        font-weight: v.$bold;
+        color: v.$text-dark;
+        margin-bottom: 1rem;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          margin-bottom: 1rem;
+          a {
+            font-size: 1.6rem;
+            color: v.$text-color;
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
           }
+        }
+      }
+    }
+
+    /* Botones de CTA (ej. iniciar sesión, crear nueva publicación, etc.) */
+    &-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+
+      .forum__btn {
+        background-color: v.$primary-color;
+        color: v.$color-white;
+        text-decoration: none;
+        text-align: center;
+        font-size: 1.6rem;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: v.$bold;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: color.adjust(v.$primary-color, $lightness: -15%);
         }
       }
     }
   }
 
-  .nav_foro,
-  .perfil_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    text-decoration: none;
-  }
+  /* MAIN: .forum__main (contenedor de las publicaciones) */
+  &__main {
+    flex: 1;
+    padding: 2rem;
 
-  .perfil {
-    align-items: center; 
-    gap: 10px;
-    margin-bottom: 10px;
-    background-color: v.$border-color; 
-    padding: 10px 0; 
-    width: 80%;
-    display: flex;
-    flex-direction: column; 
-
-    img { 
-      width: 100px;
-      border-color: #fffff1;
-      border-width: 2px;
-      border-style: solid; 
-      border-radius: 60px;
-      margin: 0 50px;
+    /* Scroll interno a partir de tablet */
+    @include m.tablet {
+      overflow-y: auto;
+      height: 100%;
     }
 
-    .etiqueta {
-      font-style: oblique;
-      font-size: 1.5rem;
-      font-weight: bolder;
-      color: black;
-      text-shadow: 
-        -1px -1px 0 v.$light-gray, 
-         1px -1px 0 v.$light-gray, 
-        -1px  1px 0 v.$light-gray, 
-         1px  1px 0 v.$light-gray;
-    }
-  }
-
-  .follow-btn {
-    background-color: v.$variation-color; 
-    color: v.$secondary-color; 
-    padding: 1rem 0.5rem;
-    border: 2px solid;    
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: bolder;
-  }
-}
-
-/* Contenido principal */
-.foro_main-content {
-  grid-area: main;
-  overflow: visible;
-  overflow-y: auto; /* Solo este contenedor será desplazable */
-  padding: 1.5rem;
-  background-color: v.$background-color;
-}
-
-.foro_main-header {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;     /* Centra verticalmente */
-  margin: 2rem 1rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: 800; 
-  color: v.$text-color;
-}
-
-.buscador-contenedor {
-  display: flex;
-  border-radius: 2.5rem;
-  overflow: hidden;
-  width: 22rem; 
-  margin: 2rem auto;
-
-  .buscador-boton {
-    background-color: v.$text-color;
-    width: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    i {
-      color: #fff;
-      font-size: 20px;
-    }
-
-    &:hover {
-      background-color: v.$text-color-half;
-    }
-  }
-
-  .buscador {
-    padding: 1rem;
-    border: 1px solid #444; 
-    border-radius: 2rem;
-    width: 18rem;
-    height: 5rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    background-color: white; 
-  }
-}
-
-.new-topic-btn {
-  display: none !important;
-  color: v.$primary-color;
-  background-color: v.$secondary-color;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 12rem;
-
-  i {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-
-  &:hover {
-    background-color: v.$text-color;
-    color: v.$light-gray;
-  }
-}
-
-/* Tarjetas de temas */
-.topics {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.topic-card {
-  display: flex; /* Para alinear los elementos horizontalmente */
-  align-items: center;
-  background-color: v.$light-gray;
-  border: 1px solid v.$light-gray;
-  border-radius: 10px;
-  padding: 2rem 2rem;
-  gap: 1rem; /* Espaciado entre elementos */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-  transition: background-color 0.3s, transform 0.3s;
-
-  &:hover {
-    background-color: v.$primary-color;
-    border-color: v.$text-color;
-    color: v.$light-gray;
-    transform: scale(1.02); /* Ligero aumento de tamaño */
-
-    h4, p, .topic-stats, span, .icon-card, .fas{
-      color: whitesmoke;
-    }
-  }
-
-  img {
-    width: 8rem; /* Tamaño de la imagen */
-    height: 8rem;
-    border-radius: 50%; /* Para que sea circular */
-    object-fit: cover; /* Ajuste dentro del contenedor */
-    border: 2px solid v.$light-gray; /* Borde */
-  }
-
-  h4 {
-    margin: 0;
-    font-weight: bold;
-    color: v.$text-color;
-  }
-
-  p {
-    margin: 0.2rem 0 0;
-    font-size: 1.5rem;
-    color: v.$text-color-half; /* Color más claro */
-  }
-
-  .topic-stats {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Espaciado entre stats */
-    margin-top: 0.5rem;
-
-    span {
-      font-size: 1.3rem;
-      color: v.$primary-color;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem; /* Espaciado entre icono y texto */
-    }
-
-    i {
-      font-size: 1rem;
-      color: v.$icon-color;
-    }
-  }
-}
-
-.topics a,
-.topic-card a:active { 
-  text-decoration: none; 
-  color: inherit; 
-}
-
-/* Responsivo (repetido para móviles) */
-@media (max-width: 768px) {
-  .main-container {
-    grid-template-areas: 
-      "header"
-      "main"
-      "aside";
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    height: auto;
-  }
-}
-
-/* Estilos para el contenido del artículo */
-.topic-content {
-  background-color: v.$secondary-color;
-  border: 1px solid v.$light-gray;
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  h2 {
-    color: v.$text-color;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    font-style: oblique;
-  }
-
-  .topic-metadata {
-    font-size: 0.9rem;
-    color: v.$primary-color-half;
-    margin-bottom: 1rem;
-  }
-
-  .topic-body {
-    p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: v.$text-color;
-      margin-bottom: 1rem;
-    }
-
-    pre {
-      background-color: v.$background-color;
-      border: 1px solid v.$light-gray;
-      border-radius: 5px;
-      padding: 1rem;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.9rem;
-      overflow-x: auto;
-
-      code {
-        color: v.$text-color;
+    /* Breadcrumb de navegación, si lo deseas */
+    .forum__breadcrumb {
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      color: v.$text-dark;
+      .forum__breadcrumb-link {
+        color: v.$primary-color;
+        text-decoration: none;
+        &:hover {
+          color: color.adjust(v.$primary-color, $lightness: -10%);
+        }
+      }
+      .forum__breadcrumb-current {
+        color: v.$text-dark;
       }
     }
-  }
-}
 
-/* Estilos para comentarios */
-.topic-comments {
-  margin-top: 2rem;
-
-  h3 {
-    font-size: 1.5rem;
-    color: v.$text-color;
-    margin-bottom: 1rem;
-  }
-
-  .comment {
-    background-color: v.$background-color;
-    border: 1px solid v.$light-gray;
-    border-radius: 5px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-
-    p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: v.$text-color;
+    /* Título principal */
+    .forum__title {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: v.$bold;
+      color: v.$text-dark;
     }
 
-    strong {
-      font-weight: bold;
+    /* Descripción inicial o texto */
+    .forum__intro {
+      font-size: 1.6rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
       color: v.$primary-color;
+      font-style: oblique;
+      font-weight: 300;
     }
 
-    &:hover {
-      background-color: v.$light-gray;
-      border-color: v.$primary-color;
+    /* Contenedor de las publicaciones */
+    .forum__posts {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      /* Cada publicación */
+      .post-card {
+        background-color: v.$bg-lighter;
+        padding: 2rem;
+        border-radius: 0.8rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 1rem; /* Espacio entre tarjetas, si lo deseas */
+      
+        /* Encabezado / meta (foto, autor, fecha) */
+        &__meta {
+          /* ya definido, 
+             si quieres reubicar la foto + texto, 
+             podrías usar otro contenedor dentro */
+          font-size: 1.2rem;
+          color: v.$text-color-half;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+      
+          .post-card__author {
+            font-style: italic;
+            font-size: 1.4rem;
+            color: v.$text-dark;
+          }
+          .post-card__date {
+            font-size: 1.2rem;
+            color: v.$text-color-half;
+          }
+        }
+      
+        /* Título de la publicación */
+        &__title {
+          font-size: 1.8rem;
+          font-weight: v.$bold;
+          margin-bottom: 1rem;
+          color: v.$text-dark;
+        }
+      
+        /* Texto principal (extracto) */
+        &__text {
+          font-size: 1.5rem;
+          line-height: 1.6;
+          color: v.$text-color;
+          margin-bottom: 1.5rem;
+        }
+      
+        /* Multimedia (imagen/video/whatever) (por si llegas a usarlo) */
+        &__media {
+          margin-bottom: 1.5rem;
+          img, video {
+            max-width: 100%;
+            border-radius: 0.5rem;
+          }
+        }
+      
+        /* FOOTER */
+        &__footer {
+          /* Espacio y alineación de elementos del pie */
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px solid color.scale(v.$light-gray, $lightness: -20%);
+          
+          @include m.telefono{
+            flex-direction: row;
+            align-items: center;
+          }
+          /* Columna izq: fecha, comentarios */
+          .post-card__footer-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; 
+            font-size: 1.4rem;
+            color: v.$text-color-half;
+      
+            .post-card__footer-date {
+              color: v.$text-dark;
+              font-weight: v.$bold;
+            }
+            .post-card__footer-comments {
+              font-style: italic;
+            }
+          }
+      
+          /* Columna der: acciones (Ver más, Editar, etc.) */
+          .post-card__actions {
+            display: flex;
+            gap: 0.5rem;
+      
+            .post-card__btn {
+              background-color: v.$primary-color;
+              color: v.$color-white;
+              padding: 0.5rem 1rem;
+              border-radius: 0.5rem;
+              text-decoration: none;
+              transition: background-color 0.3s ease;
+      
+              &:hover {
+                background-color: color.adjust(v.$primary-color, $lightness: -15%);
+              }
+      
+              /* Si quieres un color distinto para "Editar" */
+              &.post-card__btn--edit {
+                background-color: color.adjust(v.$primary-color, $lightness: -10%);
+                &:hover {
+                  background-color: color.adjust(v.$primary-color, $lightness: -20%);
+                }
+              }
+            }
+          }
+        }
+      }      
     }
   }
 }
-
-.button-container {
-  // Usamos flexbox para alinear y centrar contenido fácilmente
-  display: flex;
-  align-items: center;   // Centra verticalmente
-  justify-content: center; // Centra horizontalmente
-  gap: 1rem;            // Espacio opcional entre los botones
-  background-color: v.$text-color-half;
-  padding: 2rem;
-  flex-direction: column;
-  .loginforo-btn,
-  .signupforo-btn {
-    padding: 0.8rem 1.2rem;
-    background-color: color.scale(v.$primary-color, $lightness: -10%);
-    border-radius: 0.5rem;
-    border: 2rem;
-    border-color:  v.$light-gray;
-    color: v.$color-white;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: v.$bold;
-    border: 1px solid transparent; // Opcional para resaltar border en hover
-
-    &:hover {
-      // Primero oscurecemos un poco el color...
-      background-color: color.scale(v.$primary-color, $lightness: -20%);
-      // ...y luego aplicamos el degradado (que sobrescribirá el color base)
-      background-image: linear-gradient(
-        to right, 
-        #9133e8, 
-        #0f33d5, 
-        v.$primary-color, 
-        #EEB211
-      );
-      color: white;
-      border-color: v.$text-color-half; 
-    }
-  }
-}
-
-/* Información de usuario y logout */
-.user-info {
-  text-align: center;
-  margin-top: 20px;
-
-  p {
-    font-size: 16px;
-    color: #333;
-  }
-}
-
-.logout-btn{
-  background-color: #f44336;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
-  margin-top: 10px;
-
-  &:hover {
-    background-color: #d32f2f;
-  }
-}
-

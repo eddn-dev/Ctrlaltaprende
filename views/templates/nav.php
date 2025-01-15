@@ -33,6 +33,11 @@
          <?php echo ($_SERVER['PATH_INFO'] ?? '/') === '/foro' ? 'main-nav__link--active' : ''; ?>">
         Foro
       </a>
+      <?php if(isset($_SESSION['id']) && $_SESSION['admin'] == 1): ?>
+        <a href="/admin" class="main-nav__link <?php echo ($_SERVER['PATH_INFO'] ?? '/') === '/admin' ? 'main-nav__link--active' : ''; ?>">
+          Administrador
+        </a>
+      <?php endif; ?>
     </div>
 
     <!-- ÁREA DE USUARIO (avatar o login) -->

@@ -1,0 +1,185 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.forum {
+
+  .post-edit__content {
+    background-color: v.$color-white;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    margin: 0 auto; /* Centrar */
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    gap: 2rem;
+
+    /* Botón de cierre (similar a la X del modal) */
+    .post-edit__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: v.$text-dark;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: color.adjust(v.$text-dark, $lightness: -20%);
+      }
+    }
+
+    .post-edit__title {
+      font-size: 2.2rem;
+      font-weight: v.$bold;
+      margin-bottom: 1rem;
+      color: v.$text-dark;
+      text-align: center;
+    }
+
+    .post-edit__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+
+      .post-edit__label {
+        font-size: 1.6rem;
+        font-weight: v.$bold;
+        color: v.$text-dark;
+        margin-bottom: 0.5rem;
+      }
+
+      .post-edit__input,
+      .post-edit__textarea {
+        font-size: 1.4rem;
+        padding: 0.8rem;
+        border: 1px solid v.$border-color;
+        border-radius: 0.4rem;
+        &:focus {
+          outline: none;
+          border-color: color.adjust(v.$primary-color, $lightness: -10%);
+        }
+      }
+
+      .post-edit__input-file {
+        font-size: 1.4rem;
+        border: none;
+        padding: 0.4rem 0;
+      }
+
+      /* Títulos pequeños dentro de la edición */
+      .post-edit__subtitle {
+        font-size: 1.8rem;
+        font-weight: v.$bold;
+        color: v.$text-dark;
+        margin-bottom: 1rem;
+      }
+
+      /* Secciones dinámicas existentes + nuevas */
+      .post-edit__dynamic-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: v.$bg-lighter;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+
+        .post-edit__dynamic-item {
+          background-color: v.$color-white;
+          padding: 1rem;
+          border: 1px dashed v.$border-color;
+          border-radius: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          position: relative;
+
+          label {
+            font-size: 1.4rem;
+            color: v.$text-color;
+          }
+
+          .post-edit__code-snippet {
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            line-height: 1.5;
+            width: 100%;
+            min-height: 8rem;
+          }
+
+          .post-edit__image-preview {
+            max-width: 50rem;
+            border-radius: 0.5rem;
+            border: 1px solid v.$border-color;
+            margin-top: 0.5rem;
+          }
+
+          /* contenedor para la vista previa (opcional) */
+          .post-edit__image-preview-container {
+            // tu estilo
+          }
+
+          /* Botón para eliminar el item */
+          .post-edit__remove-item-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: v.$text-dark;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            &:hover {
+              color: color.adjust(v.$text-dark, $lightness: -20%);
+            }
+          }
+        }
+      }
+
+      /* Botones al final del formulario */
+      .post-edit__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .post-edit__btn {
+          background-color: v.$primary-color;
+          color: v.$color-white;
+          border: none;
+          padding: 0.8rem 1.6rem;
+          font-size: 1.4rem;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: color.adjust(v.$primary-color, $lightness: -10%);
+          }
+
+          &--primary {
+            // Botón de "Actualizar Publicación"
+            background-color: color.adjust(v.$primary-color, $lightness: -5%);
+            &:hover {
+              background-color: color.adjust(v.$primary-color, $lightness: -15%);
+            }
+          }
+
+          &--delete {
+            background-color: red;
+            &:hover {
+              background-color: darkred;
+            }
+          }
+        }
+      }
+    }
+  }
+}

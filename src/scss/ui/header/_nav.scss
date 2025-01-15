@@ -12,7 +12,7 @@
     /* Contenedor general */
     @include m.container();
     /* Altura mínima para centrar verticalmente */
-    min-height: 6rem;
+    height: 8rem;
     padding: 1rem;
 
     /* 
@@ -46,7 +46,7 @@
       &-link {
         img {
           border-radius: 50%;
-          max-width: 7rem;
+          max-width: 6rem;
           display: block;
         }
       }
@@ -107,8 +107,8 @@
         cursor: pointer;
 
         .main-nav__avatar-img {
-          width: 7rem;
-          height: 7rem;
+          width: 6rem;
+          height: 6rem;
           border-radius: 50%;
           object-fit: cover;
         }

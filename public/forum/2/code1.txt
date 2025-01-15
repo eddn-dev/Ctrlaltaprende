@@ -1,0 +1,23 @@
+//Este es el bloque de código 1
+#include 
+
+int main() {
+  int num, i;
+  unsigned long long factorial = 1;
+
+  printf("Introduce un entero: ");
+  scanf("%d", &num);
+
+  // Mostrar error si el número es negativo
+  if (num < 0)
+    printf("Error! El factorial de un número negativo no existe.");
+
+  else {
+    for (i = 1; i <= num; ++i) {
+      factorial *= i;
+    }
+    printf("Factorial de %d = %llu", num, factorial);
+  }
+
+  return 0;
+}

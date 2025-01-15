@@ -1,0 +1,174 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.forum-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: none; /* se mostrará con display: flex; cuando ?new=1 */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  &__content {
+    background-color: v.$color-white;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    width: min(90%, 50rem);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    /* Botón de cierre (X) */
+    .forum-modal__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: v.$text-dark;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: color.adjust(v.$text-dark, $lightness: -20%);
+      }
+    }
+
+    /* Título del modal */
+    .forum-modal__title {
+      font-size: 2.2rem;
+      font-weight: v.$bold;
+      margin-bottom: 1rem;
+      color: v.$text-dark;
+      text-align: center;
+    }
+
+    /* Formulario principal */
+    .forum-modal__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      label {
+        font-size: 1.6rem;
+        font-weight: v.$bold;
+        color: v.$text-dark;
+      }
+
+      input[type="text"],
+      textarea {
+        font-size: 1.4rem;
+        padding: 0.8rem;
+        border: 1px solid v.$border-color;
+        border-radius: 0.4rem;
+        &:focus {
+          outline: none;
+          border-color: color.adjust(v.$primary-color, $lightness: -10%);
+        }
+      }
+
+      input[type="file"] {
+        font-size: 1.4rem;
+        border: none;
+        padding: 0.4rem 0;
+      }
+
+      /* Sección dinámica para + código / + imagen */
+      .forum-modal__dynamic-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: v.$bg-lighter;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+
+        .forum-modal__dynamic-item {
+          background-color: v.$color-white;
+          padding: 1rem;
+          border: 1px dashed v.$border-color;
+          border-radius: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          position: relative;
+
+          label {
+            font-size: 1.4rem;
+            color: v.$text-color;
+          }
+
+          /* Para que se muestre código en monospace */
+          textarea.code-snippet {
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            line-height: 1.5;
+          }
+
+          /* Vista previa de imagen */
+          .image-preview-container {
+            margin-top: 0.5rem;
+            img {
+              max-width: 100%;
+              border-radius: 0.5rem;
+              border: 1px solid v.$border-color;
+            }
+          }
+
+          /* Botón para eliminar el item */
+          .remove-item-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: v.$text-dark;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            &:hover {
+              color: color.adjust(v.$text-dark, $lightness: -20%);
+            }
+          }
+        }
+      }
+
+      /* Botones del form */
+      .forum-modal__buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .forum-modal__btn {
+          background-color: v.$primary-color;
+          color: v.$color-white;
+          border: none;
+          padding: 0.8rem 1.6rem;
+          font-size: 1.4rem;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          &:hover {
+            background-color: color.adjust(v.$primary-color, $lightness: -10%);
+          }
+        }
+
+        .forum-modal__btn--secondary {
+          background-color: v.$text-dark;
+          color: v.$color-white;
+          &:hover {
+            background-color: color.adjust(v.$text-dark, $lightness: -20%);
+          }
+        }
+      }
+    }
+  }
+}

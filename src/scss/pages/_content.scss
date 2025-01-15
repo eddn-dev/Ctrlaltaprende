@@ -2,22 +2,23 @@
 @use 'base/mixins' as m;
 @use 'sass:color';
 
-/* BLOQUE PRINCIPAL: .content-container */
+/* BLOQUE PRINCIPAL: .content-container */  
 .content-container {
+  
   /* Mobile-first => la sidebar y el main se apilan (columna) */
   display: flex;
   flex-direction: column;
 
   /* A partir de tablet => flex-direction row y alto 100vh-6rem */
   @include m.tablet {
-    height: calc(100vh - 6rem);
+    height: calc(100vh - 8rem);
     overflow: hidden;
     flex-direction: row;
   }
 
   /* SIDEBAR */
   &__sidebar {
-    background-color: v.$bg-light;
+    background-color: v.$light-gray;
     padding: 2rem;
     width: 100%;
 
@@ -63,6 +64,7 @@
       flex: 1;
       overflow-y: auto;
       height: 100%;
+
     }
 
     /* Migas de pan (breadcrumb) */
@@ -94,10 +96,13 @@
 
     /* Intro o texto inicial */
     .content-container__intro {
-      font-size: 1.6rem;
+      padding-left: 5rem;
+      font-size: 1.5rem;
       line-height: 1.6;
       margin-bottom: 2rem;
-      color: v.$text-color;
+      color: v.$primary-color;
+      font-style: oblique;
+      font-weight: 300;
     }
 
     /* Bloque .content-container__section (subtemas o secciones) */
@@ -128,6 +133,7 @@
       font-weight: v.$bold;
       color: v.$text-dark;
       line-height: 1.3;
+      display: inline-block;
 
       /* Ajuste de tamaños según el nivel */
       &:nth-of-type(1) { font-size: 3rem; }
@@ -176,6 +182,8 @@
       background-color: v.$bg-lighter;
       border-left: 4px solid v.$primary-color;
       padding: 1rem;
+      max-width: 80rem;
+      margin: 0 auto;
       margin-bottom: 2rem;
       overflow-x: auto;
       code {
@@ -191,25 +199,40 @@
       margin: 2rem 0;
       text-align: center;
       img {
-        max-width: 100%;
+        max-width: 50rem;
         border-radius: 0.5rem;
       }
       figcaption {
         font-size: 1.4rem;
-        color: v.$text-dark;
+        color: v.$variation-color;
         margin-top: 0.5rem;
       }
     }
 
     /* Videos (enlaces) */
     .content-videos {
-      margin: 2rem 0;
+      min-height: 5rem;
+      max-width: 80rem;
+      width: auto;
+      display: flex;
+      margin: 2rem auto;
+      border-radius: 0.5rem;
+      gap: 2rem;
+      background-color: v.$primary-color-half;  
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
       a {
-        display: block;
+        display: inline-block;
         font-size: 1.6rem;
-        color: v.$primary-color;
+        color: v.$light-gray;
         text-decoration: underline;
         margin: 0.5rem 0;
+        background-color: v.$primary-color;
+        border-radius: 4rem;
+        width: 15rem;
+        text-align: center;
+        justify-content: center;
 
         &:hover {
           color: color.adjust(v.$primary-color, $lightness: -20%);
@@ -217,6 +240,9 @@
       }
       p {
         margin: 0.5rem 0;
+        justify-content: center;
+        align-content: center;
+        
       }
     }
   }

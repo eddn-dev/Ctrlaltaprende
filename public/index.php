@@ -6,6 +6,7 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controllers\AuthController;
 use Controllers\AdminController;
+use Controllers\ForoController;
 use Controllers\PerfilController;
 use Controllers\SiteController;
 
@@ -34,8 +35,16 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 
 //Ruta de sitios
 $router->get('/', [SiteController::class, 'inicio']);
-$router->get('/foro', [SiteController::class, 'foro']);
 $router->get('/content', [SiteController::class, 'content']);
+
+
+$router->get('/foro', [ForoController::class, 'foro']);
+$router->post('/foro', [ForoController::class, 'crear']);
+$router->get('/foro/publicacion', [ForoController::class, 'post']);
+$router->post('/foro/publicacion', [ForoController::class, 'post']);
+
+$router->get('/foro/editar', [ForoController::class, 'editar']);
+$router->post('/foro/editar', [ForoController::class, 'editar']);
 
 $router->get('/perfil', [PerfilController::class, 'perfil']);
 $router->post('/perfil', [PerfilController::class, 'perfil']);

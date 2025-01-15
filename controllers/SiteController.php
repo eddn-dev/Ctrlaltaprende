@@ -14,11 +14,6 @@ class SiteController {
         ]);
     }
 
-    public static function foro(Router $router) {
-        $router->render('site/foro', [
-        ]);
-    }
-
     public static function perfil(Router $router) {
         session_start();
         if(!isset($_SESSION['id'])) {

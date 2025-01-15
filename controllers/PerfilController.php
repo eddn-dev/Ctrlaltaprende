@@ -71,6 +71,7 @@ class PerfilController {
 
                 // Asignar al usuario
                 $usuario->profile = $filename;
+                $_SESSION['profile'] = $filename;
             }
 
             $usuario->guardar();
